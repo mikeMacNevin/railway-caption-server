@@ -3,20 +3,24 @@ const mysql = require('mysql2/promise');
 const router = express.Router();
 
 require('dotenv').config();
-
 //CORS
-
 
 
 const dbConfig = {
   host: process.env.MYSQLHOST || process.env.DB_HOST,  
-  port: process.env.MYSQLPORT || process.env.port,
+  port: process.env.MYSQLPORT || process.env.DB_PORT,
   user: process.env.MYSQLUSER || process.env.DB_USER,
   password: process.env.MYSQLPASSWORD || process.env.DB_PASSWORD,
-  database: process.env.MYSQLDATABASE || process.env.DB_DATABASE,
-};
+  database: process.env.MYSQLDATABASE || process.env.DB_NAME
+//     host:  process.env.DB_HOST, 
+//     user:  process.env.DB_USER, 
+//   port:  process.env.DB_PORT,
+  
+//   password: process.env.DB_PASSWORD,
+//   database: process.env.DB_NAME
+// };
 
-
+}
 
 router.get('/articles/:page', async (req, res) => {
   const pageValue = [req.params.page]
