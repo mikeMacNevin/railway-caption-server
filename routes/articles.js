@@ -18,18 +18,26 @@ const dbConfig = {
   // password: process.env.MYSQLPASSWORD || process.env.DB_PASSWORD,
   // database: process.env.MYSQLDATABASE || process.env.DB_DATABASE,
 
-  //more recent but didn't work on railway
+  //more recent - worked in dev but didn't work on railway
     // host: process.env.DB_HOST || process.env.MYSQLHOST,
     // user: process.env.DB_USER || process.env.MYSQLPORT,
     // port: process.env.DB_PORT || process.env.MYSQLUSER, 
     // password: process.env.DB_PASSWORD || process.env.MYSQLPASSWORD,
     // database: process.env.DB_NAME ||  process.env.MYSQLDATABASE
     
-    host:  process.env.MYSQLHOST || process.env.DB_HOST,
-    user: process.env.MYSQLPORT  || process.env.DB_USER,
-    port: process.env.MYSQLUSER || process.env.DB_PORT,
-    password: process.env.MYSQLPASSWORD || process.env.DB_PASSWORD,
-    database: process.env.MYSQLDATABASE || process.env.DB_NAME
+
+    //most recent - didn't work
+    // host: process.env.MYSQLHOST || process.env.DB_HOST,
+    // user: process.env.MYSQLPORT  || process.env.DB_USER,
+    // port: process.env.MYSQLUSER || process.env.DB_PORT,
+    // password: process.env.MYSQLPASSWORD || process.env.DB_PASSWORD,
+    // database: process.env.MYSQLDATABASE || process.env.DB_NAME
+
+    host: process.env.MYSQLHOST, 
+    user: process.env.MYSQLPORT, 
+    port: process.env.MYSQLUSER, 
+    password: process.env.MYSQLPASSWORD, 
+    database: process.env.MYSQLDATABASE 
 };
 
 
