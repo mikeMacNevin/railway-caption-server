@@ -1,5 +1,4 @@
 module.exports = [
-
     {
         name: 'CNN',
         url: 'https://www.cnn.com',
@@ -7,13 +6,13 @@ module.exports = [
         urlSelector: '.container__title a', 
         page: 'home'
     },
-    {
-        name: 'BBC',
-        url: 'https://www.bbc.com',
-        titleSelector: '.BzSXM .kmmiMl',
-        urlSelector: '.wMcOc a.sc-8a623a54-0.hMvGwj', 
-        page: 'home',
-    },
+    // {
+    //     name: 'BBC',
+    //     url: 'https://www.bbc.com',
+    //     titleSelector: '.BzSXM .kmmiMl',
+    //     urlSelector: '.wMcOc a.sc-8a623a54-0.hMvGwj', 
+    //     page: 'home',
+    // },
     {
         name: 'The New York Times',
         url: 'https://www.nytimes.com',
@@ -141,13 +140,7 @@ module.exports = [
         urlSelector: '.splash__headline > a', 
         page: 'politics' 
     },
-    {
-        name: 'Newsweek',
-        url: 'https://www.newsweek.com/',
-        titleSelector: '.featured-article-title > a',
-        urlSelector: '.featured-article-title > a', 
-        page: 'politics' 
-    },    
+ 
     //END POLITICS
     //FINANCE
     {
@@ -171,11 +164,81 @@ module.exports = [
         urlSelector: '.article-title > a', 
         page: 'finance'
     },
-
-
-    
-    
-
     //END FINANCE
+    //START WORLD
+    // {
+    //     name: 'Aljazeera',
+    //     url: 'https://www.aljazeera.com/',
+    //     titleSelector: '.article-card__title > span',
+    //     urlSelector: '.article-card__liveblog-title > a', 
+    //     page: 'world' 
+    // },   
+    {
+        name: 'The Jerusalem Post',
+        url: 'https://www.jpost.com/',
+        titleSelector: '.main-article-left-side-container h3.article-title-h3',
+        urlSelector: '.main-article-left-side-container > a.main-article-link', 
+        page: 'world' 
+    },   
+    {
+        name: 'The Japan Times',
+        url: 'https://www.japantimes.co.jp/',
+        titleSelector: '.article-title > a',
+        urlSelector: '.article-title > a', 
+        page: 'world' 
+    },   
+    {
+        name: 'The Moscow Times',
+        url: 'https://www.themoscowtimes.com/',
+        titleSelector: 'h3.article-excerpt-primary__title > span',
+        urlSelector: '.article-excerpt-primary > .article-excerpt-primary__link ', 
+        page: 'world' 
+    },   
+    {
+        name: 'South Chine Morning Post',
+        url: 'https://www.scmp.com/',
+        titleSelector: 'h2.css-1xdhyk6 > span',
+        urlSelector: 'div.css-1sxg93g > a ', 
+        page: 'world' 
+    },   
+    {
+        name: 'Hindustan Times',
+        url: 'https://www.hindustantimes.com/india-news',
+        titleSelector: '.bigCart > h2',
+        urlSelector: '.bigCart > a ', 
+        page: 'world' 
+    },  
+    {
+        name: 'Le Monde',
+        url: 'https://www.lemonde.fr/en/france/',
+        titleSelector: '.teaser h3',
+        urlSelector: '.teaser > a ', 
+        page: 'world' 
+    },  
+    {
+        name: 'The Rio Times',
+        url: 'https://www.riotimesonline.com/',
+        titleSelector: '.td-module-meta-info > h3',
+        urlSelector: 'h3.entry-title > a ', 
+        page: 'world' 
+    },    
+
+    {
+        name: 'Republicca',
+        url: 'https://www.repubblica.it/',
+        titleSelector: '.entry__title',
+        urlSelector: '.entry__title > a ', 
+        page: 'world' 
+    },       
+    {
+        name: 'El Pais',
+        url: 'https://english.elpais.com/spain/',
+        titleSelector: 'h2.c_t',
+        urlSelector: 'h2.c_t > a', 
+        page: 'world' 
+    }, 
+    
+    
+
 ];
 

@@ -23,9 +23,8 @@ const dbConfig = {
 }
 
 router.get('/articles/:page', async (req, res) => {
+  console.log("attempt")
   const pageValue = [req.params.page]
-
-
 
   console.log(`page value: ${pageValue[0]}`);
 

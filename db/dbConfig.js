@@ -5,9 +5,10 @@ const dbConfig = {
   // user: process.env.MYSQLUSER || process.env.DB_USER,
   // password: process.env.MYSQLPASSWORD || process.env.DB_PASSWORD,
   // database: process.env.MYSQLDATABASE || process.env.DB_DATABASE,
-    host:  process.env.DB_HOST,  
+    host:  process.env.DB_HOST, 
+      port:  process.env.DB_PORT,
+ 
       user:  process.env.DB_USER,
-  port:  process.env.DB_PORT,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME
 };

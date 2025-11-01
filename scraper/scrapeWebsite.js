@@ -21,15 +21,14 @@ const cheerio = require('cheerio');
 
         // console.log("response header: " + response.data);
 
-        if (site.title == 'Yahoo Finance') {
-            console.log ("______________________________________here is the response: " + response)
-        }
+
         // Get article title and URL
         const title = $(site.titleSelector).first().text().trim();
         let url = $(site.urlSelector).first().attr('href');    
+        console.log("-----------------------------------------")
         console.log(`scrapeWebsite site.name: ${site.name}`)
-        console.log(`scrapeWebsite ${site.name} title: ${title}`)
-        console.log(`scrapeWebsite ${site.name} url: ${url}`)
+        console.log(`${site.name} title: ${title}`)
+        console.log(`${site.name} url: ${url}`)
 
         //TEST
         let site_icon_url = $('link[rel="icon"]').attr('href') || $('link[rel="shortcut icon"]').attr('href') || $('link[rel="shortcut icon mask-icon"]').attr('href');
