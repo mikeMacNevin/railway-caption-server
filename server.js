@@ -25,6 +25,6 @@ app.use('/api', articlesRouter);
 // Initial run
 scrapeAllSites();
 // Check for updates every 30 minutes d
-cron.schedule('*/30 * * * *', scrapeAllSites); 
+cron.schedule('*/60 * * * *', scrapeAllSites); 
 
 
