@@ -41,11 +41,14 @@ router.get('/articles/:page', async (req, res) => {
         INNER JOIN (
           SELECT source, MAX(created_at) as max_created_at
           FROM articles
-          WHERE page = ?
+          WHERE page = ? AND created_at > NOW() - INTERVAL 5 HOUR
           GROUP BY source
-        ) latest ON a.source = latest.source AND a.created_at = latest.max_created_at
-        ORDER BY a.source;
+        ) latest ON a.source = latest.source AND a.created_at = latest.max_created_at;
       `;
+
+      //  ORDER BY a.source;
+
+
       // Execute the query
       const [rows] = await connection.execute(query, pageValue);
       // Check if we have results

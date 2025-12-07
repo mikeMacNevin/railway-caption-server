@@ -1,4 +1,79 @@
 module.exports = [
+            {
+        name: 'NHL',
+        url: 'https://www.nhl.com/',
+        titleSelector: '.nhl-c-hero__title',
+        urlSelector: '.nhl-c-hero', 
+        page: 'sports' 
+    }, 
+    {
+        name: 'ESPN',
+        url: 'https://espn.com/',
+        titleSelector: '.contentItem__content h2',
+        urlSelector: '.contentItem__content > a', 
+        page: 'sports' 
+    }, 
+    {
+        name: 'Sports Illustrated',
+        url: 'https://si.com/',
+        titleSelector: '.gallery-column.order-1 h3',
+        urlSelector: '.gallery-column.order-1 a', 
+        page: 'sports' 
+    }, 
+        {
+        name: 'CBS Sports',
+        url: 'https://www.cbssports.com/',
+        titleSelector: '.TopCovers-item h1',
+        urlSelector: '.TopCovers-item > a', 
+        page: 'sports' 
+    }, 
+    {
+        name: 'Yahoo Sports',
+        url: 'https://sports.yahoo.com/',
+        titleSelector: '._ys_1tsdzxx h3',
+        urlSelector: '._ys_1tsdzxx a', 
+        page: 'sports' 
+    }, 
+        {
+        name: 'Deadspin',
+        url: 'https://deadspin.com',
+        titleSelector: '.block > h3',
+        urlSelector: '.block a', 
+        page: 'sports' 
+    }, 
+    {
+        name: 'NBC Sports',
+        url: 'https://www.nbcsports.com/',
+        titleSelector: '.HubHero-main .PagePromo-title',
+        urlSelector: '.HubHero-main a', 
+        page: 'sports' 
+    }, 
+    {
+        name: 'Fox Sports',
+        url: 'https://www.foxsports.com/',
+        titleSelector: '.vue-glide__track span.inline',
+        urlSelector: '.vue-glide__track a', 
+        page: 'sports' 
+    }, 
+    {
+        name: 'The Score',
+        url: 'https://www.thescore.com/',
+        titleSelector: '.isImageCard > .jsx-403783000',
+        urlSelector: '.jsx-1435942676 a', 
+        page: 'sports' 
+    }, 
+
+        {
+        name: 'MLB',
+        url: 'https://www.mlb.com/',
+        titleSelector: '.AnchorElement-sc-5g3tf0-0 > h2',
+        urlSelector: '.AnchorElement-sc-5g3tf0-0 ', 
+        page: 'sports' 
+    }, 
+
+    /* END SPORTS */
+
+    /* START FRONT SCREEN */
     {
         name: 'CNN',
         url: 'https://www.cnn.com',
@@ -237,8 +312,95 @@ module.exports = [
         urlSelector: 'h2.c_t > a', 
         page: 'world' 
     }, 
+
+    // END WORLD
+
+    // START SHOW BIZ
+
+
+    {
+        name: 'People',
+        url: 'https://people.com/',
+        titleSelector: '.card__title > span.card__title-text  ',
+        urlSelector: '#four-post__content_1-0 > a', 
+        page: 'celebs' 
+    }, 
+    //     {
+    //     name: 'EOnline',
+    //     url: 'https://eonline.com/',
+    //     titleSelector: '.list-row h3  ',
+    //     urlSelector: '.list-row a', 
+    //     page: 'celebs' 
+    // }, 
+        {
+        name: 'US Magazine',
+        url: 'https://usmagazine.com/',
+        titleSelector: '.item-content > h3.item-title',
+        urlSelector: '.module-top-headlines > a', 
+        page: 'celebs' 
+    }, 
+            {
+        name: 'Page Six',
+        url: 'https://pagesix.com/',
+        titleSelector: 'h2.story__headline',
+        urlSelector: 'h2.story__headline > a', 
+        page: 'celebs' 
+    }, 
+
+    {
+        name: 'ET Online',
+        url: 'https://etonline.com/',
+        titleSelector: 'a.hero__tile-1 span',
+        urlSelector: '.hero > a.hero__tile-1', 
+        page: 'celebs' 
+    }, 
+       {
+        name: 'TMZ',
+        url: 'https://tmz.com/',
+        titleSelector: 'h2.article__header--headline-fragments > span',
+        urlSelector: '.article__header > a', 
+        page: 'celebs' 
+    }, 
+       {
+        name: 'Variety',
+        url: 'https://variety.com/',
+        titleSelector: '.o-story__primary > h3#title-of-a-story',
+        urlSelector: 'h3#title-of-a-story > a', 
+        page: 'celebs' 
+    }, 
+           {
+        name: 'Hollywood Reporter',
+        url: 'https://hollywoodreporter.com/',
+        titleSelector: '.lrv-u-margin-tb-auto > h3#title-of-a-story',
+        urlSelector: 'h3#title-of-a-story > a', 
+        page: 'celebs' 
+    }, 
+           {
+        name: 'Vanity Fair',
+        url: 'https://vanityfair.com/',
+        titleSelector: '.SummaryItemContent-edliEQ h3',
+        urlSelector: '.SummaryItemContent-edliEQ > a', 
+        page: 'celebs' 
+    }, 
+
+    {
+        name: 'Entertainment Weekly',
+        url: 'https://ew.com/',
+        titleSelector: 'a#top__card--featured_1-0 span',
+        urlSelector: 'a#top__card--featured_1-0', 
+        page: 'celebs' 
+    }, 
+    {
+        name: 'Vulture',
+        url: 'https://vulture.com/',
+        titleSelector: 'a.lede-link > h2',
+        urlSelector: 'a.lede-link', 
+        page: 'celebs' 
+    }, 
+
+    /* END CELEBS */
     
-    
+    /* BEGIN SPORTS */
 
 ];
 

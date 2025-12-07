@@ -8,15 +8,7 @@ const dbConfig = {
   user: process.env.MYSQLUSER || process.env.DB_USER,
   password: process.env.MYSQLPASSWORD || process.env.DB_PASSWORD,
   database: process.env.MYSQLDATABASE || process.env.DB_NAME,
-
-//   host:  process.env.DB_HOST,  
-//   user:  process.env.DB_USER,
-//   port:  process.env.DB_PORT,
-
-//   password: process.env.DB_PASSWORD,
-//   database: process.env.DB_NAME
 }
-
 
 // Function to save article data to MySQL
 module.exports = async function saveToDatabase(article) {
