@@ -12,47 +12,38 @@ const cheerio = require('cheerio');
         });
         //page = page
         const page = site.page;
+
+        console.log("URL STUFFSSS - ------ - " + JSON.stringify(site))
         //Load website data to Cherrio
         const $ = cheerio.load(response.data);
         
-        if (site.url == 'https://www.washingtonpost.com/') {
-            console.log(response.data);
-        }
-
-        // console.log("response header: " + response.data);
-
-
         // Get article title and URL
         const title = $(site.titleSelector).first().text().trim();
         let url = $(site.urlSelector).first().attr('href');    
         console.log("-----------------------------------------")
-        console.log(`scrapeWebsite site.name: ${site.name}`)
         console.log(`${site.name} title: ${title}`)
         console.log(`${site.name} url: ${url}`)
 
         //TEST
         let site_icon_url = $('link[rel="icon"]').attr('href') || $('link[rel="shortcut icon"]').attr('href') || $('link[rel="shortcut icon mask-icon"]').attr('href');
-        console.log(`'site_icon_url	 for' ${site.name} : ${site_icon_url	}`);
+        console.log(`'site_icon_url	 for' ${site.name}' : ${site_icon_url	}`);
 
         // Ensure the URL is absolute
         if (url && !url.startsWith('http')) {
             let baseUrl = new URL(site.url).origin;
             url = new URL(url, baseUrl).href;
-            console.log("HAS A FIXED URL: " + url)
+            // console.log("HAS A FIXED URL: " + url)
         }
 
         let website;
         if (url) {
             website = new URL(site.url).origin;
-            
             console.log("website: " + website)
-
         }
-
         // scrape 
         // website favicon
         if (site_icon_url && !site_icon_url.startsWith('http')) {
-            const baseSiteIconUrl = new URL(url).origin
+            const baseSiteIconUrl = new URL(website).origin
             console.log (`baseSiteIconURL for ${site.name}: ${baseSiteIconUrl} `)
             site_icon_url = new URL(site_icon_url, baseSiteIconUrl).href;
         }

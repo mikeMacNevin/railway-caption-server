@@ -1,8 +1,173 @@
 module.exports = [
+    
+    {
+        name: 'Digital Trends',
+        url: 'https://www.digitaltrends.com',
+        titleSelector: 'h3.b-mem-post__title',
+        urlSelector: 'h3.b-mem-post__title > a', 
+        page: 'tech'  
+    },
+    {
+        name: 'PC Mag',
+        url: 'https://www.pcmag.com',
+        titleSelector: 'a#cover-story h1',
+        urlSelector: 'a#cover-story', 
+        page: 'tech'  
+    },
+        {
+        name: 'Tom\'s Hardware',
+        url: 'https://www.tomshardware.com',
+        titleSelector: 'a.article-link span.article-name',
+        urlSelector: 'a.article-link', 
+        page: 'tech'  
+    },
+    {
+        name: 'Mashable',
+        url: 'https://www.mashable.com',
+        titleSelector: '.accent-vertical-primary-300 span.leading-7',
+        urlSelector: 'div.accent-vertical-primary-300 > a', 
+        page: 'tech'
+    },
+    {
+        name: 'CNET',
+        url: 'https://www.cnet.com',
+        titleSelector: 'span.c-storiesNeonMeta_hedContent',
+        urlSelector: 'a.c-storiesNeonHighlightsLead_link', 
+        page: 'tech'
+    },
 
+    // {
+    //     name: 'Venture Beat',
+    //     url: 'https://venturebeat.com',
+    //     titleSelector: 'h2',
+    //     urlSelector: 'h2 > a', 
+    //     page: 'tech'
+    // },
+    {
+        name: 'Wired',
+        url: 'https://www.wired.com',
+        titleSelector: 'h3.HeadlineWrapper-eXjTYk ',
+        urlSelector: 'h3.HeadlineWrapper-eXjTYk > a', 
+        page: 'tech'
+    },
+    {
+        name: 'Engadget',
+        url: 'https://www.engadget.com',
+        titleSelector: 'h4',
+        urlSelector: 'h4 > a', 
+        page: 'tech'
+    },
+    {
+        name: 'The Verge',
+        url: 'https://www.theverge.com',
+        titleSelector: 'div._1xwtict9',
+        urlSelector: '._1xwtict9 > a', 
+        page: 'tech'
+    },
+
+    {
+        name: 'Tech Crunch',
+        url: 'https://www.techcrunch.com',
+        titleSelector: 'h3.loop-card__title',
+        urlSelector: 'h3.loop-card__title > a', 
+        page: 'tech'
+    },
+    {
+        name: 'Tech Radar',
+        url: 'https://www.techradar.com',
+        titleSelector: 'h2.wdn-listv2-item-content-title',
+        urlSelector: 'a.wdn-listv2-item-link', 
+        page: 'tech'
+    },
+    //START FINANCE
+
+     {
+        name: 'Forbes',
+        url: 'https://www.forbes.com/business/',
+        titleSelector: 'h2._1-gEWhFG',
+        urlSelector: 'a.zEzPL6aA', 
+        page: 'finance'
+    },
+    {
+        name: 'Investopedia',
+        url: 'https://www.investopedia.com',
+        titleSelector: 'div#card__title_1-0',
+        urlSelector: 'a#home-hero-primary__item_1-0', 
+        page: 'finance'
+    },
+    {
+        name: 'NASDAQ',
+        url: 'https://www.nasdaq.com/newsroom/',
+        titleSelector: 'article a.jupiter22-c-section-heading__headline',
+        urlSelector: 'article a.jupiter22-c-section-heading__headline', 
+        page: 'finance'
+    },
+    {
+        name: 'The Balance Money',
+        url: 'https://www.thebalancemoney.com/',
+        titleSelector: 'a#mntl-document-card--featured_1-0 .card__title-text',
+        urlSelector: 'a#mntl-document-card--featured_1-0', 
+        page: 'finance'
+    },
+    {
+        name: 'Benzinga',
+        url: 'https://www.benzinga.com/',
+        titleSelector: '.gap-2 h3',
+        urlSelector: '.gap-2 > a', 
+        page: 'finance'
+    },
+
+    {
+        name: 'CNBC',
+        url: 'https://www.cnbc.com/',
+        titleSelector: 'h2.FeaturedCard-packagedCardTitle > a',
+        urlSelector: 'h2.FeaturedCard-packagedCardTitle > a', 
+        page: 'finance'
+    },
+    {
+        name: 'The Fool',
+        url: 'https://www.fool.com/',
+        titleSelector: 'div.absolute > h3.text-lg',
+        urlSelector: 'article.relative > a', 
+        page: 'finance'
+    },
+    {
+        name: 'Investor\'s Bursiness Daily',
+        url: 'https://www.investors.com/',
+        titleSelector: '.article-title > a > div',
+        urlSelector: '.article-title > a', 
+        page: 'finance'
+    },
+    {
+        name: 'Investors Place',
+        url: 'https://investorplace.com/',
+        titleSelector: '.headline-content > .headline-a',
+        urlSelector: '.headline-a > a', 
+        page: 'finance'
+    },
+    {
+        name: 'Seeking Alpha',
+        url: 'https://seekingalpha.com/market-news',
+        titleSelector: 'section.jMI0l h3',
+        urlSelector: 'section.jMI0l a', 
+        page: 'finance'
+    },
+    {
+        name: 'Zacks',
+        url: 'https://zacks.com',
+        titleSelector: 'section#top_stories h1',
+        urlSelector: 'section#top_stories a', 
+        page: 'finance'
+    },    
+    //END FINANCE
  //POLITICS
-    //
-
+        {
+        name: 'Washington Examiner',
+        url: 'https://www.washingtonexaminer.com/',
+        titleSelector: 'h3.title-main',
+        urlSelector: '.content > a:even', 
+        page: 'politics'
+    },
         {
         name: 'PolitiFact',
         url: 'https://www.politifact.com',
@@ -23,7 +188,6 @@ module.exports = [
         titleSelector: 'div.side-article-title span',
         urlSelector: 'div.side-article-title a', 
         page: 'politics'
-
     },
     {
         name: 'Epoch Times',
@@ -31,7 +195,6 @@ module.exports = [
         titleSelector: 'h3.et-headline-main_heading-6',
         urlSelector: 'div.gap-x-6  a.block  ', 
         page: 'politics'
-
     },
     {
         name: 'Daily Kos',
@@ -39,7 +202,6 @@ module.exports = [
         titleSelector: 'h3.top-news__primary_news__story__inner__heading',
         urlSelector: 'a.top-news__primary_news__story__inner', 
         page: 'politics'
-
     },
     {
         name: 'Mother Jones',
@@ -82,11 +244,20 @@ module.exports = [
     //END POLITICS
 
  /* START FRONT PAGE */
+
+
+      {
+        name: 'Daily Mail',
+        url: ' https://www.dailymail.co.uk/ushome/',
+        titleSelector: 'h2.linkro-darkred', 
+        urlSelector: 'h2.linkro-darkred > a', 
+        page: 'home'
+    },
      {
-        name: 'AP News',
-        url: 'https://apnews.com',
-        titleSelector: 'h2.PagePromo-title', 
-        urlSelector: 'h2.PagePromo-title > a', 
+        name: 'The Guardian',
+        url: 'https://www.theguardian.com/us',
+        titleSelector: 'h3.dcr-1a010mf', 
+        urlSelector: 'a.dcr-2yd10d', 
         page: 'home'
     },
      {
@@ -112,13 +283,13 @@ module.exports = [
         urlSelector: '.container__title a', 
         page: 'home'
     },
-    // {
-    //     name: 'BBC',
-    //     url: 'https://www.bbc.com',
-    //     titleSelector: '.BzSXM .kmmiMl',
-    //     urlSelector: '.wMcOc a.sc-8a623a54-0.hMvGwj', 
-    //     page: 'home',
-    // },
+    {
+        name: 'BBC',
+        url: 'https://www.bbc.com',
+        titleSelector: 'div.sc-fa814188-0 > h2.jaHqrc',
+        urlSelector: 'a.huZCWi', 
+        page: 'home',
+    },
     {
         name: 'New York Times',
         url: 'https://www.nytimes.com',
@@ -177,64 +348,6 @@ module.exports = [
     },
     //END Front PAge
 
-    //FINANCE
-
-        {
-        name: 'Benzinga',
-        url: 'https://www.benzinga.com/',
-        titleSelector: '.gap-2 h3',
-        urlSelector: '.gap-2 > a', 
-        page: 'finance'
-    },
-
-    {
-        name: 'CNBC',
-        url: 'https://www.cnbc.com/',
-        titleSelector: 'h2.FeaturedCard-packagedCardTitle > a',
-        urlSelector: 'h2.FeaturedCard-packagedCardTitle > a', 
-        page: 'finance'
-    },
-    {
-        name: 'The Fool',
-        url: 'https://www.fool.com/',
-        titleSelector: 'div.absolute > h3.text-lg',
-        urlSelector: 'article.relative > a', 
-        page: 'finance'
-    },
-    {
-        name: 'Investor\'s Bursiness Daily',
-        url: 'https://www.investors.com/',
-        titleSelector: '.article-title > a > div',
-        urlSelector: '.article-title > a', 
-        page: 'finance'
-    },
-    {
-        name: 'Investors Place',
-        url: 'https://investorplace.com/',
-        titleSelector: '.headline-content > .headline-a',
-        urlSelector: '.headline-a > a', 
-        page: 'finance'
-    },
-    {
-        name: 'Seeking Alpha',
-        url: 'https://seekingalpha.com/market-news',
-        titleSelector: 'section.jMI0l h3',
-        urlSelector: 'section.jMI0l a', 
-        page: 'finance'
-    },
-    {
-        name: 'Zacks',
-        url: 'https://zacks.com',
-        titleSelector: 'section#top_stories h1',
-        urlSelector: 'section#top_stories a', 
-        page: 'finance'
-    },
-
-
-
-    
-    
-    //END FINANCE
 
     // START SPORTS
 
