@@ -29,7 +29,6 @@ router.get('/articles/:page', async (req, res) => {
     try {
       // Create a connection to the MySQL database
       connection = await mysql.createConnection(dbConfig);
-
   
       // Query to get the latest article from each source
       const query = `
@@ -40,12 +39,9 @@ router.get('/articles/:page', async (req, res) => {
           FROM articles
           WHERE page = ? AND created_at > NOW() - INTERVAL 5 HOUR
           GROUP BY source
-        ) latest ON a.source = latest.source AND a.created_at = latest.max_created_at;
+        ) latest ON a.source = latest.source AND a.created_at = latest.max_created_at
+        ORDER BY RAND();
       `;
-
-      //  ORDER BY a.source;
-
-
       // Execute the query
       const [rows] = await connection.execute(query, pageValue);
       // Check if we have results
@@ -57,19 +53,18 @@ router.get('/articles/:page', async (req, res) => {
         message: 'Latest articles retrieved successfully',
         articles: rows
       });
+      } catch (error) {
+        console.error('Error fetching latest articles:', error);
+        res.status(500).json({ message: 'Internal server error' });
+      } finally {
+        // Close the database connection
+        if (connection) {
+          await connection.end();
+        }
 
-    } catch (error) {
-      console.error('Error fetching latest articles:', error);
-      res.status(500).json({ message: 'Internal server error' });
-    } finally {
-      // Close the database connection
-      if (connection) {
-        await connection.end();
       }
-
     }
-});
-
+  );
 
 module.exports = router;
 

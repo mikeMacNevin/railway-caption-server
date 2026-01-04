@@ -60,11 +60,3 @@ const cheerio = require('cheerio');
     }
 }
 
-            // let appendUrl = site.urlEnding;
-            // console.log("appendUrl: " + appendUrl)
-            // if (appendUrl) {
-            //     baseUrl = baseUrl + appendUrl;
-            //     url = new URL(url, baseUrl).href;
-
-            //     console.log ('appendedUrl')
-            // }
