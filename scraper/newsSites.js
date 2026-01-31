@@ -3,15 +3,15 @@ module.exports = [
     {
         name: 'ABC Politics',
         url: 'https://www.abcnews.go.com/Politics',
-        titleSelector: 'div.lead-headline > a',
-        urlSelector: 'div.lead-headline > a', 
+        titleSelector: '.atAoU h2',
+        urlSelector: '.atAoU a',
         page: 'politics'
     },
     {
         name: 'NBC Politics',
         url: 'https://www.nbcnews.com/politics',
-        titleSelector: 'div.lead-headline > a',
-        urlSelector: 'div.lead-headline > a', 
+        titleSelector: 'h2.founders-cond',
+        urlSelector: 'h2.founders-cond > a', 
         page: 'politics'
     },
     {
@@ -45,8 +45,8 @@ module.exports = [
     {
         name: 'Breitbart',
         url: 'https://www.breitbart.com',
-        titleSelector: 'div.side-article-title span',
-        urlSelector: 'div.side-article-title a', 
+        titleSelector: 'h2 > a',
+        urlSelector: 'h2 > a', 
         page: 'politics'
     },
     {
@@ -111,8 +111,8 @@ module.exports = [
     {
         name: 'AP News',
         url: ' https://www.apnews.com',
-        titleSelector: 'div.Container-header a', 
-        urlSelector: 'div.Container-header a', 
+        titleSelector: 'h2', 
+        urlSelector: 'h2 > a', 
         page: 'home'
     },
     {
@@ -154,8 +154,8 @@ module.exports = [
     {
         name: 'BBC',
         url: 'https://www.bbc.com',
-        titleSelector: 'div.sc-fa814188-0 > h2.jaHqrc',
-        urlSelector: 'a.huZCWi', 
+        titleSelector: '.hDVIYu h2',
+        urlSelector: '.hDVIYu a', 
         page: 'home',
     },
     {
@@ -218,11 +218,12 @@ module.exports = [
     
     //START WORLD
     {
-        name: 'Mainichi.jp',
-        url: 'https://mainichi.jp/english/',
-        titleSelector: 'p.midashi',
-        urlSelector: 'p.midashi > a', 
-        page: 'world' 
+        //403 - TRY ON RAILWAY
+        // name: 'Mainichi.jp',
+        // url: 'https://mainichi.jp/english/',
+        // titleSelector: 'p.midashi',
+        // urlSelector: 'p.midashi > a', 
+        // page: 'world' 
     },  
     {
         name: 'Asahi',
@@ -241,8 +242,8 @@ module.exports = [
     {
         name: 'Aljazeera',
         url: 'https://www.aljazeera.com/',
-        titleSelector: '.article-card__title > span',
-        urlSelector: '.article-card__liveblog-title > a', 
+        titleSelector: 'h3',
+        urlSelector: 'h3 > a', 
         page: 'world' 
     },   
     {
@@ -537,7 +538,7 @@ module.exports = [
         name: 'Yahoo Sports',
         url: 'https://sports.yahoo.com/',
         titleSelector: '._ys_1tsdzxx h3',
-        urlSelector: '._ys_1tsdzxx a', 
+        urlSelector: '._ys_1eou1w1 > a', 
         page: 'sports' 
     }, 
         {

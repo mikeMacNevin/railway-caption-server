@@ -12,21 +12,22 @@ const cheerio = require('cheerio');
         });
         //page = page
         const page = site.page;
-
-        console.log("URL STUFFSSS - ------ - " + JSON.stringify(site))
+        console.log("-----------------------------------------")
+        console.log(`--------------- ${site.name.toUpperCase()} --------------`)
+           
+        console.log("URL Data: " + JSON.stringify(site))
         //Load website data to Cherrio
         const $ = cheerio.load(response.data);
         
         // Get article title and URL
         const title = $(site.titleSelector).first().text().trim();
         let url = $(site.urlSelector).first().attr('href');    
-        console.log("-----------------------------------------")
-        console.log(`${site.name} title: ${title}`)
-        console.log(`${site.name} url: ${url}`)
+        console.log(`article title: ${title}`)
+        console.log(`article url: ${url}`)
 
         //TEST
         let site_icon_url = $('link[rel="icon"]').attr('href') || $('link[rel="shortcut icon"]').attr('href') || $('link[rel="shortcut icon mask-icon"]').attr('href');
-        console.log(`'site_icon_url	 for' ${site.name}' : ${site_icon_url	}`);
+        console.log(`'site_icon_url: ' ${site.name}' : ${site_icon_url	}`);
 
         // Ensure the URL is absolute
         if (url && !url.startsWith('http')) {
@@ -44,7 +45,7 @@ const cheerio = require('cheerio');
         // website favicon
         if (site_icon_url && !site_icon_url.startsWith('http')) {
             const baseSiteIconUrl = new URL(website).origin
-            console.log (`baseSiteIconURL for ${site.name}: ${baseSiteIconUrl} `)
+            console.log (`baseSiteIconURL ${baseSiteIconUrl} `)
             site_icon_url = new URL(site_icon_url, baseSiteIconUrl).href;
         }
         // make sure we have some day for title, url and site_icon_url
