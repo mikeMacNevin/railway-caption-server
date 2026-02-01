@@ -1,4 +1,317 @@
 module.exports = [
+    // START SHOW BIZ
+    
+
+{
+    name: 'EOnline',
+    url: 'https://eonline.com',
+    titleSelector: '.hero h4.caption__text',
+    urlSelector: '.hero a', 
+    page: 'celebs' 
+},  
+{
+        name: 'JustJared',
+        url: 'https://justjared.com',
+        titleSelector: 'h1',
+        urlSelector: 'h1 a', 
+        page: 'celebs' 
+},     
+{
+        name: 'Buzzfeed',
+        url: 'https://buzzfeed.com/celebrity',
+        titleSelector: '.featured-card__body h2',
+        urlSelector: '.featured-card__body a', 
+        page: 'celebs' 
+    }, 
+    {
+        name: 'People',
+        url: 'https://people.com/',
+        titleSelector: '.card__title > span.card__title-text  ',
+        urlSelector: '#four-post__content_1-0 > a', 
+        page: 'celebs' 
+    }, 
+    //     {
+    //     name: 'EOnline',
+    //     url: 'https://eonline.com/',
+    //     titleSelector: '.list-row h3  ',
+    //     urlSelector: '.list-row a', 
+    //     page: 'celebs' 
+    // }, 
+        {
+        name: 'US Magazine',
+        url: 'https://usmagazine.com/',
+        titleSelector: '.item-content > h3.item-title',
+        urlSelector: '.module-top-headlines > a', 
+        page: 'celebs' 
+    }, 
+            {
+        name: 'Page Six',
+        url: 'https://pagesix.com/',
+        titleSelector: 'h2.story__headline',
+        urlSelector: 'h2.story__headline > a', 
+        page: 'celebs' 
+    }, 
+
+    {
+        name: 'ET Online',
+        url: 'https://etonline.com/',
+        titleSelector: 'a.hero__tile-1 span',
+        urlSelector: '.hero > a.hero__tile-1', 
+        page: 'celebs' 
+    }, 
+       {
+        name: 'TMZ',
+        url: 'https://tmz.com/',
+        titleSelector: 'h2.article__header--headline-fragments > span',
+        urlSelector: '.article__header > a', 
+        page: 'celebs' 
+    }, 
+       {
+        name: 'Variety',
+        url: 'https://variety.com/',
+        titleSelector: '.o-story__primary > h3#title-of-a-story',
+        urlSelector: 'h3#title-of-a-story > a', 
+        page: 'celebs' 
+    }, 
+           {
+        name: 'Hollywood Reporter',
+        url: 'https://hollywoodreporter.com/',
+        titleSelector: '.lrv-u-margin-tb-auto > h3#title-of-a-story',
+        urlSelector: 'h3#title-of-a-story > a', 
+        page: 'celebs' 
+    }, 
+           {
+        name: 'Vanity Fair',
+        url: 'https://vanityfair.com/',
+        titleSelector: '.SummaryItemContent-edliEQ h3',
+        urlSelector: '.SummaryItemContent-edliEQ > a', 
+        page: 'celebs' 
+    }, 
+
+    {
+        name: 'Entertainment Weekly',
+        url: 'https://ew.com/',
+        titleSelector: 'a#top__card--featured_1-0 span',
+        urlSelector: 'a#top__card--featured_1-0', 
+        page: 'celebs' 
+    }, 
+    {
+        name: 'Vulture',
+        url: 'https://vulture.com/',
+        titleSelector: 'a.lede-link > h2',
+        urlSelector: 'a.lede-link', 
+        page: 'celebs' 
+    }, 
+    /* END CELEBS */
+
+    // TECH START
+    {
+        name: 'Tom\'s Guide',
+        url: 'https://www.tomsguide.com/',
+        titleSelector: 'figcaption > span.article-name',
+        urlSelector: 'div#Item1 > a', 
+        page: 'tech'  
+    },    
+    {
+        name: 'Make Use Of',
+        url: 'https://www.makeuseof.com/',
+        titleSelector: 'h3.display-card-title',
+        urlSelector: 'h3.display-card-title > a', 
+        page: 'tech'  
+    },
+    {
+        name: 'How-To Geek',
+        url: 'https://www.howtogeek.com',
+        titleSelector: 'h3.display-card-title',
+        urlSelector: 'h3.display-card-title > a', 
+        page: 'tech'  
+    },
+    {
+        name: 'Digital Trends',
+        url: 'https://www.digitaltrends.com',
+        titleSelector: 'h3.b-mem-post__title',
+        urlSelector: 'h3.b-mem-post__title > a', 
+        page: 'tech'  
+    },
+    {
+        name: 'PC Mag',
+        url: 'https://www.pcmag.com',
+        titleSelector: 'a#cover-story h1',
+        urlSelector: 'a#cover-story', 
+        page: 'tech'  
+    },
+        {
+        name: 'Tom\'s Hardware',
+        url: 'https://www.tomshardware.com',
+        titleSelector: 'a.article-link span.article-name',
+        urlSelector: 'a.article-link', 
+        page: 'tech'  
+    },
+    {
+        name: 'Mashable',
+        url: 'https://www.mashable.com',
+        titleSelector: '.accent-vertical-primary-300 span.leading-7',
+        urlSelector: 'div.accent-vertical-primary-300 > a', 
+        page: 'tech'
+    },
+    {
+        name: 'CNET',
+        url: 'https://www.cnet.com',
+        titleSelector: 'span.c-storiesNeonMeta_hedContent',
+        urlSelector: 'a.c-storiesNeonHighlightsLead_link', 
+        page: 'tech'
+    },
+
+    // {
+    //     name: 'Venture Beat',
+    //     url: 'https://venturebeat.com',
+    //     titleSelector: 'h2',
+    //     urlSelector: 'h2 > a', 
+    //     page: 'tech'
+    // },
+    {
+        name: 'Wired',
+        url: 'https://www.wired.com',
+        titleSelector: 'h3.HeadlineWrapper-eXjTYk ',
+        urlSelector: 'h3.HeadlineWrapper-eXjTYk > a', 
+        page: 'tech'
+    },
+    {
+        name: 'Engadget',
+        url: 'https://www.engadget.com',
+        titleSelector: 'h4',
+        urlSelector: 'h4 > a', 
+        page: 'tech'
+    },
+    {
+        name: 'The Verge',
+        url: 'https://www.theverge.com',
+        titleSelector: 'div._1xwtict9',
+        urlSelector: '._1xwtict9 > a', 
+        page: 'tech'
+    },
+    {
+        name: 'Tech Crunch',
+        url: 'https://www.techcrunch.com',
+        titleSelector: 'h3.loop-card__title',
+        urlSelector: 'h3.loop-card__title > a', 
+        page: 'tech'
+    },
+    {
+        name: 'Tech Radar',
+        url: 'https://www.techradar.com',
+        titleSelector: 'h2.wdn-listv2-item-content-title',
+        urlSelector: 'a.wdn-listv2-item-link', 
+        page: 'tech'
+    },
+//TECH - END
+
+// START SPORTS
+
+    // {
+    //     name: 'Barstool Sports',
+    //     url: 'https://www.barstoolsports.com/',
+    //     titleSelector: '.col-span-full a',
+    //     urlSelector: '.col-span-full .LinesEllipsis', 
+    //     page: 'sports' 
+    // }, 
+
+    
+
+
+        {
+        name: 'SB Nation',
+        url: 'https://www.sbnation.com',
+        titleSelector: 'a._1ngvuhm0',
+        urlSelector: 'a._1ngvuhm0', 
+        page: 'sports' 
+    }, 
+    {
+        name: 'Sporting News',
+        url: 'https://www.sportingnews.com/us',
+        titleSelector: 'a.order-1 > h3',
+        urlSelector: 'a.order-1', 
+        page: 'sports' 
+    }, 
+    {
+        name: 'NFL',
+        url: 'https://www.nfl.com/',
+        titleSelector: 'h3.body-3',
+        urlSelector: '.grid a', 
+        page: 'sports' 
+    }, 
+    {
+        name: 'NHL',
+        url: 'https://www.nhl.com/',
+        titleSelector: '.nhl-c-hero__title',
+        urlSelector: '.nhl-c-hero', 
+        page: 'sports' 
+    }, 
+    {
+        name: 'ESPN',
+        url: 'https://espn.com/',
+        titleSelector: '.contentItem__content h2',
+        urlSelector: '.contentItem__content > a', 
+        page: 'sports' 
+    }, 
+    {
+        name: 'Sports Illustrated',
+        url: 'https://si.com/',
+        titleSelector: '.gallery-column.order-1 h3',
+        urlSelector: '.gallery-column.order-1 a', 
+        page: 'sports' 
+    }, 
+        {
+        name: 'CBS Sports',
+        url: 'https://www.cbssports.com/',
+        titleSelector: '.TopCovers-item h1',
+        urlSelector: '.TopCovers-item > a', 
+        page: 'sports' 
+    }, 
+    {
+        name: 'Yahoo Sports',
+        url: 'https://sports.yahoo.com/',
+        titleSelector: '._ys_1tsdzxx h3',
+        urlSelector: '._ys_1eou1w1 > a', 
+        page: 'sports' 
+    }, 
+        {
+        name: 'Deadspin',
+        url: 'https://deadspin.com',
+        titleSelector: '.block > h3',
+        urlSelector: '.block a', 
+        page: 'sports' 
+    }, 
+    {
+        name: 'NBC Sports',
+        url: 'https://www.nbcsports.com/',
+        titleSelector: '.HubHero-main .PagePromo-title',
+        urlSelector: '.HubHero-main a', 
+        page: 'sports' 
+    }, 
+    {
+        name: 'Fox Sports',
+        url: 'https://www.foxsports.com/',
+        titleSelector: '.vue-glide__track span.inline',
+        urlSelector: '.vue-glide__track a', 
+        page: 'sports' 
+    }, 
+    {
+        name: 'The Score',
+        url: 'https://www.thescore.com/',
+        titleSelector: '.isImageCard > .jsx-403783000',
+        urlSelector: '.jsx-1435942676 a', 
+        page: 'sports' 
+    }, 
+
+        {
+        name: 'MLB',
+        url: 'https://www.mlb.com/',
+        titleSelector: '.AnchorElement-sc-5g3tf0-0 > h2',
+        urlSelector: '.AnchorElement-sc-5g3tf0-0 ', 
+        page: 'sports' 
+    }, 
+    /* END SPORTS */    
 //POLITICS
     {
         name: 'ABC Politics',
@@ -308,88 +621,8 @@ module.exports = [
         titleSelector: 'h2.c_t',
         urlSelector: 'h2.c_t > a', 
         page: 'world' 
-    }, 
-    // END WORLD
-    // TECH START
-    {
-        name: 'Digital Trends',
-        url: 'https://www.digitaltrends.com',
-        titleSelector: 'h3.b-mem-post__title',
-        urlSelector: 'h3.b-mem-post__title > a', 
-        page: 'tech'  
-    },
-    {
-        name: 'PC Mag',
-        url: 'https://www.pcmag.com',
-        titleSelector: 'a#cover-story h1',
-        urlSelector: 'a#cover-story', 
-        page: 'tech'  
-    },
-        {
-        name: 'Tom\'s Hardware',
-        url: 'https://www.tomshardware.com',
-        titleSelector: 'a.article-link span.article-name',
-        urlSelector: 'a.article-link', 
-        page: 'tech'  
-    },
-    {
-        name: 'Mashable',
-        url: 'https://www.mashable.com',
-        titleSelector: '.accent-vertical-primary-300 span.leading-7',
-        urlSelector: 'div.accent-vertical-primary-300 > a', 
-        page: 'tech'
-    },
-    {
-        name: 'CNET',
-        url: 'https://www.cnet.com',
-        titleSelector: 'span.c-storiesNeonMeta_hedContent',
-        urlSelector: 'a.c-storiesNeonHighlightsLead_link', 
-        page: 'tech'
-    },
+    }, // END WORLD
 
-    // {
-    //     name: 'Venture Beat',
-    //     url: 'https://venturebeat.com',
-    //     titleSelector: 'h2',
-    //     urlSelector: 'h2 > a', 
-    //     page: 'tech'
-    // },
-    {
-        name: 'Wired',
-        url: 'https://www.wired.com',
-        titleSelector: 'h3.HeadlineWrapper-eXjTYk ',
-        urlSelector: 'h3.HeadlineWrapper-eXjTYk > a', 
-        page: 'tech'
-    },
-    {
-        name: 'Engadget',
-        url: 'https://www.engadget.com',
-        titleSelector: 'h4',
-        urlSelector: 'h4 > a', 
-        page: 'tech'
-    },
-    {
-        name: 'The Verge',
-        url: 'https://www.theverge.com',
-        titleSelector: 'div._1xwtict9',
-        urlSelector: '._1xwtict9 > a', 
-        page: 'tech'
-    },
-    {
-        name: 'Tech Crunch',
-        url: 'https://www.techcrunch.com',
-        titleSelector: 'h3.loop-card__title',
-        urlSelector: 'h3.loop-card__title > a', 
-        page: 'tech'
-    },
-    {
-        name: 'Tech Radar',
-        url: 'https://www.techradar.com',
-        titleSelector: 'h2.wdn-listv2-item-content-title',
-        urlSelector: 'a.wdn-listv2-item-link', 
-        page: 'tech'
-    },
-//TECH - END
 //FINANCE - START
     {
         name: 'CNN Business',
@@ -505,159 +738,6 @@ module.exports = [
     },    
 //END FINANCE   
 
-// START SPORTS
-    {
-        name: 'NHL',
-        url: 'https://www.nhl.com/',
-        titleSelector: '.nhl-c-hero__title',
-        urlSelector: '.nhl-c-hero', 
-        page: 'sports' 
-    }, 
-    {
-        name: 'ESPN',
-        url: 'https://espn.com/',
-        titleSelector: '.contentItem__content h2',
-        urlSelector: '.contentItem__content > a', 
-        page: 'sports' 
-    }, 
-    {
-        name: 'Sports Illustrated',
-        url: 'https://si.com/',
-        titleSelector: '.gallery-column.order-1 h3',
-        urlSelector: '.gallery-column.order-1 a', 
-        page: 'sports' 
-    }, 
-        {
-        name: 'CBS Sports',
-        url: 'https://www.cbssports.com/',
-        titleSelector: '.TopCovers-item h1',
-        urlSelector: '.TopCovers-item > a', 
-        page: 'sports' 
-    }, 
-    {
-        name: 'Yahoo Sports',
-        url: 'https://sports.yahoo.com/',
-        titleSelector: '._ys_1tsdzxx h3',
-        urlSelector: '._ys_1eou1w1 > a', 
-        page: 'sports' 
-    }, 
-        {
-        name: 'Deadspin',
-        url: 'https://deadspin.com',
-        titleSelector: '.block > h3',
-        urlSelector: '.block a', 
-        page: 'sports' 
-    }, 
-    {
-        name: 'NBC Sports',
-        url: 'https://www.nbcsports.com/',
-        titleSelector: '.HubHero-main .PagePromo-title',
-        urlSelector: '.HubHero-main a', 
-        page: 'sports' 
-    }, 
-    {
-        name: 'Fox Sports',
-        url: 'https://www.foxsports.com/',
-        titleSelector: '.vue-glide__track span.inline',
-        urlSelector: '.vue-glide__track a', 
-        page: 'sports' 
-    }, 
-    {
-        name: 'The Score',
-        url: 'https://www.thescore.com/',
-        titleSelector: '.isImageCard > .jsx-403783000',
-        urlSelector: '.jsx-1435942676 a', 
-        page: 'sports' 
-    }, 
 
-        {
-        name: 'MLB',
-        url: 'https://www.mlb.com/',
-        titleSelector: '.AnchorElement-sc-5g3tf0-0 > h2',
-        urlSelector: '.AnchorElement-sc-5g3tf0-0 ', 
-        page: 'sports' 
-    }, 
-    /* END SPORTS */
-    // START SHOW BIZ
-    {
-        name: 'People',
-        url: 'https://people.com/',
-        titleSelector: '.card__title > span.card__title-text  ',
-        urlSelector: '#four-post__content_1-0 > a', 
-        page: 'celebs' 
-    }, 
-    //     {
-    //     name: 'EOnline',
-    //     url: 'https://eonline.com/',
-    //     titleSelector: '.list-row h3  ',
-    //     urlSelector: '.list-row a', 
-    //     page: 'celebs' 
-    // }, 
-        {
-        name: 'US Magazine',
-        url: 'https://usmagazine.com/',
-        titleSelector: '.item-content > h3.item-title',
-        urlSelector: '.module-top-headlines > a', 
-        page: 'celebs' 
-    }, 
-            {
-        name: 'Page Six',
-        url: 'https://pagesix.com/',
-        titleSelector: 'h2.story__headline',
-        urlSelector: 'h2.story__headline > a', 
-        page: 'celebs' 
-    }, 
-
-    {
-        name: 'ET Online',
-        url: 'https://etonline.com/',
-        titleSelector: 'a.hero__tile-1 span',
-        urlSelector: '.hero > a.hero__tile-1', 
-        page: 'celebs' 
-    }, 
-       {
-        name: 'TMZ',
-        url: 'https://tmz.com/',
-        titleSelector: 'h2.article__header--headline-fragments > span',
-        urlSelector: '.article__header > a', 
-        page: 'celebs' 
-    }, 
-       {
-        name: 'Variety',
-        url: 'https://variety.com/',
-        titleSelector: '.o-story__primary > h3#title-of-a-story',
-        urlSelector: 'h3#title-of-a-story > a', 
-        page: 'celebs' 
-    }, 
-           {
-        name: 'Hollywood Reporter',
-        url: 'https://hollywoodreporter.com/',
-        titleSelector: '.lrv-u-margin-tb-auto > h3#title-of-a-story',
-        urlSelector: 'h3#title-of-a-story > a', 
-        page: 'celebs' 
-    }, 
-           {
-        name: 'Vanity Fair',
-        url: 'https://vanityfair.com/',
-        titleSelector: '.SummaryItemContent-edliEQ h3',
-        urlSelector: '.SummaryItemContent-edliEQ > a', 
-        page: 'celebs' 
-    }, 
-
-    {
-        name: 'Entertainment Weekly',
-        url: 'https://ew.com/',
-        titleSelector: 'a#top__card--featured_1-0 span',
-        urlSelector: 'a#top__card--featured_1-0', 
-        page: 'celebs' 
-    }, 
-    {
-        name: 'Vulture',
-        url: 'https://vulture.com/',
-        titleSelector: 'a.lede-link > h2',
-        urlSelector: 'a.lede-link', 
-        page: 'celebs' 
-    }, 
-    /* END CELEBS */
 ];
 

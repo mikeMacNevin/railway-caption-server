@@ -32,23 +32,28 @@ const cheerio = require('cheerio');
         // Ensure the URL is absolute
         if (url && !url.startsWith('http')) {
             let baseUrl = new URL(site.url).origin;
+            console.log(`baseUrl: ${baseUrl}`)
+
             url = new URL(url, baseUrl).href;
             // console.log("HAS A FIXED URL: " + url)
         }
 
+        // Website
         let website;
         if (url) {
             website = new URL(site.url).origin;
             console.log("website: " + website)
         }
-        // scrape 
-        // website favicon
+
+        // Website Favicon
         if (site_icon_url && !site_icon_url.startsWith('http')) {
             const baseSiteIconUrl = new URL(website).origin
-            console.log (`baseSiteIconURL ${baseSiteIconUrl} `)
             site_icon_url = new URL(site_icon_url, baseSiteIconUrl).href;
+            console.log (`baseSiteIconURL + site_icon_url${baseSiteIconUrl} + ${site_icon_url}`)
+
         }
-        // make sure we have some day for title, url and site_icon_url
+
+        // make sure we have value for title, url, site_icon_url, page, website, source: site.name 
         if (title && url && site_icon_url	) {
             return { title, url, site_icon_url, page, website, source: site.name };
         } else {
