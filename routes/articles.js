@@ -32,15 +32,30 @@ router.get('/articles/:page', async (req, res) => {
   
       // Query to get the latest article from each source
       const query = `
-        SELECT a.title, a.url, a.source, a.created_at, a.page, a.site_icon_url, a.website
-        FROM articles a
-        INNER JOIN (
-          SELECT source, MAX(created_at) as max_created_at
-          FROM articles
-          WHERE page = ? AND created_at > NOW() - INTERVAL 5 HOUR
-          GROUP BY source
-        ) latest ON a.source = latest.source AND a.created_at = latest.max_created_at
-        ORDER BY RAND();
+SELECT 
+    title,
+    url,
+    source,
+    created_at,
+    page,
+    site_icon_url,
+    website
+FROM (
+    SELECT 
+        *,
+        ROW_NUMBER() OVER (PARTITION BY source ORDER BY created_at DESC) AS rn_per_source
+    FROM (
+        SELECT 
+            *,
+            ROW_NUMBER() OVER (PARTITION BY source, title ORDER BY created_at DESC) AS dedup_rn
+        FROM articles
+        WHERE page = ?
+          AND created_at > NOW() - INTERVAL 48 HOUR
+    ) deduped
+    WHERE dedup_rn = 1
+) final
+WHERE rn_per_source <= 6
+ORDER BY created_at DESC;
       `;
       // Execute the query
       const [rows] = await connection.execute(query, pageValue);

@@ -2,13 +2,7 @@ module.exports = [
     // START SHOW BIZ
     
 
-{
-    name: 'EOnline',
-    url: 'https://eonline.com',
-    titleSelector: '.hero h4.caption__text',
-    urlSelector: '.hero a', 
-    page: 'celebs' 
-},  
+
 {
         name: 'JustJared',
         url: 'https://justjared.com',
