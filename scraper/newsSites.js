@@ -1,5 +1,149 @@
 module.exports = [
-    // START SHOW BIZ
+    /* START MOVIES */   
+    {
+        name: 'IMDB',
+        url: 'https://www.imdb.com/news/movie/?ref_=hm_nv_menu',
+        titleSelector: 'a.sc-85efd06-2',
+        urlSelector: 'a.sc-85efd06-2', 
+        page: 'movies' 
+    },
+    {
+        name: 'LetterBoxd',
+        url: 'https://letterboxd.com/journal/',
+        titleSelector: 'div.head h1.title',
+        urlSelector: 'div.head a', 
+        page: 'movies' 
+    },
+    {
+        name: 'Rotten Tomatoes',
+        url: 'https://editorial.rottentomatoes.com/',
+        titleSelector: 'main .news-title',
+        urlSelector: 'main .news-link', 
+        page: 'movies' 
+    },
+    {
+        name: 'New York Times Movies',
+        url: 'https://www.nytimes.com/section/movies',
+        titleSelector: 'h3.e1hr934v2 ',
+        urlSelector: 'h3.e1hr934v2 > a', 
+        page: 'movies' 
+    },
+    {
+        name: 'Indie Wire',
+        url: 'https://www.indiewire.com/',
+        titleSelector: 'div._text_y7yck_1 > a',
+        urlSelector: 'div._text_y7yck_1 > a', 
+        page: 'movies' 
+    },
+    {
+        name: 'Screen Rant',
+        url: 'https://screenrant.com/',
+        titleSelector: 'h3.display-card-title > a',
+        urlSelector: 'h3.display-card-title > a', 
+        page: 'movies' 
+    },
+    {
+        name: 'Slash Film',
+        url: 'https://slashfilm.com/',
+        titleSelector: 'div.article-description > h1',
+        urlSelector: 'div.article-description a', 
+        page: 'movies' 
+    },
+    {
+        name: 'Deadline',
+        url: 'https://deadline.com/v/film/',
+        titleSelector: 'h3.c-title',
+        urlSelector: 'h3.c-title > a', 
+        page: 'movies' 
+    },
+    {
+        name: 'Hollywood Reporter',
+        url: 'https://www.hollywoodreporter.com/c/movies/',
+        titleSelector: 'h3#title-of-a-story',
+        urlSelector: 'h3#title-of-a-story > a', 
+        page: 'movies' 
+    },
+    {
+        name: 'Collider',
+        url: 'https://collider.com/',
+        titleSelector: '.w-display-card-content h3',
+        urlSelector: '.w-display-card-content a', 
+        page: 'movies' 
+    },
+    /* END MOVIES */   
+
+    /* START VIDEO GAMES */
+    {
+        name: 'IGN',
+        url: 'https://www.ign.com/news',
+        titleSelector: 'span.jsx-326752785',
+        urlSelector: 'section.main-content a.item-body', 
+        page: 'videogames' 
+    },
+    {
+        name: 'kotaku',
+        url: 'https://kotaku.com/games',
+        titleSelector: 'div.grid h3',
+        urlSelector: 'div.grid a', 
+        page: 'videogames' 
+    },
+    {
+        name: 'Polygon',
+        url: 'https://www.polygon.com/',
+        titleSelector: 'h3.display-card-title',
+        urlSelector: 'h3.display-card-title > a', 
+        page: 'videogames' 
+    },
+    {
+        name: 'gamesradar+',
+        url: 'https://www.gamesradar.com/',
+        titleSelector: 'a.wdn-listv2-item-link h2',
+        urlSelector: 'a.wdn-listv2-item-link ', 
+        page: 'videogames' 
+    },
+    {
+        name: 'Rock Paper Shotgun',
+        url: 'https://www.rockpapershotgun.com/',
+        titleSelector: 'section.spotlight a',
+        urlSelector: 'section.spotlight a', 
+        page: 'videogames' 
+    },
+    {
+        name: 'Euro Gamer',
+        url: 'https://www.eurogamer.net/',
+        titleSelector: '.spotlight_and_latest a',
+        urlSelector: '.spotlight_and_latest a', 
+        page: 'videogames' 
+    },
+    {
+        name: 'GamesIndustry.biz',
+        url: 'https://www.gamesindustry.biz/',
+        titleSelector: 'section.spotlight a',
+        urlSelector: 'section.spotlight a', 
+        page: 'videogames'
+    }, 
+    {
+        name: 'GamePressure',
+        url: 'https://www.gamepressure.com/',
+        titleSelector: 'div.mp-hots-box h3',
+        urlSelector: 'div.mp-hots-box a.link-abs', 
+        page: 'videogames' 
+    },
+    {
+        name: 'Game Rant',
+        url: 'https://gamerant.com/',
+        titleSelector: 'div.w-display-card-content h3',
+        urlSelector: 'div.w-display-card-content a', 
+        page: 'videogames' 
+    },
+        {
+        name: 'Playstation',
+        url: 'https://blog.playstation.com/category/ps5/',
+        titleSelector: 'h2.post-card__title',
+        urlSelector: 'h2.post-card__title > a', 
+        page: 'videogames' 
+    },
+       // START SHOW BIZ
     
 
 
@@ -732,6 +876,4 @@ module.exports = [
     },    
 //END FINANCE   
 
-
-];
-
+]
