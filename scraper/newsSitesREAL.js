@@ -1,90 +1,5 @@
 module.exports = [
-
-    /* Start Travel */
     {
-        name: 'Travel Weekly',
-        url: 'https://www.travelweekly.com/',
-        titleSelector: 'div.story span.title-xxxl',
-        urlSelector: 'div.story a.text-block', 
-        page: 'travel'
-    },
-
-    {
-        name: 'Skift',
-        url: 'https://skift.com/',
-        titleSelector: 'h3.c-tease__title',
-        urlSelector: 'h3.c-tease__title > a', 
-        page: 'travel'
-    },
-    {
-        name: 'Travel Pulse',
-        url: 'https://www.travelpulse.com/news',
-        titleSelector: 'div.hero-image-grid-item div.text',
-        urlSelector: 'div.hero-image-grid-item > a.link-wrapper', 
-        page: 'travel'
-    },
-    {
-        name: 'Travel and Leisure',
-        url: 'https://www.travelandleisure.com/',
-        titleSelector: 'div#card-list_2-0 span.card__title-text ',
-        urlSelector: 'div#card-list_2-0 a#mntl-card-list-items_5-0', 
-        page: 'travel'
-    },
-
-    {
-        name: 'National Geographic',
-        url: 'https://www.nationalgeographic.com/travel',
-        titleSelector: 'a.PromoTile__Link > span',
-        urlSelector: 'a.PromoTile__Link"', 
-        page: 'travel'
-    },
-    {
-        name: 'US News',
-        url: 'https://travel.usnews.com/',
-        titleSelector: 'a.Anchor-byh49a-0 > h3',
-        urlSelector: 'a.Anchor-byh49a-0', 
-        page: 'travel'
-    },
-    {
-        name: 'Conde Nast Traveler',
-        url: 'https://www.cntraveler.com/',
-        titleSelector: 'a.SummaryItemHedLink-chBZvf > div.SummaryItemHedBase-eapJVq ',
-        urlSelector: 'a.SummaryItemHedLink-chBZvf', 
-        page: 'travel'
-    },
-    {
-        name: 'Afar',
-        url: 'https://www.afar.com/',
-        titleSelector: 'a.PageListO-items-item',
-        urlSelector: 'a.PageListO-items-item', 
-        page: 'travel'
-    },
-    {
-        name: 'Time Out',
-        url: 'https://www.timeout.com/travel',
-        titleSelector: 'a._titleLinkContainer_73sgq_48 > h3',
-        urlSelector: 'a._titleLinkContainer_73sgq_48', 
-        page: 'travel'
-    },
-    {
-        name: 'Time Out',
-        url: 'https://www.timeout.com/travel',
-        titleSelector: 'article.card-hover span#card-title-1',
-        urlSelector: 'article.card-hover a.card-title-1', 
-        page: 'travel'
-    },
-
-    {
-        name: 'Travel Pulse',
-        url: 'https://www.travelpulse.com/',
-        titleSelector: 'div.hero-image-with-options div.position-absolute',
-        urlSelector: 'div.hero-image-with-options > a', 
-        page: 'travel'
-    },
-
-    /* END TRAVEL */
-
-        {
        name: 'CNN Health',
         url: 'https://www.cnn.com/health',
         titleSelector: '.container_lead-plus-headlines-with-images__item span.container__headline-text',
@@ -1139,4 +1054,5 @@ module.exports = [
         page: 'finance'
     },    
 //END FINANCE   
+
 ]
