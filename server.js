@@ -11,7 +11,7 @@ app.use(cors())
 
 //MIKE imports//
 const scrapeAllSites = require('./scraper/scrapeAllSites')
-const articlesRouter = require('./routes/articles');
+const { router: articlesRouter, warmCache } = require('./routes/articles');
 
 //EXPRESS - need to update port once I move it to railway
 const port = 5000;
@@ -22,9 +22,10 @@ app.listen(port, () => {
 //Routes
 app.use('/api', articlesRouter);
 
-// Initial run
-scrapeAllSites();
-// Check for updates every 30 minutes d
-cron.schedule('*/60 * * * *', scrapeAllSites); 
+// Initial scrape + cache warm on startup
+scrapeAllSites().then(() => warmCache());
+
+// Re-scrape every 60 minutes, then re-warm cache
+cron.schedule('*/60 * * * *', () => scrapeAllSites().then(() => warmCache()));
 
 

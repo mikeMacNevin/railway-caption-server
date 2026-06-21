@@ -35,6 +35,22 @@ WHERE rn_per_source <= 6
 ORDER BY created_at DESC;
 `;
 
+const ALL_PAGES = ['home', 'politics', 'finance', 'world', 'sports', 'tech', 'celebrities', 'movies', 'tv', 'games', 'travel', 'health', 'science'];
+
+async function warmCache() {
+  console.log('Pre-warming article cache...');
+  for (const page of ALL_PAGES) {
+    try {
+      const [rows] = await pool.execute(query, [page]);
+      cache[page] = { data: rows, fetchedAt: Date.now() };
+      console.log(`  cached: ${page} (${rows.length} articles)`);
+    } catch (err) {
+      console.error(`  failed to cache: ${page}`, err.message);
+    }
+  }
+  console.log('Cache pre-warm complete.');
+}
+
 router.get('/articles/:page', async (req, res) => {
   const page = req.params.page;
 
@@ -59,4 +75,4 @@ router.get('/articles/:page', async (req, res) => {
   }
 });
 
-module.exports = router;
+module.exports = { router, warmCache };
