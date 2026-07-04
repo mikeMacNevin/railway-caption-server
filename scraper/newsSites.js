@@ -31,13 +31,13 @@ module.exports = [
         page: 'travel'
     },
 
-    {
-        name: 'National Geographic',
-        url: 'https://www.nationalgeographic.com/travel',
-        titleSelector: 'a.PromoTile__Link > span',
-        urlSelector: 'a.PromoTile__Link"', 
-        page: 'travel'
-    },
+    // {
+    //     name: 'National Geographic',
+    //     url: 'https://www.nationalgeographic.com/travel',
+    //     titleSelector: 'a.PromoTile__Link > span',
+    //     urlSelector: 'a.PromoTile__Link"', 
+    //     page: 'travel'
+    // },
     {
         name: 'US News',
         url: 'https://travel.usnews.com/',
@@ -55,32 +55,26 @@ module.exports = [
     {
         name: 'Afar',
         url: 'https://www.afar.com/',
-        titleSelector: 'a.PageListO-items-item',
-        urlSelector: 'a.PageListO-items-item', 
+        titleSelector: 'div.PagePromo-title > a',
+        urlSelector: 'div.PagePromo-title > a', 
         page: 'travel'
     },
     {
         name: 'Time Out',
         url: 'https://www.timeout.com/travel',
         titleSelector: 'a._titleLinkContainer_73sgq_48 > h3',
-        urlSelector: 'a._titleLinkContainer_73sgq_48', 
-        page: 'travel'
-    },
-    {
-        name: 'Time Out',
-        url: 'https://www.timeout.com/travel',
-        titleSelector: 'article.card-hover span#card-title-1',
-        urlSelector: 'article.card-hover a.card-title-1', 
+        urlSelector: '.a._titleLinkContainer_73sgq_48', 
         page: 'travel'
     },
 
-    {
-        name: 'Travel Pulse',
-        url: 'https://www.travelpulse.com/',
-        titleSelector: 'div.hero-image-with-options div.position-absolute',
-        urlSelector: 'div.hero-image-with-options > a', 
-        page: 'travel'
-    },
+    // 403
+    // {
+    //     name: 'Travel Pulse',
+    //     url: 'https://www.travelpulse.com/',
+    //     titleSelector: 'div.hero-image-with-options div.position-absolute',
+    //     urlSelector: 'div.hero-image-with-options > a', 
+    //     page: 'travel'
+    // },
 
     /* END TRAVEL */
 
@@ -88,23 +82,23 @@ module.exports = [
        name: 'CNN Health',
         url: 'https://www.cnn.com/health',
         titleSelector: '.container_lead-plus-headlines-with-images__item span.container__headline-text',
-        urlSelector: '.container_lead-plus-headlines-with-images__item span', 
+        urlSelector: '.container_lead-plus-headlines-with-images__item', 
         page: 'health'
     },
     {
        name: 'Healthline',
         url: 'https://www.healthline.com/',
-        titleSelector: 'a.fe-lib-1uxbeum',
-        urlSelector: 'a.fe-lib-1uxbeum', 
+        titleSelector: 'div.css-1el24i5 > a',
+        urlSelector: 'div.css-1el24i5 > a', 
         page: 'health'
     },
-    {
-       name: 'Web MD',
-        url: 'https://www.webmd.com/news/default.htm',
-        titleSelector: 'section.news-toc-section span.description',
-        urlSelector: 'section.news-toc-section a', 
-        page: 'health'
-    },
+    // {
+    //    name: 'Web MD',
+    //     url: 'https://www.webmd.com/news/default.htm',
+    //     titleSelector: 'section.news-toc-section span.description',
+    //     urlSelector: 'section.news-toc-section a', 
+    //     page: 'health'
+    // },
     {
        name: 'NIH.gov',
         url: 'https://www.nih.gov/news-events/news-releases',
@@ -136,17 +130,18 @@ module.exports = [
     {
        name: 'Medical News Today',
         url: 'https://mcpress.mayoclinic.org/health-letter/',
-        titleSelector: 'a.css-a4e9aw',
-        urlSelector: 'a.css-a4e9aw', 
+        titleSelector: 'a.css-vbjels',
+        urlSelector: 'a.css-vbjels', 
         page: 'health'
     },
-    {
-       name: 'Cleveland Clinic',
-        url: 'https://newsroom.clevelandclinic.org/',
-        titleSelector: 'h5.text-gray-900 > a',
-        urlSelector: 'h5.text-gray-900 > a', 
-        page: 'health'
-    },
+    //403
+    // {
+    //    name: 'Cleveland Clinic',
+    //     url: 'https://newsroom.clevelandclinic.org/',
+    //     titleSelector: 'h5.text-gray-900 > a',
+    //     urlSelector: 'h5.text-gray-900 > a', 
+    //     page: 'health'
+    // },
     {
        name: 'Cleveland Clinic',
         url: 'https://newsroom.clevelandclinic.org/',
@@ -156,13 +151,15 @@ module.exports = [
     },
     // End Health 
     // Start Science
-    {
-       name: 'Science.org',
-        url: 'https://www.science.org/news/',
-        titleSelector: 'h3.grid-hero-teaser > a',
-        urlSelector: 'h3.grid-hero-teaser > a', 
-        page: 'Science'
-    },
+
+    //403
+    // {
+    //    name: 'Science.org',
+    //     url: 'https://www.science.org/news/',
+    //     titleSelector: 'h3.grid-hero-teaser > a',
+    //     urlSelector: 'h3.grid-hero-teaser > a', 
+    //     page: 'Science'
+    // },
         {
        name: 'Science News',
         url: 'https://www.sciencenews.org/',
@@ -177,13 +174,14 @@ module.exports = [
         urlSelector: 'h3.featured-primary-three-column__title___l6a96 > a', 
         page: 'Science'
     },
-    {
-       name: 'Nature',
-        url: 'https://www.nature.com/news',
-        titleSelector: 'div.c-card__container h3.c-card__title' ,
-        urlSelector: 'div.c-card__container a', 
-        page: 'Science'
-    },
+    //403
+    // {
+    //    name: 'Nature',
+    //     url: 'https://www.nature.com/news',
+    //     titleSelector: 'div.c-card__container h3.c-card__title' ,
+    //     urlSelector: 'div.c-card__container a', 
+    //     page: 'Science'
+    // },
 
 /*END HEALTH*/
 /* BEGIN TV*/
