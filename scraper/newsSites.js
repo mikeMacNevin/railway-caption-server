@@ -1,13 +1,15 @@
 module.exports = [
 
     /* Start Travel */
-    {
-        name: 'Travel Weekly',
-        url: 'https://www.travelweekly.com/',
-        titleSelector: 'div.story span.title-xxxl',
-        urlSelector: 'div.story a.text-block', 
-        page: 'travel'
-    },
+
+    // error 403
+    // {
+    //     name: 'Travel Weekly',
+    //     url: 'https://www.travelweekly.com/',
+    //     titleSelector: 'div.story span.title-xxxl',
+    //     urlSelector: 'div.story a.text-block', 
+    //     page: 'travel'
+    // },
 
     {
         name: 'Skift',
@@ -16,13 +18,15 @@ module.exports = [
         urlSelector: 'h3.c-tease__title > a', 
         page: 'travel'
     },
-    {
-        name: 'Travel Pulse',
-        url: 'https://www.travelpulse.com/news',
-        titleSelector: 'div.hero-image-grid-item div.text',
-        urlSelector: 'div.hero-image-grid-item > a.link-wrapper', 
-        page: 'travel'
-    },
+
+    // error 403
+    // {
+    //     name: 'Travel Pulse',
+    //     url: 'https://www.travelpulse.com/news',
+    //     titleSelector: 'div.hero-image-grid-item div.text',
+    //     urlSelector: 'div.hero-image-grid-item > a.link-wrapper', 
+    //     page: 'travel'
+    // },
     {
         name: 'Travel and Leisure',
         url: 'https://www.travelandleisure.com/',
@@ -62,8 +66,8 @@ module.exports = [
     {
         name: 'Time Out',
         url: 'https://www.timeout.com/travel',
-        titleSelector: 'a._titleLinkContainer_73sgq_48 > h3',
-        urlSelector: '.a._titleLinkContainer_73sgq_48', 
+        titleSelector: 'a._titleLinkContainer_o0u8w_109 > h3',
+        urlSelector: '._titleLinkContainer_o0u8w_109', 
         page: 'travel'
     },
 
@@ -82,16 +86,18 @@ module.exports = [
        name: 'CNN Health',
         url: 'https://www.cnn.com/health',
         titleSelector: '.container_lead-plus-headlines-with-images__item span.container__headline-text',
-        urlSelector: '.container_lead-plus-headlines-with-images__item', 
+        urlSelector: 'li.container__item > a', 
         page: 'health'
     },
-    {
-       name: 'Healthline',
-        url: 'https://www.healthline.com/',
-        titleSelector: 'div.css-1el24i5 > a',
-        urlSelector: 'div.css-1el24i5 > a', 
-        page: 'health'
-    },
+
+    //error 403
+    // {
+    //    name: 'Healthline',
+    //     url: 'https://www.healthline.com/',
+    //     titleSelector: 'div.css-1el24i5 > a',
+    //     urlSelector: 'div.css-1el24i5 > a', 
+    //     page: 'health'
+    // },
     // {
     //    name: 'Web MD',
     //     url: 'https://www.webmd.com/news/default.htm',
@@ -99,13 +105,15 @@ module.exports = [
     //     urlSelector: 'section.news-toc-section a', 
     //     page: 'health'
     // },
-    {
-       name: 'NIH.gov',
-        url: 'https://www.nih.gov/news-events/news-releases',
-        titleSelector: 'ul.thumbnail-teaser-list a.thumbnail-teaser__link',
-        urlSelector: 'ul.thumbnail-teaser-list a.thumbnail-teaser__link', 
-        page: 'health'
-    },
+    
+    //error 403
+    // {
+    //    name: 'NIH.gov',
+    //     url: 'https://www.nih.gov/news-events/news-releases',
+    //     titleSelector: 'ul.thumbnail-teaser-list a.thumbnail-teaser__link',
+    //     urlSelector: 'ul.thumbnail-teaser-list a.thumbnail-teaser__link', 
+    //     page: 'health'
+    // },
     {
        name: 'MedicineNet',
         url: 'https://www.medicinenet.com/',
@@ -129,7 +137,7 @@ module.exports = [
     },
     {
        name: 'Medical News Today',
-        url: 'https://mcpress.mayoclinic.org/health-letter/',
+        url: 'https://www.medicalnewstoday.com/',
         titleSelector: 'a.css-vbjels',
         urlSelector: 'a.css-vbjels', 
         page: 'health'
@@ -183,9 +191,7 @@ module.exports = [
     //     page: 'Science'
     // },
 
-/*END HEALTH*/
-/* BEGIN TV*/
-
+/*END SCIENCE*/
     {
         name: 'TV Insider',
         url: 'https://www.tvinsider.com/',
@@ -1137,4 +1143,5 @@ module.exports = [
         page: 'finance'
     },    
 //END FINANCE   
+
 ]

@@ -1,108 +1,5 @@
-module.exports = [
-    {
-       name: 'CNN Health',
-        url: 'https://www.cnn.com/health',
-        titleSelector: '.container_lead-plus-headlines-with-images__item span.container__headline-text',
-        urlSelector: '.container_lead-plus-headlines-with-images__item span', 
-        page: 'health'
-    },
-    {
-       name: 'Healthline',
-        url: 'https://www.healthline.com/',
-        titleSelector: 'a.fe-lib-1uxbeum',
-        urlSelector: 'a.fe-lib-1uxbeum', 
-        page: 'health'
-    },
-    {
-       name: 'Web MD',
-        url: 'https://www.webmd.com/news/default.htm',
-        titleSelector: 'section.news-toc-section span.description',
-        urlSelector: 'section.news-toc-section a', 
-        page: 'health'
-    },
-    {
-       name: 'NIH.gov',
-        url: 'https://www.nih.gov/news-events/news-releases',
-        titleSelector: 'ul.thumbnail-teaser-list a.thumbnail-teaser__link',
-        urlSelector: 'ul.thumbnail-teaser-list a.thumbnail-teaser__link', 
-        page: 'health'
-    },
-    {
-       name: 'MedicineNet',
-        url: 'https://www.medicinenet.com/',
-        titleSelector: 'section.promo h3',
-        urlSelector: 'section.promo a', 
-        page: 'health'
-    },
-        {
-       name: 'Everyday Health',
-        url: 'https://www.everydayhealth.com/',
-        titleSelector: 'article.homepage-hero__primary a',
-        urlSelector: 'article.homepage-hero__primary a', 
-        page: 'health'
-    },
-    {
-       name: 'Mayo Clinic',
-        url: 'https://mcpress.mayoclinic.org/health-letter/',
-        titleSelector: 'h3.card__title',
-        urlSelector: 'div.card__content > a.card__link--title', 
-        page: 'health'
-    },
-    {
-       name: 'Medical News Today',
-        url: 'https://mcpress.mayoclinic.org/health-letter/',
-        titleSelector: 'a.css-a4e9aw',
-        urlSelector: 'a.css-a4e9aw', 
-        page: 'health'
-    },
-    {
-       name: 'Cleveland Clinic',
-        url: 'https://newsroom.clevelandclinic.org/',
-        titleSelector: 'h5.text-gray-900 > a',
-        urlSelector: 'h5.text-gray-900 > a', 
-        page: 'health'
-    },
-    {
-       name: 'Cleveland Clinic',
-        url: 'https://newsroom.clevelandclinic.org/',
-        titleSelector: 'h5.text-gray-900 > a',
-        urlSelector: 'h5.text-gray-900 > a', 
-        page: 'health'
-    },
-    // End Health 
-    // Start Science
-    {
-       name: 'Science.org',
-        url: 'https://www.science.org/news/',
-        titleSelector: 'h3.grid-hero-teaser > a',
-        urlSelector: 'h3.grid-hero-teaser > a', 
-        page: 'Science'
-    },
-        {
-       name: 'Science News',
-        url: 'https://www.sciencenews.org/',
-        titleSelector: 'h3.featured-primary-three-column__title___l6a96 > a',
-        urlSelector: 'h3.featured-primary-three-column__title___l6a96 > a', 
-        page: 'Science'
-    },
-    {
-       name: 'Science News Explores',
-        url: 'https://www.snexplores.org/',
-        titleSelector: 'h3.featured-primary-three-column__title___l6a96',
-        urlSelector: 'h3.featured-primary-three-column__title___l6a96 > a', 
-        page: 'Science'
-    },
-    {
-       name: 'Nature',
-        url: 'https://www.nature.com/news',
-        titleSelector: 'div.c-card__container h3.c-card__title' ,
-        urlSelector: 'div.c-card__container a', 
-        page: 'Science'
-    },
-
-/*END HEALTH*/
 /* BEGIN TV*/
-
+[
     {
         name: 'TV Insider',
         url: 'https://www.tvinsider.com/',
@@ -113,8 +10,8 @@ module.exports = [
     {
         name: 'TV Line',
         url: 'https://www.tvline.com/',
-        titleSelector: 'div.article-description a',
-        urlSelector: 'div.article-description a a', 
+        titleSelector: 'a h3',
+        urlSelector: 'a:has(h3)',
         page: 'TV'
     },
     {
@@ -148,15 +45,15 @@ module.exports = [
     {
         name: 'Screen Rant',
         url: 'https://screenrant.com/tv/',
-        titleSelector: 'h5.display-card-title > a ',
-        urlSelector: 'div.leading-normal > a.text-lg', 
+        titleSelector: 'h3 a',
+        urlSelector: 'h3 a',
         page: 'TV'
     },
         {
         name: 'Deadline',
         url: 'https://deadline.com/v/tv/',
-        titleSelector: 'div.o-tease__primary > h3.c-title ',
-        urlSelector: 'div.o-tease__primary a.c-title', 
+        titleSelector: 'h3',
+        urlSelector: 'a[href*="deadline.com"]',
         page: 'TV'
     },
     {
@@ -169,8 +66,8 @@ module.exports = [
         {
         name: 'CBR',
         url: 'https://www.cbr.com/category/tv/',
-        titleSelector: 'h3display-card-title > a',
-        urlSelector: 'h3display-card-title > a', 
+        titleSelector: 'a h3',
+        urlSelector: 'a:has(h3)',
         page: 'TV'
     },
 
@@ -372,8 +269,8 @@ module.exports = [
     {
         name: 'ET Online',
         url: 'https://etonline.com/',
-        titleSelector: 'a.hero__tile-1 span',
-        urlSelector: '.hero > a.hero__tile-1', 
+        titleSelector: 'a h3',
+        urlSelector: 'a[href*="/media/"]',
         page: 'celebs' 
     }, 
        {
@@ -496,8 +393,8 @@ module.exports = [
     {
         name: 'Engadget',
         url: 'https://www.engadget.com',
-        titleSelector: 'h4',
-        urlSelector: 'h4 > a', 
+        titleSelector: 'h3 a',
+        urlSelector: 'h3 a',
         page: 'tech'
     },
     {
@@ -553,8 +450,8 @@ module.exports = [
     {
         name: 'NFL',
         url: 'https://www.nfl.com/',
-        titleSelector: 'h3.body-3',
-        urlSelector: '.grid a', 
+        titleSelector: 'a[href*="/news/"] h3',
+        urlSelector: 'a[href*="/news/"]',
         page: 'sports' 
     }, 
     {
@@ -567,8 +464,8 @@ module.exports = [
     {
         name: 'ESPN',
         url: 'https://espn.com/',
-        titleSelector: '.contentItem__content h2',
-        urlSelector: '.contentItem__content > a', 
+        titleSelector: 'a[href*="/story/"]',
+        urlSelector: 'a[href*="/story/"]',
         page: 'sports' 
     }, 
     {
@@ -581,15 +478,15 @@ module.exports = [
         {
         name: 'CBS Sports',
         url: 'https://www.cbssports.com/',
-        titleSelector: '.TopCovers-item h1',
-        urlSelector: '.TopCovers-item > a', 
+        titleSelector: 'a[href*="/news/"] h2',
+        urlSelector: 'a[href*="/news/"]',
         page: 'sports' 
     }, 
     {
         name: 'Yahoo Sports',
         url: 'https://sports.yahoo.com/',
-        titleSelector: '._ys_1tsdzxx h3',
-        urlSelector: '._ys_1eou1w1 > a', 
+        titleSelector: 'a[href*="/article/"] h2',
+        urlSelector: 'a[href*="/article/"]',
         page: 'sports' 
     }, 
         {
@@ -616,8 +513,8 @@ module.exports = [
     {
         name: 'The Score',
         url: 'https://www.thescore.com/',
-        titleSelector: '.isImageCard > .jsx-403783000',
-        urlSelector: '.jsx-1435942676 a', 
+        titleSelector: 'a[href*="/news/"] h3',
+        urlSelector: 'a[href*="/news/"]',
         page: 'sports' 
     }, 
 
@@ -647,8 +544,8 @@ module.exports = [
     {
         name: 'Newsweek',
         url: 'https://www.newsweek.com/politics',
-        titleSelector: 'a.NewsweekLink_link__BTn_o > span',
-        urlSelector: 'a.NewsweekLink_link__BTn_o', 
+        titleSelector: 'a h3',
+        urlSelector: 'a:has(h3)',
         page: 'politics'
     },
     {
@@ -689,8 +586,8 @@ module.exports = [
     {
         name: 'Daily Kos',
         url: 'https://www.dailykos.com/',
-        titleSelector: 'h3.top-news__primary_news__story__inner__heading',
-        urlSelector: 'a.top-news__primary_news__story__inner', 
+        titleSelector: 'h3 a',
+        urlSelector: 'h3 a',
         page: 'politics'
     },
     {
@@ -703,8 +600,8 @@ module.exports = [
     {
         name: 'Vox',
         url: 'https://www.vox.com/politics',
-        titleSelector: '.xkp0cg9 a',
-        urlSelector: '.xkp0cg9 a', 
+        titleSelector: 'h2 a',
+        urlSelector: 'h2 a',
         page: 'politics' 
     },
     {
@@ -900,8 +797,8 @@ module.exports = [
     {
         name: 'South China Morning Post',
         url: 'https://www.scmp.com/',
-        titleSelector: 'h2.css-1xdhyk6 > span',
-        urlSelector: 'div.css-1sxg93g > a ', 
+        titleSelector: 'a h2',
+        urlSelector: 'a[href*="/article/"]',
         page: 'world' 
     },   
     {
@@ -921,8 +818,8 @@ module.exports = [
     {
         name: 'Rio Times',
         url: 'https://www.riotimesonline.com/',
-        titleSelector: '.td-module-meta-info > h3',
-        urlSelector: 'h3.entry-title > a ', 
+        titleSelector: 'a h3',
+        urlSelector: 'a[href*="riotimesonline.com"]',
         page: 'world' 
     },    
     {
@@ -1054,5 +951,4 @@ module.exports = [
         page: 'finance'
     },    
 //END FINANCE   
-
 ]

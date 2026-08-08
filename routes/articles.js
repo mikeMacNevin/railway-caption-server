@@ -51,6 +51,19 @@ async function warmCache() {
   console.log('Cache pre-warm complete.');
 }
 
+router.get('/debug', async (req, res) => {
+  try {
+    const [rows] = await pool.execute('SELECT COUNT(*) as total, MAX(created_at) as latest FROM articles');
+    const [pages] = await pool.execute('SELECT page, COUNT(*) as count FROM articles GROUP BY page');
+    const [homeRaw] = await pool.execute('SELECT COUNT(*) as count, MAX(created_at) as latest FROM articles WHERE page = ?', ['home']);
+    const [home48h] = await pool.execute('SELECT COUNT(*) as count FROM articles WHERE page = ? AND created_at > NOW() - INTERVAL 48 HOUR', ['home']);
+    const [[{ db_now }]] = await pool.execute('SELECT NOW() as db_now');
+    res.json({ connection: 'ok', stats: rows[0], pages, homeRaw: homeRaw[0], home48h: home48h[0], db_now });
+  } catch (err) {
+    res.status(500).json({ connection: 'failed', error: err.message });
+  }
+});
+
 router.get('/articles/:page', async (req, res) => {
   const page = req.params.page;
 
