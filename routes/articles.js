@@ -24,7 +24,7 @@ FROM (
     FROM (
         SELECT
             *,
-            ROW_NUMBER() OVER (PARTITION BY source, title ORDER BY created_at DESC) AS dedup_rn
+            ROW_NUMBER() OVER (PARTITION BY source, url ORDER BY created_at DESC) AS dedup_rn
         FROM articles
         WHERE page = ?
           AND created_at > NOW() - INTERVAL 48 HOUR
@@ -35,7 +35,7 @@ WHERE rn_per_source <= 6
 ORDER BY created_at DESC;
 `;
 
-const ALL_PAGES = ['home', 'politics', 'finance', 'world', 'sports', 'tech', 'celebrities', 'movies', 'tv', 'games', 'travel', 'health', 'science'];
+const ALL_PAGES = ['home', 'politics', 'finance', 'world', 'sports', 'tech', 'celebs', 'movies', 'tv', 'videogames', 'travel', 'health', 'science'];
 
 async function warmCache() {
   console.log('Pre-warming article cache...');

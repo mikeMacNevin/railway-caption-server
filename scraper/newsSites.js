@@ -27,13 +27,14 @@ module.exports = [
     //     urlSelector: 'div.hero-image-grid-item > a.link-wrapper', 
     //     page: 'travel'
     // },
-    {
-        name: 'Travel and Leisure',
-        url: 'https://www.travelandleisure.com/',
-        titleSelector: 'div#card-list_2-0 span.card__title-text ',
-        urlSelector: 'div#card-list_2-0 a#mntl-card-list-items_5-0', 
-        page: 'travel'
-    },
+    // error 403
+    // {
+    //     name: 'Travel and Leisure',
+    //     url: 'https://www.travelandleisure.com/',
+    //     titleSelector: 'div#card-list_2-0 span.card__title-text ',
+    //     urlSelector: 'div#card-list_2-0 a#mntl-card-list-items_5-0',
+    //     page: 'travel'
+    // },
 
     // {
     //     name: 'National Geographic',
@@ -42,13 +43,14 @@ module.exports = [
     //     urlSelector: 'a.PromoTile__Link"', 
     //     page: 'travel'
     // },
-    {
-        name: 'US News',
-        url: 'https://travel.usnews.com/',
-        titleSelector: 'a.Anchor-byh49a-0 > h3',
-        urlSelector: 'a.Anchor-byh49a-0', 
-        page: 'travel'
-    },
+    // consistently times out
+    // {
+    //     name: 'US News',
+    //     url: 'https://travel.usnews.com/',
+    //     titleSelector: 'a.Anchor-byh49a-0 > h3',
+    //     urlSelector: 'a.Anchor-byh49a-0',
+    //     page: 'travel'
+    // },
     {
         name: 'Conde Nast Traveler',
         url: 'https://www.cntraveler.com/',
@@ -66,8 +68,8 @@ module.exports = [
     {
         name: 'Time Out',
         url: 'https://www.timeout.com/travel',
-        titleSelector: 'a._titleLinkContainer_o0u8w_109 > h3',
-        urlSelector: '._titleLinkContainer_o0u8w_109', 
+        titleSelector: 'a[data-testid="tile-link_testID"] h3[data-testid="tile-title_testID"]',
+        urlSelector: 'a[data-testid="tile-link_testID"]',
         page: 'travel'
     },
 
@@ -76,9 +78,151 @@ module.exports = [
     //     name: 'Travel Pulse',
     //     url: 'https://www.travelpulse.com/',
     //     titleSelector: 'div.hero-image-with-options div.position-absolute',
-    //     urlSelector: 'div.hero-image-with-options > a', 
+    //     urlSelector: 'div.hero-image-with-options > a',
     //     page: 'travel'
     // },
+
+    {
+        name: 'Lonely Planet',
+        url: 'https://www.lonelyplanet.com/articles',
+        titleSelector: 'a.card-link > span.text-headline-05',
+        urlSelector: 'a.card-link',
+        page: 'travel'
+    },
+    {
+        name: "Fodor's",
+        url: 'https://www.fodors.com/news',
+        titleSelector: 'a.post-title',
+        urlSelector: 'a.post-title',
+        page: 'travel'
+    },
+    {
+        name: 'SmarterTravel',
+        url: 'https://www.smartertravel.com',
+        titleSelector: 'a.highlight-article-card__title',
+        urlSelector: 'a.highlight-article-card__title',
+        page: 'travel'
+    },
+    {
+        name: 'The Points Guy',
+        url: 'https://thepointsguy.com',
+        titleSelector: 'h2.tw-mt-2.tw-font-poppins.tw-text-base-semibold',
+        urlSelector: "a:has(h2.tw-mt-2.tw-font-poppins.tw-text-base-semibold)",
+        page: 'travel'
+    },
+    {
+        name: 'One Mile at a Time',
+        url: 'https://onemileatatime.com',
+        titleSelector: 'span.h5.d-block.card-title > a',
+        urlSelector: 'span.h5.d-block.card-title > a',
+        page: 'travel'
+    },
+    {
+        name: 'Thrillist Travel',
+        url: 'https://www.thrillist.com/travel',
+        titleSelector: "h2[data-testid='ucc-headline']",
+        urlSelector: "a:has(h2[data-testid='ucc-headline'])",
+        page: 'travel'
+    },
+    {
+        name: 'Matador Network',
+        url: 'https://matadornetwork.com',
+        titleSelector: 'div.article-link-tile__content h2 > a',
+        urlSelector: 'div.article-link-tile__content h2 > a',
+        page: 'travel'
+    },
+    {
+        name: 'Simple Flying',
+        url: 'https://simpleflying.com',
+        titleSelector: 'h3.display-card-title',
+        urlSelector: 'h3.display-card-title > a',
+        page: 'travel'
+    },
+    {
+        name: 'Outside Online',
+        url: 'https://www.outsideonline.com/adventure-travel/',
+        titleSelector: 'h2.o-heading__secondary > a',
+        urlSelector: 'h2.o-heading__secondary > a',
+        page: 'travel'
+    },
+    {
+        name: 'Travel Off Path',
+        url: 'https://www.traveloffpath.com',
+        titleSelector: 'h2.cb-post-title > a',
+        urlSelector: 'h2.cb-post-title > a',
+        page: 'travel'
+    },
+    {
+        name: 'Rough Guides',
+        url: 'https://www.roughguides.com',
+        titleSelector: 'a.base-articles-slider__slide span.text-22',
+        urlSelector: 'a.base-articles-slider__slide',
+        page: 'travel'
+    },
+    {
+        name: 'Travel Market Report',
+        url: 'https://www.travelmarketreport.com',
+        titleSelector: 'div.panel_txt_summary a.headlink_ts',
+        urlSelector: 'div.panel_txt_summary a.headlink_ts',
+        page: 'travel'
+    },
+    {
+        name: 'International Traveller',
+        url: 'https://www.internationaltraveller.com',
+        titleSelector: 'h2.title-formatted',
+        urlSelector: 'a:has(h2.title-formatted)',
+        page: 'travel'
+    },
+    {
+        name: 'Nomadic Matt',
+        url: 'https://www.nomadicmatt.com/travel-blog/',
+        titleSelector: 'h2.entry-title > a',
+        urlSelector: 'h2.entry-title > a',
+        page: 'travel'
+    },
+    {
+        name: 'World Nomads',
+        url: 'https://www.worldnomads.com/travel-safety/travel-tips',
+        titleSelector: 'a.ContentCard .ContentCard-title',
+        urlSelector: 'a.ContentCard',
+        page: 'travel'
+    },
+    // NOTE: cards are travel deals, not editorial headlines - still passes scraper logic
+    {
+        name: 'Travelzoo',
+        url: 'https://www.travelzoo.com',
+        titleSelector: 'li.deal-module h3.deal-headline',
+        urlSelector: 'li.deal-module a',
+        page: 'travel'
+    },
+    {
+        name: 'Business Insider Travel',
+        url: 'https://www.businessinsider.com/travel',
+        titleSelector: 'h3.tout-title > a.tout-title-link',
+        urlSelector: 'h3.tout-title > a.tout-title-link',
+        page: 'travel'
+    },
+    {
+        name: 'Upgraded Points',
+        url: 'https://upgradedpoints.com',
+        titleSelector: 'a.postTitle',
+        urlSelector: 'a.postTitle',
+        page: 'travel'
+    },
+    {
+        name: 'Travel Noire',
+        url: 'https://travelnoire.com',
+        titleSelector: 'a.article-link.title',
+        urlSelector: 'a.article-link.title',
+        page: 'travel'
+    },
+    {
+        name: 'Robb Report Travel',
+        url: 'https://robbreport.com/travel',
+        titleSelector: 'h3.entry__heading > a',
+        urlSelector: 'h3.entry__heading > a',
+        page: 'travel'
+    },
 
     /* END TRAVEL */
 
@@ -128,13 +272,14 @@ module.exports = [
         urlSelector: 'article.homepage-hero__primary a', 
         page: 'health'
     },
-    {
-       name: 'Mayo Clinic',
-        url: 'https://mcpress.mayoclinic.org/health-letter/',
-        titleSelector: 'h3.card__title',
-        urlSelector: 'div.card__content > a.card__link--title', 
-        page: 'health'
-    },
+    // error 403
+    // {
+    //    name: 'Mayo Clinic',
+    //     url: 'https://mcpress.mayoclinic.org/health-letter/',
+    //     titleSelector: 'h3.card__title',
+    //     urlSelector: 'div.card__content > a.card__link--title',
+    //     page: 'health'
+    // },
     {
        name: 'Medical News Today',
         url: 'https://www.medicalnewstoday.com/',
@@ -154,10 +299,150 @@ module.exports = [
        name: 'Cleveland Clinic',
         url: 'https://newsroom.clevelandclinic.org/',
         titleSelector: 'h5.text-gray-900 > a',
-        urlSelector: 'h5.text-gray-900 > a', 
+        urlSelector: 'h5.text-gray-900 > a',
         page: 'health'
     },
-    // End Health 
+    {
+        name: 'Harvard Health',
+        url: 'https://www.health.harvard.edu/',
+        titleSelector: 'a.article-card h3',
+        urlSelector: 'a.article-card',
+        page: 'health'
+    },
+    {
+        name: 'STAT News',
+        url: 'https://www.statnews.com/',
+        titleSelector: 'h3.heading > a',
+        urlSelector: 'h3.heading > a',
+        page: 'health'
+    },
+    {
+        name: 'HealthDay',
+        url: 'https://www.healthday.com/',
+        titleSelector: 'a[aria-label="headline"] h3',
+        urlSelector: 'a[aria-label="headline"]',
+        page: 'health'
+    },
+    {
+        name: 'Prevention',
+        url: 'https://www.prevention.com/',
+        titleSelector: 'h3.css-15kqq82 > a',
+        urlSelector: 'h3.css-15kqq82 > a',
+        page: 'health'
+    },
+    {
+        name: 'NPR Health Shots',
+        url: 'https://www.npr.org/sections/health-shots/',
+        titleSelector: 'article.item.has-image h2.title',
+        urlSelector: 'article.item.has-image h2.title > a',
+        page: 'health'
+    },
+    {
+        name: 'Psychology Today',
+        url: 'https://www.psychologytoday.com/us',
+        titleSelector: 'h2.teaser-lg__title > a',
+        urlSelector: 'h2.teaser-lg__title > a',
+        page: 'health'
+    },
+    {
+        name: 'KFF Health News',
+        url: 'https://kffhealthnews.org/',
+        titleSelector: 'h2.wp-block-kff-shared-post-card__heading > a',
+        urlSelector: 'h2.wp-block-kff-shared-post-card__heading > a',
+        page: 'health'
+    },
+    {
+        name: 'Fierce Healthcare',
+        url: 'https://www.fiercehealthcare.com/',
+        titleSelector: 'h3.element-title > a',
+        urlSelector: 'h3.element-title > a',
+        page: 'health'
+    },
+    {
+        name: 'MedCity News',
+        url: 'https://medcitynews.com/',
+        titleSelector: 'h3.post-card__title > a',
+        urlSelector: 'h3.post-card__title > a',
+        page: 'health'
+    },
+    {
+        name: 'Endpoints News',
+        url: 'https://endpts.com/',
+        titleSelector: 'h1.epn_headline > a',
+        urlSelector: 'h1.epn_headline > a',
+        page: 'health'
+    },
+    {
+        name: 'Drugs.com News',
+        url: 'https://www.drugs.com/news/',
+        titleSelector: 'h2.ddc-media-title > a',
+        urlSelector: 'h2.ddc-media-title > a',
+        page: 'health'
+    },
+    {
+        name: 'UCLA Health',
+        url: 'https://www.uclahealth.org/news',
+        titleSelector: 'h3.card__title > a',
+        urlSelector: 'h3.card__title > a',
+        page: 'health'
+    },
+    {
+        name: 'ScienceDaily Health',
+        url: 'https://www.sciencedaily.com/news/health_medicine/',
+        titleSelector: 'div.latest-head > a',
+        urlSelector: 'div.latest-head > a',
+        page: 'health'
+    },
+    {
+        name: 'Consumer Reports Health',
+        url: 'https://www.consumerreports.org/health/',
+        titleSelector: 'a.cda-cia__topic h3.cda-cia__topic-title-category',
+        urlSelector: 'a.cda-cia__topic:has(h3.cda-cia__topic-title-category)',
+        page: 'health'
+    },
+    {
+        name: 'Men\'s Health',
+        url: 'https://www.menshealth.com/',
+        titleSelector: 'h3.css-15kqq82 > a',
+        urlSelector: 'h3.css-15kqq82 > a',
+        page: 'health'
+    },
+    {
+        name: 'Women\'s Health',
+        url: 'https://www.womenshealthmag.com/',
+        titleSelector: 'h3.css-15kqq82 > a',
+        urlSelector: 'h3.css-15kqq82 > a',
+        page: 'health'
+    },
+    {
+        name: 'Runner\'s World Health',
+        url: 'https://www.runnersworld.com/health-injuries/',
+        titleSelector: 'a[data-theme-key="custom-item"] h3',
+        urlSelector: 'a[data-theme-key="custom-item"]',
+        page: 'health'
+    },
+    {
+        name: 'Self Health',
+        url: 'https://www.self.com/health',
+        titleSelector: 'a.SummaryItemHedLink-chBZvf > h3',
+        urlSelector: 'a.SummaryItemHedLink-chBZvf',
+        page: 'health'
+    },
+    {
+        name: 'Healio',
+        url: 'https://www.healio.com/',
+        titleSelector: 'a.article-mug > h3.card-title',
+        urlSelector: 'a.article-mug',
+        page: 'health'
+    },
+    {
+        name: 'Fierce Biotech',
+        url: 'https://www.fiercebiotech.com/',
+        titleSelector: 'h3.element-title > a',
+        urlSelector: 'h3.element-title > a',
+        page: 'health'
+    },
+    // End Health
     // Start Science
 
     //403
@@ -166,101 +451,251 @@ module.exports = [
     //     url: 'https://www.science.org/news/',
     //     titleSelector: 'h3.grid-hero-teaser > a',
     //     urlSelector: 'h3.grid-hero-teaser > a', 
-    //     page: 'Science'
+    //     page: 'science'
     // },
         {
        name: 'Science News',
         url: 'https://www.sciencenews.org/',
         titleSelector: 'h3.featured-primary-three-column__title___l6a96 > a',
         urlSelector: 'h3.featured-primary-three-column__title___l6a96 > a', 
-        page: 'Science'
+        page: 'science'
     },
     {
        name: 'Science News Explores',
         url: 'https://www.snexplores.org/',
         titleSelector: 'h3.featured-primary-three-column__title___l6a96',
         urlSelector: 'h3.featured-primary-three-column__title___l6a96 > a', 
-        page: 'Science'
+        page: 'science'
     },
     //403
     // {
     //    name: 'Nature',
     //     url: 'https://www.nature.com/news',
     //     titleSelector: 'div.c-card__container h3.c-card__title' ,
-    //     urlSelector: 'div.c-card__container a', 
-    //     page: 'Science'
+    //     urlSelector: 'div.c-card__container a',
+    //     page: 'science'
     // },
 
-/*END SCIENCE*/
     {
-        name: 'TV Insider',
-        url: 'https://www.tvinsider.com/',
-        titleSelector: 'div.text-bottom-left > h1',
-        urlSelector: 'section#homepage-grid > a', 
-        page: 'TV'
+        name: 'ScienceDaily',
+        url: 'https://www.sciencedaily.com/',
+        titleSelector: 'div.latest-head > a',
+        urlSelector: 'div.latest-head > a',
+        page: 'science'
     },
+    {
+        name: 'Live Science',
+        url: 'https://www.livescience.com/',
+        titleSelector: 'div.wdn-listv2-item-content-title',
+        urlSelector: 'a.wdn-listv2-item-link',
+        page: 'science'
+    },
+    {
+        name: 'Popular Science',
+        url: 'https://www.popsci.com/',
+        titleSelector: 'h3.card-post-title',
+        urlSelector: 'a.card-post-title-link',
+        page: 'science'
+    },
+    {
+        name: 'Space.com',
+        url: 'https://www.space.com/',
+        titleSelector: 'div.wdn-listv2-item-content-title',
+        urlSelector: 'a.wdn-listv2-item-link',
+        page: 'science'
+    },
+    {
+        name: 'Astronomy Magazine',
+        url: 'https://www.astronomy.com/',
+        titleSelector: 'h3.card-title > a',
+        urlSelector: 'h3.card-title > a',
+        page: 'science'
+    },
+    {
+        name: 'Discover Magazine',
+        url: 'https://www.discovermagazine.com/',
+        titleSelector: 'div.stacked-list-card h2 a',
+        urlSelector: 'div.stacked-list-card h2 a',
+        page: 'science'
+    },
+    {
+        name: 'Ars Technica Science',
+        url: 'https://arstechnica.com/science/',
+        titleSelector: 'h2.font-serif > a',
+        urlSelector: 'h2.font-serif > a',
+        page: 'science'
+    },
+    {
+        name: 'Quanta Magazine',
+        url: 'https://www.quantamagazine.org/',
+        titleSelector: "h3.card__title",
+        urlSelector: "a[data-toggle-hover='card']",
+        page: 'science'
+    },
+    {
+        name: 'National Geographic Science',
+        url: 'https://www.nationalgeographic.com/science',
+        titleSelector: 'div.PromoTile__Title--mobile',
+        urlSelector: 'a.PromoTile__Link',
+        page: 'science'
+    },
+    {
+        name: 'IFLScience',
+        url: 'https://www.iflscience.com/',
+        titleSelector: 'div.card-content--body--title',
+        urlSelector: 'div.card-content--body--title > a',
+        page: 'science'
+    },
+    {
+        name: 'The Scientist',
+        url: 'https://www.the-scientist.com/',
+        titleSelector: 'h3.leading-tighter',
+        urlSelector: 'a:has(> h3.leading-tighter)',
+        page: 'science'
+    },
+    {
+        name: 'Chemistry World',
+        url: 'https://www.chemistryworld.com/',
+        titleSelector: 'div.subSleeve h2 a',
+        urlSelector: 'div.subSleeve h2 a',
+        page: 'science'
+    },
+    {
+        name: 'Physics World',
+        url: 'https://physicsworld.com/',
+        titleSelector: 'h3.article__title',
+        urlSelector: 'h3.article__title > a',
+        page: 'science'
+    },
+    {
+        name: 'ScienceAlert',
+        url: 'https://www.sciencealert.com/',
+        titleSelector: 'div.entry-teaser a.text-h2',
+        urlSelector: 'div.entry-teaser a.text-h2',
+        page: 'science'
+    },
+    {
+        name: 'MIT Technology Review',
+        url: 'https://www.technologyreview.com/',
+        titleSelector: "h3[class*='homepageStoryCard__hed']",
+        urlSelector: "a:has(> h3[class*='homepageStoryCard__hed'])",
+        page: 'science'
+    },
+    {
+        name: 'Futurism',
+        url: 'https://futurism.com/',
+        titleSelector: 'h3.card-post-title',
+        urlSelector: 'a.card-post-title-link',
+        page: 'science'
+    },
+    {
+        name: 'Big Think',
+        url: 'https://bigthink.com/',
+        titleSelector: 'a.card-title',
+        urlSelector: 'a.card-title',
+        page: 'science'
+    },
+    {
+        name: 'NASA News',
+        url: 'https://www.nasa.gov/news/',
+        titleSelector: 'a.hds-content-card h3',
+        urlSelector: 'a.hds-content-card',
+        page: 'science'
+    },
+    {
+        name: 'NOAA News',
+        url: 'https://www.noaa.gov/news',
+        titleSelector: 'div.content-wrapper div.title a',
+        urlSelector: 'div.content-wrapper div.title a',
+        page: 'science'
+    },
+    {
+        name: 'Nature World News',
+        url: 'https://www.natureworldnews.com/',
+        titleSelector: 'li.clearfix h4',
+        urlSelector: 'li.clearfix h4 > a',
+        page: 'science'
+    },
+    {
+        name: 'Interesting Engineering',
+        url: 'https://interestingengineering.com/',
+        titleSelector: "div[class*='t-line-clamp']",
+        urlSelector: "a.t-block:has(div[class*='t-line-clamp'])",
+        page: 'science'
+    },
+
+/*END SCIENCE*/
+    // 520 - origin error, site down/unreachable (alternate paths /news/, /shows/ return 403)
+    // {
+    //     name: 'TV Insider',
+    //     url: 'https://www.tvinsider.com/',
+    //     titleSelector: 'div.text-bottom-left > h1',
+    //     urlSelector: 'section#homepage-grid > a',
+    //     page: 'tv'
+    // },
     {
         name: 'TV Line',
         url: 'https://www.tvline.com/',
-        titleSelector: 'a h3',
-        urlSelector: 'a:has(h3)',
-        page: 'TV'
+        titleSelector: 'div.article-description h3 a',
+        urlSelector: 'div.article-description h3 a',
+        page: 'tv'
     },
-    {
-        name: 'Carter Matt',
-        url: 'https://www.cartermatt.com/',
-        titleSelector: 'h2.post-title > a',
-        urlSelector: 'h2.post-title > a', 
-        page: 'TV'
-    },
+    // error 403
+    // {
+    //     name: 'Carter Matt',
+    //     url: 'https://www.cartermatt.com/',
+    //     titleSelector: 'h2.post-title > a',
+    //     urlSelector: 'h2.post-title > a',
+    //     page: 'tv'
+    // },
     {
         name: 'TV Series Finale',
         url: 'https://tvseriesfinale.com/',
         titleSelector: 'h3 > a',
         urlSelector: 'h3 > a', 
-        page: 'TV'
+        page: 'tv'
     },
     {
         name: 'Hollywood Reporter',
         url: 'https://www.hollywoodreporter.com/c/tv/tv-news/',
         titleSelector: 'h3#title-of-a-story > a.c-title__link',
         urlSelector: 'h3#title-of-a-story > a.c-title__link', 
-        page: 'TV'
+        page: 'tv'
     },
     {
         name: 'Mashable',
         url: 'https://mashable.com/category/tv-shows',
         titleSelector: 'div.leading-normal > a.text-lg',
         urlSelector: 'div.leading-normal > a.text-lg', 
-        page: 'TV'
+        page: 'tv'
     },
     {
         name: 'Screen Rant',
         url: 'https://screenrant.com/tv/',
         titleSelector: 'h3 a',
         urlSelector: 'h3 a',
-        page: 'TV'
+        page: 'tv'
     },
         {
         name: 'Deadline',
         url: 'https://deadline.com/v/tv/',
         titleSelector: 'h3',
         urlSelector: 'a[href*="deadline.com"]',
-        page: 'TV'
+        page: 'tv'
     },
     {
         name: 'Collider',
         url: 'https://collider.com/tv/',
         titleSelector: 'h5.display-card-title > a ',
         urlSelector: 'h5.display-card-title > a ', 
-        page: 'TV'
+        page: 'tv'
     },
         {
         name: 'CBR',
         url: 'https://www.cbr.com/category/tv/',
-        titleSelector: 'a h3',
-        urlSelector: 'a:has(h3)',
-        page: 'TV'
+        titleSelector: 'h3.display-card-title a',
+        urlSelector: 'h3.display-card-title a',
+        page: 'tv'
     },
 
     /* END TV */
@@ -268,20 +703,22 @@ module.exports = [
     /* ABOVE ARE STILL IN TESTING*/
 
         /* START MOVIES */   
-    {
-        name: 'IMDB',
-        url: 'https://www.imdb.com/news/movie/?ref_=hm_nv_menu',
-        titleSelector: 'a.sc-85efd06-2',
-        urlSelector: 'a.sc-85efd06-2', 
-        page: 'movies' 
-    },
-    {
-        name: 'LetterBoxd',
-        url: 'https://letterboxd.com/journal/',
-        titleSelector: 'div.head h1.title',
-        urlSelector: 'div.head a', 
-        page: 'movies' 
-    },
+    // blocked - AWS WAF bot challenge (status 202, empty response body, no HTML to select against)
+    // {
+    //     name: 'IMDB',
+    //     url: 'https://www.imdb.com/news/movie/?ref_=hm_nv_menu',
+    //     titleSelector: 'a.sc-85efd06-2',
+    //     urlSelector: 'a.sc-85efd06-2',
+    //     page: 'movies'
+    // },
+    // error 403
+    // {
+    //     name: 'LetterBoxd',
+    //     url: 'https://letterboxd.com/journal/',
+    //     titleSelector: 'div.head h1.title',
+    //     urlSelector: 'div.head a',
+    //     page: 'movies'
+    // },
     {
         name: 'Rotten Tomatoes',
         url: 'https://editorial.rottentomatoes.com/',
@@ -344,9 +781,9 @@ module.exports = [
     {
         name: 'IGN',
         url: 'https://www.ign.com/news',
-        titleSelector: 'span.jsx-326752785',
-        urlSelector: 'section.main-content a.item-body', 
-        page: 'videogames' 
+        titleSelector: 'section.main-content span.item-title',
+        urlSelector: 'section.main-content a.item-body',
+        page: 'videogames'
     },
     {
         name: 'kotaku',
@@ -365,9 +802,9 @@ module.exports = [
     {
         name: 'gamesradar+',
         url: 'https://www.gamesradar.com/',
-        titleSelector: 'a.wdn-listv2-item-link h2',
-        urlSelector: 'a.wdn-listv2-item-link ', 
-        page: 'videogames' 
+        titleSelector: 'a.wdn-listv2-item-link div.wdn-listv2-item-content-title',
+        urlSelector: 'a.wdn-listv2-item-link',
+        page: 'videogames'
     },
     {
         name: 'Rock Paper Shotgun',
@@ -415,13 +852,14 @@ module.exports = [
     
 
 
-{
-        name: 'JustJared',
-        url: 'https://justjared.com',
-        titleSelector: 'h1',
-        urlSelector: 'h1 a', 
-        page: 'celebs' 
-},     
+    // error 403
+    // {
+    //     name: 'JustJared',
+    //     url: 'https://justjared.com',
+    //     titleSelector: 'h1',
+    //     urlSelector: 'h1 a',
+    //     page: 'celebs'
+    // },
 {
         name: 'Buzzfeed',
         url: 'https://buzzfeed.com/celebrity',
@@ -429,13 +867,14 @@ module.exports = [
         urlSelector: '.featured-card__body a', 
         page: 'celebs' 
     }, 
-    {
-        name: 'People',
-        url: 'https://people.com/',
-        titleSelector: '.card__title > span.card__title-text  ',
-        urlSelector: '#four-post__content_1-0 > a', 
-        page: 'celebs' 
-    }, 
+    // error 403
+    // {
+    //     name: 'People',
+    //     url: 'https://people.com/',
+    //     titleSelector: '.card__title > span.card__title-text  ',
+    //     urlSelector: '#four-post__content_1-0 > a',
+    //     page: 'celebs'
+    // },
     //     {
     //     name: 'EOnline',
     //     url: 'https://eonline.com/',
@@ -489,18 +928,19 @@ module.exports = [
            {
         name: 'Vanity Fair',
         url: 'https://vanityfair.com/',
-        titleSelector: '.SummaryItemContent-edliEQ h3',
-        urlSelector: '.SummaryItemContent-edliEQ > a', 
-        page: 'celebs' 
-    }, 
+        titleSelector: 'a.summary-item__hed-link h3.summary-item__hed',
+        urlSelector: 'a.summary-item__hed-link',
+        page: 'celebs'
+    },
 
-    {
-        name: 'Entertainment Weekly',
-        url: 'https://ew.com/',
-        titleSelector: 'a#top__card--featured_1-0 span',
-        urlSelector: 'a#top__card--featured_1-0', 
-        page: 'celebs' 
-    }, 
+    // error 403
+    // {
+    //     name: 'Entertainment Weekly',
+    //     url: 'https://ew.com/',
+    //     titleSelector: 'a#top__card--featured_1-0 span',
+    //     urlSelector: 'a#top__card--featured_1-0',
+    //     page: 'celebs'
+    // },
     {
         name: 'Vulture',
         url: 'https://vulture.com/',
@@ -514,10 +954,10 @@ module.exports = [
     {
         name: 'Tom\'s Guide',
         url: 'https://www.tomsguide.com/',
-        titleSelector: 'figcaption > span.article-name',
-        urlSelector: 'div#Item1 > a', 
-        page: 'tech'  
-    },    
+        titleSelector: 'a.wdn-listv2-item-link div.wdn-listv2-item-content-title',
+        urlSelector: 'a.wdn-listv2-item-link',
+        page: 'tech'
+    },
     {
         name: 'Make Use Of',
         url: 'https://www.makeuseof.com/',
@@ -563,8 +1003,8 @@ module.exports = [
     {
         name: 'CNET',
         url: 'https://www.cnet.com',
-        titleSelector: 'span.c-storiesNeonMeta_hedContent',
-        urlSelector: 'a.c-storiesNeonHighlightsLead_link', 
+        titleSelector: 'h3.grid-entry__title',
+        urlSelector: 'h3.grid-entry__title > a',
         page: 'tech'
     },
 
@@ -578,8 +1018,8 @@ module.exports = [
     {
         name: 'Wired',
         url: 'https://www.wired.com',
-        titleSelector: 'h3.HeadlineWrapper-eXjTYk ',
-        urlSelector: 'h3.HeadlineWrapper-eXjTYk > a', 
+        titleSelector: 'h3.HeadlineWrapper-dWPqsu',
+        urlSelector: 'h3.HeadlineWrapper-dWPqsu > a',
         page: 'tech'
     },
     {
@@ -592,8 +1032,8 @@ module.exports = [
     {
         name: 'The Verge',
         url: 'https://www.theverge.com',
-        titleSelector: 'div._1xwtict9',
-        urlSelector: '._1xwtict9 > a', 
+        titleSelector: 'a._7uluu50',
+        urlSelector: 'a._7uluu50',
         page: 'tech'
     },
     {
@@ -606,8 +1046,8 @@ module.exports = [
     {
         name: 'Tech Radar',
         url: 'https://www.techradar.com',
-        titleSelector: 'h2.wdn-listv2-item-content-title',
-        urlSelector: 'a.wdn-listv2-item-link', 
+        titleSelector: 'a.wdn-listv2-item-link div.wdn-listv2-item-content-title',
+        urlSelector: 'a.wdn-listv2-item-link',
         page: 'tech'
     },
 //TECH - END
@@ -628,10 +1068,10 @@ module.exports = [
         {
         name: 'SB Nation',
         url: 'https://www.sbnation.com',
-        titleSelector: 'a._1ngvuhm0',
-        urlSelector: 'a._1ngvuhm0', 
-        page: 'sports' 
-    }, 
+        titleSelector: 'a._1c435ji0',
+        urlSelector: 'a._1c435ji0',
+        page: 'sports'
+    },
     {
         name: 'Sporting News',
         url: 'https://www.sportingnews.com/us',
@@ -653,13 +1093,14 @@ module.exports = [
         urlSelector: '.nhl-c-hero', 
         page: 'sports' 
     }, 
-    {
-        name: 'ESPN',
-        url: 'https://espn.com/',
-        titleSelector: 'a[href*="/story/"]',
-        urlSelector: 'a[href*="/story/"]',
-        page: 'sports' 
-    }, 
+    // 202 - AWS WAF bot challenge, empty response body, not fixable via selectors
+    // {
+    //     name: 'ESPN',
+    //     url: 'https://espn.com/',
+    //     titleSelector: 'a[href*="/story/"]',
+    //     urlSelector: 'a[href*="/story/"]',
+    //     page: 'sports'
+    // },
     {
         name: 'Sports Illustrated',
         url: 'https://si.com/',
@@ -677,10 +1118,10 @@ module.exports = [
     {
         name: 'Yahoo Sports',
         url: 'https://sports.yahoo.com/',
-        titleSelector: 'a[href*="/article/"] h2',
-        urlSelector: 'a[href*="/article/"]',
-        page: 'sports' 
-    }, 
+        titleSelector: 'a[href*="/article/"] h3',
+        urlSelector: 'a[href*="/article/"]:has(h3)',
+        page: 'sports'
+    },
         {
         name: 'Deadspin',
         url: 'https://deadspin.com',
@@ -705,10 +1146,10 @@ module.exports = [
     {
         name: 'The Score',
         url: 'https://www.thescore.com/',
-        titleSelector: 'a[href*="/news/"] h3',
+        titleSelector: 'a[href*="/news/"]',
         urlSelector: 'a[href*="/news/"]',
-        page: 'sports' 
-    }, 
+        page: 'sports'
+    },
 
         {
         name: 'MLB',
@@ -722,8 +1163,8 @@ module.exports = [
     {
         name: 'ABC Politics',
         url: 'https://www.abcnews.go.com/Politics',
-        titleSelector: '.atAoU h2',
-        urlSelector: '.atAoU a',
+        titleSelector: 'a[href*="/Politics/"] h2',
+        urlSelector: 'a[href*="/Politics/"]:has(h2)',
         page: 'politics'
     },
     {
@@ -747,13 +1188,14 @@ module.exports = [
         urlSelector: '.content > a:even', 
         page: 'politics'
     },
-    {
-        name: 'PolitiFact',
-        url: 'https://www.politifact.com',
-        titleSelector: '.m-statement__quote > a',
-        urlSelector: '.m-statement__quote > a', 
-        page: 'politics'
-    },
+    // error 403
+    // {
+    //     name: 'PolitiFact',
+    //     url: 'https://www.politifact.com',
+    //     titleSelector: '.m-statement__quote > a',
+    //     urlSelector: '.m-statement__quote > a',
+    //     page: 'politics'
+    // },
     {
         name: 'CNN Politics',
         url: 'https://www.cnn.com/politics/',
@@ -792,9 +1234,9 @@ module.exports = [
     {
         name: 'Vox',
         url: 'https://www.vox.com/politics',
-        titleSelector: 'h2 a',
-        urlSelector: 'h2 a',
-        page: 'politics' 
+        titleSelector: 'a.fxw44b0',
+        urlSelector: 'a.fxw44b0',
+        page: 'politics'
     },
     {
         name: 'The Atlantic',
@@ -820,13 +1262,14 @@ module.exports = [
 //END POLITICS
 /* START FRONT PAGE */
 
-    {
-        name: 'US News',
-        url: ' https://www.usnews.com',
-        titleSelector: 'a.css-16ato06', 
-        urlSelector: 'a.css-16ato06', 
-        page: 'home'
-    },
+    // consistently times out (ECONNABORTED, retried twice)
+    // {
+    //     name: 'US News',
+    //     url: 'https://www.usnews.com',
+    //     titleSelector: 'a.css-16ato06',
+    //     urlSelector: 'a.css-16ato06',
+    //     page: 'home'
+    // },
     {
         name: 'AP News',
         url: ' https://www.apnews.com',
@@ -844,8 +1287,8 @@ module.exports = [
     {
         name: 'The Guardian',
         url: 'https://www.theguardian.com/us',
-        titleSelector: 'h3.dcr-1a010mf', 
-        urlSelector: 'a.dcr-2yd10d', 
+        titleSelector: 'h3.card-headline',
+        urlSelector: "a[data-link-name*='card']",
         page: 'home'
     },
      {
@@ -873,15 +1316,15 @@ module.exports = [
     {
         name: 'BBC',
         url: 'https://www.bbc.com',
-        titleSelector: '.hDVIYu h2',
-        urlSelector: '.hDVIYu a', 
+        titleSelector: "[data-testid='card-headline']",
+        urlSelector: "a[data-testid='external-anchor']",
         page: 'home',
     },
     {
         name: 'New York Times',
         url: 'https://www.nytimes.com',
-        titleSelector: 'p.indicate-hover.css-1ixq7yl',
-        urlSelector: 'a.tpl-lbl.css-5mgoji', 
+        titleSelector: 'p.indicate-hover',
+        urlSelector: 'a.tpl-lbl',
         page: 'home'
     },
     {
@@ -919,13 +1362,14 @@ module.exports = [
         urlSelector: 'h2.story__headline > a', 
         page: 'home'
     },
-    {
-        name: 'People',
-        url: 'https://www.people.com',
-        titleSelector: 'span.card__title-text',
-        urlSelector: 'a.primary-block__topStory', 
-        page: 'home'
-    },
+    // error 403
+    // {
+    //     name: 'People',
+    //     url: 'https://www.people.com',
+    //     titleSelector: 'span.card__title-text',
+    //     urlSelector: 'a.primary-block__topStory',
+    //     page: 'home'
+    // },
     {
         name: 'NPR',
         url: 'https://www.npr.org',
@@ -936,14 +1380,14 @@ module.exports = [
     //END Front PAge
     
     //START WORLD
-    {
-        //403 - TRY ON RAILWAY
-        // name: 'Mainichi.jp',
-        // url: 'https://mainichi.jp/english/',
-        // titleSelector: 'p.midashi',
-        // urlSelector: 'p.midashi > a', 
-        // page: 'world' 
-    },  
+    // 403 - TRY ON RAILWAY
+    // {
+    //     name: 'Mainichi.jp',
+    //     url: 'https://mainichi.jp/english/',
+    //     titleSelector: 'p.midashi',
+    //     urlSelector: 'p.midashi > a',
+    //     page: 'world'
+    // },
     {
         name: 'Asahi',
         url: 'https://www.asahi.com/ajw/',
@@ -997,16 +1441,17 @@ module.exports = [
         name: 'Hindustan Times',
         url: 'https://www.hindustantimes.com/india-news',
         titleSelector: '.bigCart > h2',
-        urlSelector: '.bigCart > a ', 
-        page: 'world' 
-    },  
-    {
-        name: 'Le Monde',
-        url: 'https://www.lemonde.fr/en/france/',
-        titleSelector: '.teaser h3',
-        urlSelector: '.teaser > a ', 
-        page: 'world' 
-    },  
+        urlSelector: '.bigCart > h2 > a',
+        page: 'world'
+    },
+    // 402 - paywalled/blocked
+    // {
+    //     name: 'Le Monde',
+    //     url: 'https://www.lemonde.fr/en/france/',
+    //     titleSelector: '.teaser h3',
+    //     urlSelector: '.teaser > a ',
+    //     page: 'world'
+    // },
     {
         name: 'Rio Times',
         url: 'https://www.riotimesonline.com/',
@@ -1033,22 +1478,22 @@ module.exports = [
     {
         name: 'CNN Business',
         url: 'https://cnn.com/business/',
-        titleSelector: 'div.container_lead-plus-headlines-with-images__headline > span.container__headline-text',
-        urlSelector: 'a.container_lead-plus-headlines-with-images__link', 
+        titleSelector: 'span.container__headline-text',
+        urlSelector: 'a.container__link',
         page: 'finance'
     },
     {
-        name: 'Investor Hub',
-        url: 'https://investorhub.com/insights/',
-        titleSelector: 'div._f3b63657-highlight h3',
-        urlSelector: 'div._f3b63657-highlight > a', 
+        name: 'StockTitan',
+        url: 'https://www.stocktitan.net/news/',
+        titleSelector: 'a.feed-link',
+        urlSelector: 'a.feed-link',
         page: 'finance'
     },
     {
         name: 'Kiplinger',
         url: 'https://kiplinger.com/',
-        titleSelector: '#homepage-carousel h2',
-        urlSelector: '#homepage-carousel a.wdn-listv2-item-link', 
+        titleSelector: '#homepage-carousel .wdn-listv2-item-content-title',
+        urlSelector: '#homepage-carousel a.wdn-listv2-item-link',
         page: 'finance'
     },
     //     {
@@ -1072,34 +1517,37 @@ module.exports = [
         urlSelector: 'a.zEzPL6aA', 
         page: 'finance'
     },
-    {
-        name: 'Investopedia',
-        url: 'https://www.investopedia.com',
-        titleSelector: 'div#card__title_1-0',
-        urlSelector: 'a#home-hero-primary__item_1-0', 
-        page: 'finance'
-    },
+    // error 403
+    // {
+    //     name: 'Investopedia',
+    //     url: 'https://www.investopedia.com',
+    //     titleSelector: 'div#card__title_1-0',
+    //     urlSelector: 'a#home-hero-primary__item_1-0',
+    //     page: 'finance'
+    // },
     {
         name: 'NASDAQ',
         url: 'https://www.nasdaq.com/newsroom/',
-        titleSelector: 'article a.jupiter22-c-section-heading__headline',
-        urlSelector: 'article a.jupiter22-c-section-heading__headline', 
+        titleSelector: "h3[slot='title']",
+        urlSelector: "a[slot='cta']",
         page: 'finance'
     },
-    {
-        name: 'The Balance Money',
-        url: 'https://www.thebalancemoney.com/',
-        titleSelector: 'a#mntl-document-card--featured_1-0 .card__title-text',
-        urlSelector: 'a#mntl-document-card--featured_1-0', 
-        page: 'finance'
-    },
-    {
-        name: 'Benzinga',
-        url: 'https://www.benzinga.com/',
-        titleSelector: '.gap-2 h3',
-        urlSelector: '.gap-2 > a', 
-        page: 'finance'
-    },
+    // error 403
+    // {
+    //     name: 'The Balance Money',
+    //     url: 'https://www.thebalancemoney.com/',
+    //     titleSelector: 'a#mntl-document-card--featured_1-0 .card__title-text',
+    //     urlSelector: 'a#mntl-document-card--featured_1-0',
+    //     page: 'finance'
+    // },
+    // error 403
+    // {
+    //     name: 'Benzinga',
+    //     url: 'https://www.benzinga.com/',
+    //     titleSelector: '.gap-2 h3',
+    //     urlSelector: '.gap-2 > a',
+    //     page: 'finance'
+    // },
     {
         name: 'CNBC',
         url: 'https://www.cnbc.com/',
@@ -1131,8 +1579,8 @@ module.exports = [
     {
         name: 'Seeking Alpha',
         url: 'https://seekingalpha.com/market-news',
-        titleSelector: 'section.jMI0l h3',
-        urlSelector: 'section.jMI0l a', 
+        titleSelector: 'h3.text-share-text',
+        urlSelector: 'h3.text-share-text a',
         page: 'finance'
     },
     {

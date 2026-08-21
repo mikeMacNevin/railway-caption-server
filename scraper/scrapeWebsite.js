@@ -53,8 +53,18 @@ const cheerio = require('cheerio');
 
         }
 
-        // make sure we have value for title, url, site_icon_url, page, website, source: site.name 
-        if (title && url && site_icon_url	) {
+        // Many sites don't declare a <link rel="icon"> at all and just rely on
+        // browsers requesting /favicon.ico by convention - fall back to that
+        // instead of dropping an otherwise-valid article over a missing icon.
+        if (!site_icon_url && website) {
+            site_icon_url = new URL('/favicon.ico', website).href;
+            console.log(`No <link> icon found, defaulting to: ${site_icon_url}`)
+        }
+
+        // The favicon is cosmetic - only title/url are required for an article
+        // to be usable. Requiring site_icon_url too caused otherwise-valid
+        // articles to be silently dropped whenever a site had no icon <link>.
+        if (title && url) {
             return { title, url, site_icon_url, page, website, source: site.name };
         } else {
             console.warn(`No title or URL found for ${site.name}`);
