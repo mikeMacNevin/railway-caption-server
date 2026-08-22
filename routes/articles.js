@@ -1,9 +1,33 @@
 const express = require('express');
+const crypto = require('crypto');
 const router = express.Router();
 
 require('dotenv').config();
 
 const pool = require('../db/dbConfig');
+
+// Gates /debug behind a shared secret (?key=...). Fails closed: if
+// DEBUG_KEY isn't set at all, the route is disabled outright rather than
+// left open. Returns a plain 404 either way so an unauthorized request
+// can't tell "wrong key" apart from "route doesn't exist".
+function requireDebugKey(req, res, next) {
+  const configured = process.env.DEBUG_KEY;
+  const supplied = req.query.key;
+
+  if (!configured || !supplied) {
+    return res.status(404).end();
+  }
+
+  const a = Buffer.from(String(supplied));
+  const b = Buffer.from(configured);
+  const match = a.length === b.length && crypto.timingSafeEqual(a, b);
+
+  if (!match) {
+    return res.status(404).end();
+  }
+
+  next();
+}
 
 const CACHE_TTL_MS = 30 * 60 * 1000; // 30 minutes
 const cache = {}; // { [page]: { data: [], fetchedAt: timestamp } }
@@ -51,7 +75,7 @@ async function warmCache() {
   console.log('Cache pre-warm complete.');
 }
 
-router.get('/debug', async (req, res) => {
+router.get('/debug', requireDebugKey, async (req, res) => {
   try {
     const [rows] = await pool.execute('SELECT COUNT(*) as total, MAX(created_at) as latest FROM articles');
     const [pages] = await pool.execute('SELECT page, COUNT(*) as count FROM articles GROUP BY page');
