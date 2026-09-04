@@ -1,9 +1,16 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
+const { isAllowedByRobots } = require('./checkRobots');
 
 // Function to scrape a single website
  module.exports = async function scrapeWebsite(site) {
     try {
+        const allowed = await isAllowedByRobots(site.url);
+        if (!allowed) {
+            console.warn(`Skipping ${site.name} - disallowed by robots.txt`);
+            return null;
+        }
+
         //Fetch the website data
         const response = await axios.get(site.url, {
             headers: {

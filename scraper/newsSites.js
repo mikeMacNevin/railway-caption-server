@@ -841,13 +841,14 @@ module.exports = [
         urlSelector: 'div.w-display-card-content a', 
         page: 'videogames' 
     },
-        {
-        name: 'Playstation',
-        url: 'https://blog.playstation.com/category/ps5/',
-        titleSelector: 'h2.post-card__title',
-        urlSelector: 'h2.post-card__title > a', 
-        page: 'videogames' 
-    },
+    // disallowed by robots.txt (/category/ps5/ specifically)
+    // {
+    //     name: 'Playstation',
+    //     url: 'https://blog.playstation.com/category/ps5/',
+    //     titleSelector: 'h2.post-card__title',
+    //     urlSelector: 'h2.post-card__title > a',
+    //     page: 'videogames'
+    // },
        // START SHOW BIZ
     
 
@@ -1562,13 +1563,14 @@ module.exports = [
         urlSelector: 'article.relative > a', 
         page: 'finance'
     },
-    {
-        name: 'Investor\'s Bursiness Daily',
-        url: 'https://www.investors.com/',
-        titleSelector: '.article-title > a > div',
-        urlSelector: '.article-title > a', 
-        page: 'finance'
-    },
+    // disallowed by robots.txt (entire site)
+    // {
+    //     name: 'Investor\'s Bursiness Daily',
+    //     url: 'https://www.investors.com/',
+    //     titleSelector: '.article-title > a > div',
+    //     urlSelector: '.article-title > a',
+    //     page: 'finance'
+    // },
     {
         name: 'Investors Place',
         url: 'https://investorplace.com/',
