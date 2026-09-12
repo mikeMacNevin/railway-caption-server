@@ -2,6 +2,12 @@ const express = require('express');
 const app = express();
 const cron = require('node-cron');
 
+// Railway puts this app behind a reverse proxy, so without this every
+// request looks like it comes from the proxy's IP - express-rate-limit
+// (see routes/articles.js) needs the real visitor IP from X-Forwarded-For
+// to throttle callers individually instead of lumping all traffic together.
+app.set('trust proxy', 1);
+
 //CORS
 const cors = require('cors');
 app.use(cors())

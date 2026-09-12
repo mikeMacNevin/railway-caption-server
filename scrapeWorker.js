@@ -15,6 +15,7 @@
 require('dotenv').config();
 const cron = require('node-cron');
 const scrapeAllSites = require('./scraper/scrapeAllSites');
+const pruneOldArticles = require('./db/pruneOldArticles');
 
 async function runScrapeCycle() {
     try {
@@ -28,9 +29,24 @@ async function runScrapeCycle() {
     }
 }
 
+async function runRetentionCycle() {
+    try {
+        const deleted = await pruneOldArticles();
+        console.log(`Retention: pruned ${deleted} article(s) older than 7 days`);
+    } catch (err) {
+        console.error('Retention cycle failed:', err.message);
+    }
+}
+
 console.log('Scraper worker starting...');
 
 runScrapeCycle();
+runRetentionCycle();
 
 // Same 60-minute cadence server.js used before this split.
 cron.schedule('*/60 * * * *', runScrapeCycle);
+
+// Once nightly is plenty for a 7-day retention window - this worker
+// process stays up continuously, so the startup run above is what
+// actually catches a fresh deploy or a missed night, not this schedule.
+cron.schedule('0 3 * * *', runRetentionCycle);
