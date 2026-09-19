@@ -16,6 +16,8 @@ require('dotenv').config();
 const cron = require('node-cron');
 const scrapeAllSites = require('./scraper/scrapeAllSites');
 const pruneOldArticles = require('./db/pruneOldArticles');
+const generateSummary = require('./summary/generateSummary');
+const { ensureSummariesTable, minutesSinceLastSummary } = require('./db/summaries');
 
 async function runScrapeCycle() {
     try {
@@ -38,10 +40,37 @@ async function runRetentionCycle() {
     }
 }
 
+// Regenerates the AI news briefing (see summary/). Cheap - one API call over
+// ~150 headlines - but not free, so it runs on its own slower schedule, and
+// a restart or redeploy doesn't trigger a fresh call if a briefing was
+// written recently.
+const SUMMARY_MIN_INTERVAL_MINUTES = 150;
+
+async function runSummaryCycle() {
+    if (!process.env.ANTHROPIC_API_KEY) {
+        console.log('Summary: ANTHROPIC_API_KEY not set, skipping briefing generation');
+        return;
+    }
+    try {
+        await ensureSummariesTable();
+        const age = await minutesSinceLastSummary();
+        if (age < SUMMARY_MIN_INTERVAL_MINUTES) {
+            console.log(`Summary: last briefing is ${age} min old, skipping`);
+            return;
+        }
+        await generateSummary();
+    } catch (err) {
+        // A failed run just leaves the previous briefing up until the next
+        // attempt - never worth crashing the scraper over.
+        console.error('Summary cycle failed:', err.message);
+    }
+}
+
 console.log('Scraper worker starting...');
 
 runScrapeCycle();
 runRetentionCycle();
+runSummaryCycle();
 
 // Same 60-minute cadence server.js used before this split.
 cron.schedule('*/60 * * * *', runScrapeCycle);
@@ -50,3 +79,7 @@ cron.schedule('*/60 * * * *', runScrapeCycle);
 // process stays up continuously, so the startup run above is what
 // actually catches a fresh deploy or a missed night, not this schedule.
 cron.schedule('0 3 * * *', runRetentionCycle);
+
+// Every 3 hours, offset from the top of the hour so it lands after that
+// hour's scrape has had a chance to bring in fresh headlines.
+cron.schedule('20 */3 * * *', runSummaryCycle);

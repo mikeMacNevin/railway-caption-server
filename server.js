@@ -17,6 +17,7 @@ app.use(cors())
 
 //MIKE imports//
 const { router: articlesRouter, warmCache } = require('./routes/articles');
+const summaryRouter = require('./routes/summary');
 
 //EXPRESS - need to update port once I move it to railway
 const port = 5000;
@@ -26,6 +27,9 @@ app.listen(port, () => {
 
 //Routes
 app.use('/api', articlesRouter);
+// Covered by articlesRouter's rate limiter too: that router-level limiter
+// runs for every /api request before it falls through to here.
+app.use('/api', summaryRouter);
 
 // The actual scraping now runs in its own process (scrapeWorker.js) so a
 // ~180-site scrape cycle never competes with serving visitor requests here.
