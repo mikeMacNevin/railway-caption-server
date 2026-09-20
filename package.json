@@ -6,7 +6,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "worker": "node scrapeWorker.js",
-    "summary": "node summary/run.js"
+    "summary": "node summary/run.js",
+    "diagnose": "node scraper/diagnose.js"
   },
   "keywords": [],
   "author": "",

@@ -1,9 +1,18 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 const { isAllowedByRobots } = require('./checkRobots');
+const { extractArticle } = require('./extractArticle');
 
-// Function to scrape a single website
- module.exports = async function scrapeWebsite(site) {
+// Without a timeout, one site that accepts the connection and then never
+// answers would hang the whole (sequential) scrape cycle indefinitely.
+const FETCH_TIMEOUT_MS = 20000;
+
+const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36';
+
+// Scrapes a single website. Returns an article, or null if the site couldn't
+// be scraped - in which case the reason has already been logged, and
+// scrapeAllSites reports which sites came back empty at the end of a cycle.
+module.exports = async function scrapeWebsite(site) {
     try {
         const allowed = await isAllowedByRobots(site.url);
         if (!allowed) {
@@ -11,75 +20,47 @@ const { isAllowedByRobots } = require('./checkRobots');
             return null;
         }
 
-        //Fetch the website data
         const response = await axios.get(site.url, {
-            headers: {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-            }
+            headers: { 'User-Agent': USER_AGENT },
+            timeout: FETCH_TIMEOUT_MS,
         });
-        //page = page
-        const page = site.page;
-        console.log("-----------------------------------------")
-        console.log(`--------------- ${site.name.toUpperCase()} --------------`)
-           
-        console.log("URL Data: " + JSON.stringify(site))
-        //Load website data to Cherrio
+
         const $ = cheerio.load(response.data);
-        
-        // Get article title and URL
-        const title = $(site.titleSelector).first().text().trim();
-        let url = $(site.urlSelector).first().attr('href');    
-        console.log(`article title: ${title}`)
-        console.log(`article url: ${url}`)
 
-        //TEST
-        let site_icon_url = $('link[rel="icon"]').attr('href') || $('link[rel="shortcut icon"]').attr('href') || $('link[rel="shortcut icon mask-icon"]').attr('href');
-        console.log(`'site_icon_url: ' ${site.name}' : ${site_icon_url	}`);
-
-        // Ensure the URL is absolute
-        if (url && !url.startsWith('http')) {
-            let baseUrl = new URL(site.url).origin;
-            console.log(`baseUrl: ${baseUrl}`)
-
-            url = new URL(url, baseUrl).href;
-            // console.log("HAS A FIXED URL: " + url)
-        }
-
-        // Website
-        let website;
-        if (url) {
-            website = new URL(site.url).origin;
-            console.log("website: " + website)
-        }
-
-        // Website Favicon
-        if (site_icon_url && !site_icon_url.startsWith('http')) {
-            const baseSiteIconUrl = new URL(website).origin
-            site_icon_url = new URL(site_icon_url, baseSiteIconUrl).href;
-            console.log (`baseSiteIconURL + site_icon_url${baseSiteIconUrl} + ${site_icon_url}`)
-
-        }
-
-        // Many sites don't declare a <link rel="icon"> at all and just rely on
-        // browsers requesting /favicon.ico by convention - fall back to that
-        // instead of dropping an otherwise-valid article over a missing icon.
-        if (!site_icon_url && website) {
-            site_icon_url = new URL('/favicon.ico', website).href;
-            console.log(`No <link> icon found, defaulting to: ${site_icon_url}`)
-        }
-
-        // The favicon is cosmetic - only title/url are required for an article
-        // to be usable. Requiring site_icon_url too caused otherwise-valid
-        // articles to be silently dropped whenever a site had no icon <link>.
-        if (title && url) {
-            return { title, url, site_icon_url, page, website, source: site.name };
-        } else {
-            console.warn(`No title or URL found for ${site.name}`);
+        // Title and link come from the same card on the page - see
+        // extractArticle.js for why they can't just be first-match-each.
+        const found = extractArticle($, site);
+        if (!found) {
+            console.warn(`No usable headline found for ${site.name} (${site.url}) - its selectors may need updating`);
             return null;
         }
+
+        let url;
+        try {
+            url = new URL(found.href, site.url).href;
+        } catch (e) {
+            console.warn(`Unparseable link for ${site.name}: ${found.href}`);
+            return null;
+        }
+
+        const website = new URL(site.url).origin;
+
+        // Favicon is cosmetic - an article is usable without one, so a missing
+        // or odd icon must never drop it. Fall back to the /favicon.ico
+        // convention when the page doesn't declare one.
+        let siteIconUrl = $('link[rel="icon"]').attr('href')
+            || $('link[rel="shortcut icon"]').attr('href')
+            || $('link[rel="shortcut icon mask-icon"]').attr('href');
+        try {
+            siteIconUrl = new URL(siteIconUrl || '/favicon.ico', website).href;
+        } catch (e) {
+            siteIconUrl = new URL('/favicon.ico', website).href;
+        }
+
+        return { title: found.title, url, site_icon_url: siteIconUrl, page: site.page, website, source: site.name };
     } catch (error) {
-        console.error(`Error scraping ${site.name}:`, error.message);
+        const reason = error.code === 'ECONNABORTED' ? `timed out after ${FETCH_TIMEOUT_MS / 1000}s` : error.message;
+        console.error(`Error scraping ${site.name}: ${reason}`);
         return null;
     }
 }
-

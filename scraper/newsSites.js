@@ -331,8 +331,11 @@ module.exports = [
         page: 'health'
     },
     {
-        name: 'NPR Health Shots',
-        url: 'https://www.npr.org/sections/health-shots/',
+        // The old /sections/health-shots/ page stopped updating in January 2026
+        // (every story on it is dated Dec 2025 - Jan 2026); /sections/health/
+        // is NPR's live health section and uses the same markup.
+        name: 'NPR Health',
+        url: 'https://www.npr.org/sections/health/',
         titleSelector: 'article.item.has-image h2.title',
         urlSelector: 'article.item.has-image h2.title > a',
         page: 'health'
@@ -379,13 +382,14 @@ module.exports = [
         urlSelector: 'h2.ddc-media-title > a',
         page: 'health'
     },
-    {
-        name: 'UCLA Health',
-        url: 'https://www.uclahealth.org/news',
-        titleSelector: 'h3.card__title > a',
-        urlSelector: 'h3.card__title > a',
-        page: 'health'
-    },
+    // error 403 (blocks automated requests) - checked 2026-09-19
+    // {
+    //     name: 'UCLA Health',
+    //     url: 'https://www.uclahealth.org/news',
+    //     titleSelector: 'h3.card__title > a',
+    //     urlSelector: 'h3.card__title > a',
+    //     page: 'health'
+    // },
     {
         name: 'ScienceDaily Health',
         url: 'https://www.sciencedaily.com/news/health_medicine/',
@@ -417,7 +421,7 @@ module.exports = [
     {
         name: 'Runner\'s World Health',
         url: 'https://www.runnersworld.com/health-injuries/',
-        titleSelector: 'a[data-theme-key="custom-item"] h3',
+        titleSelector: 'a[data-theme-key="custom-item"] p',
         urlSelector: 'a[data-theme-key="custom-item"]',
         page: 'health'
     },
@@ -431,8 +435,8 @@ module.exports = [
     {
         name: 'Healio',
         url: 'https://www.healio.com/',
-        titleSelector: 'a.article-mug > h3.card-title',
-        urlSelector: 'a.article-mug',
+        titleSelector: 'h3.card-title',
+        urlSelector: 'a[href^="/news/"]',
         page: 'health'
     },
     {
@@ -567,13 +571,14 @@ module.exports = [
         urlSelector: 'h3.article__title > a',
         page: 'science'
     },
-    {
-        name: 'ScienceAlert',
-        url: 'https://www.sciencealert.com/',
-        titleSelector: 'div.entry-teaser a.text-h2',
-        urlSelector: 'div.entry-teaser a.text-h2',
-        page: 'science'
-    },
+    // error 403 (blocks automated requests) - checked 2026-09-19
+    // {
+    //     name: 'ScienceAlert',
+    //     url: 'https://www.sciencealert.com/',
+    //     titleSelector: 'div.entry-teaser a.text-h2',
+    //     urlSelector: 'div.entry-teaser a.text-h2',
+    //     page: 'science'
+    // },
     {
         name: 'MIT Technology Review',
         url: 'https://www.technologyreview.com/',
@@ -672,8 +677,8 @@ module.exports = [
     {
         name: 'Screen Rant',
         url: 'https://screenrant.com/tv/',
-        titleSelector: 'h3 a',
-        urlSelector: 'h3 a',
+        titleSelector: '.display-card.article h5.display-card-title a',
+        urlSelector: '.display-card.article h5.display-card-title a',
         page: 'tv'
     },
         {
@@ -726,18 +731,19 @@ module.exports = [
         urlSelector: 'main .news-link', 
         page: 'movies' 
     },
-    {
-        name: 'New York Times Movies',
-        url: 'https://www.nytimes.com/section/movies',
-        titleSelector: 'h3.e1hr934v2 ',
-        urlSelector: 'h3.e1hr934v2 > a', 
-        page: 'movies' 
-    },
+    // error 403 (blocks automated requests) - checked 2026-09-19
+    // {
+    //     name: 'New York Times Movies',
+    //     url: 'https://www.nytimes.com/section/movies',
+    //     titleSelector: 'h3.e1hr934v2 ',
+    //     urlSelector: 'h3.e1hr934v2 > a', 
+    //     page: 'movies' 
+    // },
     {
         name: 'Indie Wire',
         url: 'https://www.indiewire.com/',
-        titleSelector: 'div._text_y7yck_1 > a',
-        urlSelector: 'div._text_y7yck_1 > a', 
+        titleSelector: '[class*="_cardsWrapper_"] div[class*="_text_"] > a',
+        urlSelector: '[class*="_cardsWrapper_"] div[class*="_text_"] > a',
         page: 'movies' 
     },
     {
@@ -973,13 +979,14 @@ module.exports = [
         urlSelector: 'h3.display-card-title > a', 
         page: 'tech'  
     },
-    {
-        name: 'Digital Trends',
-        url: 'https://www.digitaltrends.com',
-        titleSelector: 'h3.b-mem-post__title',
-        urlSelector: 'h3.b-mem-post__title > a', 
-        page: 'tech'  
-    },
+    // error 405 (blocks automated requests) - checked 2026-09-19
+    // {
+    //     name: 'Digital Trends',
+    //     url: 'https://www.digitaltrends.com',
+    //     titleSelector: 'h3.b-mem-post__title',
+    //     urlSelector: 'h3.b-mem-post__title > a', 
+    //     page: 'tech'  
+    // },
     {
         name: 'PC Mag',
         url: 'https://www.pcmag.com',
@@ -1083,15 +1090,15 @@ module.exports = [
     {
         name: 'NFL',
         url: 'https://www.nfl.com/',
-        titleSelector: 'a[href*="/news/"] h3',
-        urlSelector: 'a[href*="/news/"]',
+        titleSelector: 'a[href*="/news/"][class*="text-ls-600"] span.body-3-sans',
+        urlSelector: 'a[href*="/news/"][class*="text-ls-600"]',
         page: 'sports' 
     }, 
     {
         name: 'NHL',
         url: 'https://www.nhl.com/',
-        titleSelector: '.nhl-c-hero__title',
-        urlSelector: '.nhl-c-hero', 
+        titleSelector: '.nhl-c-hero__description',
+        urlSelector: '.nhl-c-hero',
         page: 'sports' 
     }, 
     // 202 - AWS WAF bot challenge, empty response body, not fixable via selectors
@@ -1133,15 +1140,15 @@ module.exports = [
     {
         name: 'NBC Sports',
         url: 'https://www.nbcsports.com/',
-        titleSelector: '.HubHero-main .PagePromo-title',
-        urlSelector: '.HubHero-main a', 
+        titleSelector: 'main .PagePromo-title a[href*="nbcsports.com"]',
+        urlSelector: 'main .PagePromo-title a[href*="nbcsports.com"]',
         page: 'sports' 
     }, 
     {
         name: 'Fox Sports',
         url: 'https://www.foxsports.com/',
-        titleSelector: '.vue-glide__track span.inline',
-        urlSelector: '.vue-glide__track a', 
+        titleSelector: '.hc-item span.inline',
+        urlSelector: '.hc-item a.hc-link',
         page: 'sports' 
     }, 
     {
@@ -1185,8 +1192,8 @@ module.exports = [
     {
         name: 'Washington Examiner',
         url: 'https://www.washingtonexaminer.com/',
-        titleSelector: 'h3.title-main',
-        urlSelector: '.content > a:even', 
+        titleSelector: 'h3.entry-title',
+        urlSelector: 'h3.entry-title a',
         page: 'politics'
     },
     // error 403
@@ -1271,13 +1278,14 @@ module.exports = [
     //     urlSelector: 'a.css-16ato06',
     //     page: 'home'
     // },
-    {
-        name: 'AP News',
-        url: ' https://www.apnews.com',
-        titleSelector: 'h2', 
-        urlSelector: 'h2 > a', 
-        page: 'home'
-    },
+    // error 403 (blocks automated requests) - checked 2026-09-19
+    // {
+    //     name: 'AP News',
+    //     url: ' https://www.apnews.com',
+    //     titleSelector: 'h2', 
+    //     urlSelector: 'h2 > a', 
+    //     page: 'home'
+    // },
     {
         name: 'Daily Mail',
         url: ' https://www.dailymail.co.uk/ushome/',
@@ -1288,8 +1296,8 @@ module.exports = [
     {
         name: 'The Guardian',
         url: 'https://www.theguardian.com/us',
-        titleSelector: 'h3.card-headline',
-        urlSelector: "a[data-link-name*='card']",
+        titleSelector: 'h3.card-headline .headline-text',
+        urlSelector: 'a[data-link-name*=\'card\']',
         page: 'home'
     },
      {
@@ -1317,17 +1325,18 @@ module.exports = [
     {
         name: 'BBC',
         url: 'https://www.bbc.com',
-        titleSelector: "[data-testid='card-headline']",
-        urlSelector: "a[data-testid='external-anchor']",
+        titleSelector: '[data-testid=\'card-headline\']',
+        urlSelector: 'a[data-testid=\'internal-link\']',
         page: 'home',
     },
-    {
-        name: 'New York Times',
-        url: 'https://www.nytimes.com',
-        titleSelector: 'p.indicate-hover',
-        urlSelector: 'a.tpl-lbl',
-        page: 'home'
-    },
+    // error 403 (blocks automated requests) - checked 2026-09-19
+    // {
+    //     name: 'New York Times',
+    //     url: 'https://www.nytimes.com',
+    //     titleSelector: 'p.indicate-hover',
+    //     urlSelector: 'a.tpl-lbl',
+    //     page: 'home'
+    // },
     {
         name: 'CBS News',
         url: 'https://www.cbsnews.com', 
@@ -1375,7 +1384,37 @@ module.exports = [
         name: 'NPR',
         url: 'https://www.npr.org',
         titleSelector: 'h3.title',
-        urlSelector: '.story-text > a', 
+        urlSelector: '.story-text > a',
+        page: 'home'
+    },
+    // Added 2026-09-19 to replace AP News and the New York Times, which both
+    // return 403 to automated requests. All four allow it in robots.txt.
+    {
+        name: 'USA Today',
+        url: 'https://www.usatoday.com/',
+        titleSelector: '.hero-stories-slot a[class*="-container"]',
+        urlSelector: '.hero-stories-slot a[class*="-container"]',
+        page: 'home'
+    },
+    {
+        name: 'Yahoo News',
+        url: 'https://news.yahoo.com/',
+        titleSelector: 'a.stretched-box.chromatic-ignore',
+        urlSelector: 'a.stretched-box.chromatic-ignore',
+        page: 'home'
+    },
+    {
+        name: 'The Independent',
+        url: 'https://www.independent.co.uk/us',
+        titleSelector: 'a.card-link',
+        urlSelector: 'a.card-link',
+        page: 'home'
+    },
+    {
+        name: 'PBS NewsHour',
+        url: 'https://www.pbs.org/newshour/',
+        titleSelector: 'h1.home-hero__title a, a.card-sm__title',
+        urlSelector: 'h1.home-hero__title a, a.card-sm__title',
         page: 'home'
     },
     //END Front PAge
@@ -1456,8 +1495,8 @@ module.exports = [
     {
         name: 'Rio Times',
         url: 'https://www.riotimesonline.com/',
-        titleSelector: 'a h3',
-        urlSelector: 'a[href*="riotimesonline.com"]',
+        titleSelector: 'a.mob-row .mob-row-title',
+        urlSelector: 'a.mob-row',
         page: 'world' 
     },    
     {
@@ -1559,8 +1598,8 @@ module.exports = [
     {
         name: 'The Fool',
         url: 'https://www.fool.com/',
-        titleSelector: 'div.absolute > h3.text-lg',
-        urlSelector: 'article.relative > a', 
+        titleSelector: 'a[href^="/investing/20"]',
+        urlSelector: 'a[href^="/investing/20"]',
         page: 'finance'
     },
     // disallowed by robots.txt (entire site)

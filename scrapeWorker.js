@@ -18,8 +18,19 @@ const scrapeAllSites = require('./scraper/scrapeAllSites');
 const pruneOldArticles = require('./db/pruneOldArticles');
 const generateSummary = require('./summary/generateSummary');
 const { ensureSummariesTable, minutesSinceLastSummary } = require('./db/summaries');
+const { ensureArticlesSchema } = require('./db/articlesSchema');
+
+// A full pass over every site normally takes ~15 minutes, but if sites are
+// slow it could outlast the 60-minute schedule - never start a second pass
+// on top of one that's still running.
+let scrapeRunning = false;
 
 async function runScrapeCycle() {
+    if (scrapeRunning) {
+        console.warn('Scrape cycle skipped - the previous one is still running');
+        return;
+    }
+    scrapeRunning = true;
     try {
         await scrapeAllSites();
     } catch (err) {
@@ -28,6 +39,8 @@ async function runScrapeCycle() {
         // unexpected in the cycle itself - log it and let the next
         // scheduled run try again, rather than crashing the worker.
         console.error('Scrape cycle failed:', err.message);
+    } finally {
+        scrapeRunning = false;
     }
 }
 
@@ -68,9 +81,16 @@ async function runSummaryCycle() {
 
 console.log('Scraper worker starting...');
 
-runScrapeCycle();
-runRetentionCycle();
-runSummaryCycle();
+// Widen columns that real-world headlines/links outgrow before the first
+// scrape, so nothing gets dropped for length. A failure here is only logged -
+// the scraper still runs, and saveToDatabase reports any row that won't fit.
+ensureArticlesSchema()
+    .catch((err) => console.error('Articles schema check failed:', err.message))
+    .then(() => {
+        runScrapeCycle();
+        runRetentionCycle();
+        runSummaryCycle();
+    });
 
 // Same 60-minute cadence server.js used before this split.
 cron.schedule('*/60 * * * *', runScrapeCycle);
