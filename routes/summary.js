@@ -41,7 +41,8 @@ router.get('/summary', async (req, res) => {
 // Must be registered before '/summary/:date' or "archive" would be read as a date.
 router.get('/summary/archive', async (req, res) => {
   try {
-    const dates = await cached('archive', () => listSummaryDates());
+    // The archive page and sitemap list every briefing, not just the last 30.
+    const dates = await cached('archive', () => listSummaryDates(1000));
     res.status(200).json({ briefings: dates || [] });
   } catch (err) {
     if (err.code === 'ER_NO_SUCH_TABLE') return res.status(200).json({ briefings: [] });
