@@ -122,10 +122,21 @@ const SEARCH_RESULT_LIMIT = 50;
 // balanced across sources, neither of which applies to someone looking
 // for a specific thing they already saw. Bound instead by whatever the
 // retention job (db/pruneOldArticles.js) still has on hand: up to 7 days.
+//
+// Every scrape run inserts a fresh row per article per page, so the same
+// story sits in the table many times over. Collapse to one row per URL
+// (the newest - sites retitle stories, so URL is the stable key, not
+// title) before the LIMIT, or repeats would crowd out distinct results.
 const searchQuery = `
 SELECT title, url, source, created_at, page, site_icon_url, website
-FROM articles
-WHERE title LIKE ? ESCAPE '\\\\'
+FROM (
+    SELECT
+        *,
+        ROW_NUMBER() OVER (PARTITION BY url ORDER BY created_at DESC) AS dedup_rn
+    FROM articles
+    WHERE title LIKE ? ESCAPE '\\\\'
+) deduped
+WHERE dedup_rn = 1
 ORDER BY created_at DESC
 LIMIT ${SEARCH_RESULT_LIMIT}
 `;
