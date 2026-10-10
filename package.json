@@ -7,7 +7,8 @@
     "start": "node server.js",
     "worker": "node scrapeWorker.js",
     "summary": "node summary/run.js",
-    "diagnose": "node scraper/diagnose.js"
+    "diagnose": "node scraper/diagnose.js",
+    "post:bluesky": "node social/run.js"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,7 @@
   "description": "",
   "dependencies": {
     "@anthropic-ai/sdk": "^0.127.0",
+    "@atproto/api": "^0.19.19",
     "axios": "^1.10.0",
     "cheerio": "^1.1.0",
     "cors": "^2.8.5",

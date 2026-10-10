@@ -19,6 +19,7 @@ const pruneOldArticles = require('./db/pruneOldArticles');
 const generateSummary = require('./summary/generateSummary');
 const { ensureSummariesTable, minutesSinceLastSummary } = require('./db/summaries');
 const { ensureArticlesSchema } = require('./db/articlesSchema');
+const { runDailyBlueskyPost } = require('./social/dailyPost');
 
 // A full pass over every site normally takes ~15 minutes, but if sites are
 // slow it could outlast the 60-minute schedule - never start a second pass
@@ -103,3 +104,17 @@ cron.schedule('0 3 * * *', runRetentionCycle);
 // Every 3 hours, offset from the top of the hour so it lands after that
 // hour's scrape has had a chance to bring in fresh headlines.
 cron.schedule('20 */3 * * *', runSummaryCycle);
+
+// Shares today's briefing on Bluesky. Tried hourly from 7 to 11am Eastern -
+// after the overnight briefings, in time for the morning audience. Only the
+// first successful attempt posts (see social/dailyPost.js); the later ones
+// are there to catch a restart or a failed attempt, not to post again.
+async function runSocialCycle() {
+    try {
+        await runDailyBlueskyPost();
+    } catch (err) {
+        console.error('Social cycle failed:', err.message);
+    }
+}
+
+cron.schedule('5 7-11 * * *', runSocialCycle, { timezone: 'America/New_York' });
