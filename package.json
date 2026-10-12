@@ -8,7 +8,8 @@
     "worker": "node scrapeWorker.js",
     "summary": "node summary/run.js",
     "diagnose": "node scraper/diagnose.js",
-    "post:bluesky": "node social/run.js"
+    "post:bluesky": "node social/run.js",
+    "summary:categories": "node summary/runCategories.js"
   },
   "keywords": [],
   "author": "",

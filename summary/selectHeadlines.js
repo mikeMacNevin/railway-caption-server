@@ -144,3 +144,6 @@ module.exports = async function selectHeadlines() {
 
   return picked.map((item, i) => ({ n: i + 1, ...item }));
 };
+
+// Shared with the per-category summaries (summary/categorySummary.js).
+module.exports.clusterStories = clusterStories;

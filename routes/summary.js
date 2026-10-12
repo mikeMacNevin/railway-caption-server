@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const { getLatestSummary, getSummaryForDate, listSummaryDates } = require('../db/summaries');
+const { getLatestCategorySummary } = require('../db/categorySummaries');
+const { CATEGORY_LABELS } = require('../summary/categorySummary');
 
 // A briefing only changes every few hours, so there's no reason to hit the
 // database on every page view.
@@ -46,6 +48,23 @@ router.get('/summary/archive', async (req, res) => {
     res.status(200).json({ briefings: dates || [] });
   } catch (err) {
     if (err.code === 'ER_NO_SUCH_TABLE') return res.status(200).json({ briefings: [] });
+    handleError(res, err);
+  }
+});
+
+// The daily overview shown above a category page's headlines. 404 (not an
+// error) when there isn't a recent one - the page just shows headlines.
+router.get('/summary/category/:page', async (req, res) => {
+  const { page } = req.params;
+  if (!CATEGORY_LABELS[page]) {
+    return res.status(404).json({ message: 'Unknown category' });
+  }
+
+  try {
+    const summary = await cached(`category:${page}`, () => getLatestCategorySummary(page));
+    if (!summary) return res.status(404).json({ message: 'No overview available yet' });
+    res.status(200).json(summary);
+  } catch (err) {
     handleError(res, err);
   }
 });

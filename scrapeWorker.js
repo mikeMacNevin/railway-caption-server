@@ -20,6 +20,7 @@ const generateSummary = require('./summary/generateSummary');
 const { ensureSummariesTable, minutesSinceLastSummary } = require('./db/summaries');
 const { ensureArticlesSchema } = require('./db/articlesSchema');
 const { runDailyBlueskyPost } = require('./social/dailyPost');
+const { generateCategorySummaries } = require('./summary/categorySummary');
 
 // A full pass over every site normally takes ~15 minutes, but if sites are
 // slow it could outlast the 60-minute schedule - never start a second pass
@@ -118,3 +119,22 @@ async function runSocialCycle() {
 }
 
 cron.schedule('5 7-11 * * *', runSocialCycle, { timezone: 'America/New_York' });
+
+// Writes the daily overview shown above each category page's headlines.
+// First attempt at 6:40am Eastern, after the 5am-6am scrapes have refreshed
+// the overnight headlines; the later hourly attempts only fill in categories
+// that failed (see generateCategorySummaries), so a normal day makes just one
+// model call per category.
+async function runCategorySummaryCycle() {
+    if (!process.env.ANTHROPIC_API_KEY) {
+        console.log('Category summaries: ANTHROPIC_API_KEY not set, skipping');
+        return;
+    }
+    try {
+        await generateCategorySummaries();
+    } catch (err) {
+        console.error('Category summary cycle failed:', err.message);
+    }
+}
+
+cron.schedule('40 6-12 * * *', runCategorySummaryCycle, { timezone: 'America/New_York' });

@@ -130,3 +130,4 @@ async function generateSummary({ dryRun = false } = {}) {
 module.exports = generateSummary;
 module.exports.validateBriefing = validateBriefing;
 module.exports.buildPrompt = buildPrompt;
+module.exports.extractJson = extractJson;
