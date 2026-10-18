@@ -2,15 +2,6 @@ module.exports = [
 
     /* Start Travel */
 
-    // error 403
-    // {
-    //     name: 'Travel Weekly',
-    //     url: 'https://www.travelweekly.com/',
-    //     titleSelector: 'div.story span.title-xxxl',
-    //     urlSelector: 'div.story a.text-block', 
-    //     page: 'travel'
-    // },
-
     {
         name: 'Skift',
         url: 'https://skift.com/',
@@ -19,38 +10,6 @@ module.exports = [
         page: 'travel'
     },
 
-    // error 403
-    // {
-    //     name: 'Travel Pulse',
-    //     url: 'https://www.travelpulse.com/news',
-    //     titleSelector: 'div.hero-image-grid-item div.text',
-    //     urlSelector: 'div.hero-image-grid-item > a.link-wrapper', 
-    //     page: 'travel'
-    // },
-    // error 403
-    // {
-    //     name: 'Travel and Leisure',
-    //     url: 'https://www.travelandleisure.com/',
-    //     titleSelector: 'div#card-list_2-0 span.card__title-text ',
-    //     urlSelector: 'div#card-list_2-0 a#mntl-card-list-items_5-0',
-    //     page: 'travel'
-    // },
-
-    // {
-    //     name: 'National Geographic',
-    //     url: 'https://www.nationalgeographic.com/travel',
-    //     titleSelector: 'a.PromoTile__Link > span',
-    //     urlSelector: 'a.PromoTile__Link"', 
-    //     page: 'travel'
-    // },
-    // consistently times out
-    // {
-    //     name: 'US News',
-    //     url: 'https://travel.usnews.com/',
-    //     titleSelector: 'a.Anchor-byh49a-0 > h3',
-    //     urlSelector: 'a.Anchor-byh49a-0',
-    //     page: 'travel'
-    // },
     {
         name: 'Conde Nast Traveler',
         url: 'https://www.cntraveler.com/',
@@ -73,27 +32,11 @@ module.exports = [
         page: 'travel'
     },
 
-    // 403
-    // {
-    //     name: 'Travel Pulse',
-    //     url: 'https://www.travelpulse.com/',
-    //     titleSelector: 'div.hero-image-with-options div.position-absolute',
-    //     urlSelector: 'div.hero-image-with-options > a',
-    //     page: 'travel'
-    // },
-
     {
         name: 'Lonely Planet',
         url: 'https://www.lonelyplanet.com/articles',
         titleSelector: 'a.card-link > span.text-headline-05',
         urlSelector: 'a.card-link',
-        page: 'travel'
-    },
-    {
-        name: "Fodor's",
-        url: 'https://www.fodors.com/news',
-        titleSelector: 'a.post-title',
-        urlSelector: 'a.post-title',
         page: 'travel'
     },
     {
@@ -180,13 +123,6 @@ module.exports = [
         urlSelector: 'h2.entry-title > a',
         page: 'travel'
     },
-    {
-        name: 'World Nomads',
-        url: 'https://www.worldnomads.com/travel-safety/travel-tips',
-        titleSelector: 'a.ContentCard .ContentCard-title',
-        urlSelector: 'a.ContentCard',
-        page: 'travel'
-    },
     // NOTE: cards are travel deals, not editorial headlines - still passes scraper logic
     {
         name: 'Travelzoo',
@@ -226,38 +162,6 @@ module.exports = [
 
     /* END TRAVEL */
 
-        {
-       name: 'CNN Health',
-        url: 'https://www.cnn.com/health',
-        titleSelector: '.container_lead-plus-headlines-with-images__item span.container__headline-text',
-        urlSelector: 'li.container__item > a', 
-        page: 'health'
-    },
-
-    //error 403
-    // {
-    //    name: 'Healthline',
-    //     url: 'https://www.healthline.com/',
-    //     titleSelector: 'div.css-1el24i5 > a',
-    //     urlSelector: 'div.css-1el24i5 > a', 
-    //     page: 'health'
-    // },
-    // {
-    //    name: 'Web MD',
-    //     url: 'https://www.webmd.com/news/default.htm',
-    //     titleSelector: 'section.news-toc-section span.description',
-    //     urlSelector: 'section.news-toc-section a', 
-    //     page: 'health'
-    // },
-    
-    //error 403
-    // {
-    //    name: 'NIH.gov',
-    //     url: 'https://www.nih.gov/news-events/news-releases',
-    //     titleSelector: 'ul.thumbnail-teaser-list a.thumbnail-teaser__link',
-    //     urlSelector: 'ul.thumbnail-teaser-list a.thumbnail-teaser__link', 
-    //     page: 'health'
-    // },
     {
        name: 'MedicineNet',
         url: 'https://www.medicinenet.com/',
@@ -272,14 +176,6 @@ module.exports = [
         urlSelector: 'article.homepage-hero__primary a', 
         page: 'health'
     },
-    // error 403
-    // {
-    //    name: 'Mayo Clinic',
-    //     url: 'https://mcpress.mayoclinic.org/health-letter/',
-    //     titleSelector: 'h3.card__title',
-    //     urlSelector: 'div.card__content > a.card__link--title',
-    //     page: 'health'
-    // },
     {
        name: 'Medical News Today',
         url: 'https://www.medicalnewstoday.com/',
@@ -287,14 +183,6 @@ module.exports = [
         urlSelector: 'a.css-vbjels', 
         page: 'health'
     },
-    //403
-    // {
-    //    name: 'Cleveland Clinic',
-    //     url: 'https://newsroom.clevelandclinic.org/',
-    //     titleSelector: 'h5.text-gray-900 > a',
-    //     urlSelector: 'h5.text-gray-900 > a', 
-    //     page: 'health'
-    // },
     {
        name: 'Cleveland Clinic',
         url: 'https://newsroom.clevelandclinic.org/',
@@ -355,20 +243,6 @@ module.exports = [
         page: 'health'
     },
     {
-        name: 'Fierce Healthcare',
-        url: 'https://www.fiercehealthcare.com/',
-        titleSelector: 'h3.element-title > a',
-        urlSelector: 'h3.element-title > a',
-        page: 'health'
-    },
-    {
-        name: 'MedCity News',
-        url: 'https://medcitynews.com/',
-        titleSelector: 'h3.post-card__title > a',
-        urlSelector: 'h3.post-card__title > a',
-        page: 'health'
-    },
-    {
         name: 'Endpoints News',
         url: 'https://endpts.com/',
         titleSelector: 'h1.epn_headline > a',
@@ -382,14 +256,6 @@ module.exports = [
         urlSelector: 'h2.ddc-media-title > a',
         page: 'health'
     },
-    // error 403 (blocks automated requests) - checked 2026-09-19
-    // {
-    //     name: 'UCLA Health',
-    //     url: 'https://www.uclahealth.org/news',
-    //     titleSelector: 'h3.card__title > a',
-    //     urlSelector: 'h3.card__title > a',
-    //     page: 'health'
-    // },
     {
         name: 'ScienceDaily Health',
         url: 'https://www.sciencedaily.com/news/health_medicine/',
@@ -449,14 +315,6 @@ module.exports = [
     // End Health
     // Start Science
 
-    //403
-    // {
-    //    name: 'Science.org',
-    //     url: 'https://www.science.org/news/',
-    //     titleSelector: 'h3.grid-hero-teaser > a',
-    //     urlSelector: 'h3.grid-hero-teaser > a', 
-    //     page: 'science'
-    // },
         {
        name: 'Science News',
         url: 'https://www.sciencenews.org/',
@@ -471,14 +329,6 @@ module.exports = [
         urlSelector: 'h3.featured-primary-three-column__title___l6a96 > a', 
         page: 'science'
     },
-    //403
-    // {
-    //    name: 'Nature',
-    //     url: 'https://www.nature.com/news',
-    //     titleSelector: 'div.c-card__container h3.c-card__title' ,
-    //     urlSelector: 'div.c-card__container a',
-    //     page: 'science'
-    // },
 
     {
         name: 'ScienceDaily',
@@ -571,14 +421,6 @@ module.exports = [
         urlSelector: 'h3.article__title > a',
         page: 'science'
     },
-    // error 403 (blocks automated requests) - checked 2026-09-19
-    // {
-    //     name: 'ScienceAlert',
-    //     url: 'https://www.sciencealert.com/',
-    //     titleSelector: 'div.entry-teaser a.text-h2',
-    //     urlSelector: 'div.entry-teaser a.text-h2',
-    //     page: 'science'
-    // },
     {
         name: 'MIT Technology Review',
         url: 'https://www.technologyreview.com/',
@@ -591,13 +433,6 @@ module.exports = [
         url: 'https://futurism.com/',
         titleSelector: 'h3.card-post-title',
         urlSelector: 'a.card-post-title-link',
-        page: 'science'
-    },
-    {
-        name: 'Big Think',
-        url: 'https://bigthink.com/',
-        titleSelector: 'a.card-title',
-        urlSelector: 'a.card-title',
         page: 'science'
     },
     {
@@ -630,14 +465,6 @@ module.exports = [
     },
 
 /*END SCIENCE*/
-    // 520 - origin error, site down/unreachable (alternate paths /news/, /shows/ return 403)
-    // {
-    //     name: 'TV Insider',
-    //     url: 'https://www.tvinsider.com/',
-    //     titleSelector: 'div.text-bottom-left > h1',
-    //     urlSelector: 'section#homepage-grid > a',
-    //     page: 'tv'
-    // },
     {
         name: 'TV Line',
         url: 'https://www.tvline.com/',
@@ -645,14 +472,6 @@ module.exports = [
         urlSelector: 'div.article-description h3 a',
         page: 'tv'
     },
-    // error 403
-    // {
-    //     name: 'Carter Matt',
-    //     url: 'https://www.cartermatt.com/',
-    //     titleSelector: 'h2.post-title > a',
-    //     urlSelector: 'h2.post-title > a',
-    //     page: 'tv'
-    // },
     {
         name: 'TV Series Finale',
         url: 'https://tvseriesfinale.com/',
@@ -708,22 +527,6 @@ module.exports = [
     /* ABOVE ARE STILL IN TESTING*/
 
         /* START MOVIES */   
-    // blocked - AWS WAF bot challenge (status 202, empty response body, no HTML to select against)
-    // {
-    //     name: 'IMDB',
-    //     url: 'https://www.imdb.com/news/movie/?ref_=hm_nv_menu',
-    //     titleSelector: 'a.sc-85efd06-2',
-    //     urlSelector: 'a.sc-85efd06-2',
-    //     page: 'movies'
-    // },
-    // error 403
-    // {
-    //     name: 'LetterBoxd',
-    //     url: 'https://letterboxd.com/journal/',
-    //     titleSelector: 'div.head h1.title',
-    //     urlSelector: 'div.head a',
-    //     page: 'movies'
-    // },
     {
         name: 'Rotten Tomatoes',
         url: 'https://editorial.rottentomatoes.com/',
@@ -731,14 +534,6 @@ module.exports = [
         urlSelector: 'main .news-link', 
         page: 'movies' 
     },
-    // error 403 (blocks automated requests) - checked 2026-09-19
-    // {
-    //     name: 'New York Times Movies',
-    //     url: 'https://www.nytimes.com/section/movies',
-    //     titleSelector: 'h3.e1hr934v2 ',
-    //     urlSelector: 'h3.e1hr934v2 > a', 
-    //     page: 'movies' 
-    // },
     {
         name: 'Indie Wire',
         url: 'https://www.indiewire.com/',
@@ -847,26 +642,8 @@ module.exports = [
         urlSelector: 'div.w-display-card-content a', 
         page: 'videogames' 
     },
-    // disallowed by robots.txt (/category/ps5/ specifically)
-    // {
-    //     name: 'Playstation',
-    //     url: 'https://blog.playstation.com/category/ps5/',
-    //     titleSelector: 'h2.post-card__title',
-    //     urlSelector: 'h2.post-card__title > a',
-    //     page: 'videogames'
-    // },
        // START SHOW BIZ
-    
 
-
-    // error 403
-    // {
-    //     name: 'JustJared',
-    //     url: 'https://justjared.com',
-    //     titleSelector: 'h1',
-    //     urlSelector: 'h1 a',
-    //     page: 'celebs'
-    // },
 {
         name: 'Buzzfeed',
         url: 'https://buzzfeed.com/celebrity',
@@ -874,21 +651,6 @@ module.exports = [
         urlSelector: '.featured-card__body a', 
         page: 'celebs' 
     }, 
-    // error 403
-    // {
-    //     name: 'People',
-    //     url: 'https://people.com/',
-    //     titleSelector: '.card__title > span.card__title-text  ',
-    //     urlSelector: '#four-post__content_1-0 > a',
-    //     page: 'celebs'
-    // },
-    //     {
-    //     name: 'EOnline',
-    //     url: 'https://eonline.com/',
-    //     titleSelector: '.list-row h3  ',
-    //     urlSelector: '.list-row a', 
-    //     page: 'celebs' 
-    // }, 
         {
         name: 'US Magazine',
         url: 'https://usmagazine.com/',
@@ -940,14 +702,6 @@ module.exports = [
         page: 'celebs'
     },
 
-    // error 403
-    // {
-    //     name: 'Entertainment Weekly',
-    //     url: 'https://ew.com/',
-    //     titleSelector: 'a#top__card--featured_1-0 span',
-    //     urlSelector: 'a#top__card--featured_1-0',
-    //     page: 'celebs'
-    // },
     {
         name: 'Vulture',
         url: 'https://vulture.com/',
@@ -979,14 +733,6 @@ module.exports = [
         urlSelector: 'h3.display-card-title > a', 
         page: 'tech'  
     },
-    // error 405 (blocks automated requests) - checked 2026-09-19
-    // {
-    //     name: 'Digital Trends',
-    //     url: 'https://www.digitaltrends.com',
-    //     titleSelector: 'h3.b-mem-post__title',
-    //     urlSelector: 'h3.b-mem-post__title > a', 
-    //     page: 'tech'  
-    // },
     {
         name: 'PC Mag',
         url: 'https://www.pcmag.com',
@@ -1016,13 +762,6 @@ module.exports = [
         page: 'tech'
     },
 
-    // {
-    //     name: 'Venture Beat',
-    //     url: 'https://venturebeat.com',
-    //     titleSelector: 'h2',
-    //     urlSelector: 'h2 > a', 
-    //     page: 'tech'
-    // },
     {
         name: 'Wired',
         url: 'https://www.wired.com',
@@ -1062,17 +801,6 @@ module.exports = [
 
 // START SPORTS
 
-    // {
-    //     name: 'Barstool Sports',
-    //     url: 'https://www.barstoolsports.com/',
-    //     titleSelector: '.col-span-full a',
-    //     urlSelector: '.col-span-full .LinesEllipsis', 
-    //     page: 'sports' 
-    // }, 
-
-    
-
-
         {
         name: 'SB Nation',
         url: 'https://www.sbnation.com',
@@ -1101,14 +829,6 @@ module.exports = [
         urlSelector: '.nhl-c-hero',
         page: 'sports' 
     }, 
-    // 202 - AWS WAF bot challenge, empty response body, not fixable via selectors
-    // {
-    //     name: 'ESPN',
-    //     url: 'https://espn.com/',
-    //     titleSelector: 'a[href*="/story/"]',
-    //     urlSelector: 'a[href*="/story/"]',
-    //     page: 'sports'
-    // },
     {
         name: 'Sports Illustrated',
         url: 'https://si.com/',
@@ -1196,14 +916,6 @@ module.exports = [
         urlSelector: 'h3.entry-title a',
         page: 'politics'
     },
-    // error 403
-    // {
-    //     name: 'PolitiFact',
-    //     url: 'https://www.politifact.com',
-    //     titleSelector: '.m-statement__quote > a',
-    //     urlSelector: '.m-statement__quote > a',
-    //     page: 'politics'
-    // },
     {
         name: 'CNN Politics',
         url: 'https://www.cnn.com/politics/',
@@ -1247,20 +959,6 @@ module.exports = [
         page: 'politics'
     },
     {
-        name: 'The Atlantic',
-        url: 'https://www.theatlantic.com/politics/',
-        titleSelector: '.CollectionArticleCard_hed__mPXAv > a',
-        urlSelector: '.CollectionArticleCard_hed__mPXAv > a', 
-        page: 'politics' 
-    },
-    {
-        name: 'Daily Beast',
-        url: 'https://www.thedailybeast.com/',
-        titleSelector: '.card1__headline_box > a',
-        urlSelector: '.card1__headline_box > a', 
-        page: 'politics' 
-    },
-    {
         name: 'HuffPost',
         url: 'https://huffpost.com/',
         titleSelector: '.splash__headline > a',
@@ -1270,22 +968,6 @@ module.exports = [
 //END POLITICS
 /* START FRONT PAGE */
 
-    // consistently times out (ECONNABORTED, retried twice)
-    // {
-    //     name: 'US News',
-    //     url: 'https://www.usnews.com',
-    //     titleSelector: 'a.css-16ato06',
-    //     urlSelector: 'a.css-16ato06',
-    //     page: 'home'
-    // },
-    // error 403 (blocks automated requests) - checked 2026-09-19
-    // {
-    //     name: 'AP News',
-    //     url: ' https://www.apnews.com',
-    //     titleSelector: 'h2', 
-    //     urlSelector: 'h2 > a', 
-    //     page: 'home'
-    // },
     {
         name: 'Daily Mail',
         url: ' https://www.dailymail.co.uk/ushome/',
@@ -1329,21 +1011,6 @@ module.exports = [
         urlSelector: 'a[data-testid=\'internal-link\']',
         page: 'home',
     },
-    // error 403 (blocks automated requests) - checked 2026-09-19
-    // {
-    //     name: 'New York Times',
-    //     url: 'https://www.nytimes.com',
-    //     titleSelector: 'p.indicate-hover',
-    //     urlSelector: 'a.tpl-lbl',
-    //     page: 'home'
-    // },
-    {
-        name: 'CBS News',
-        url: 'https://www.cbsnews.com', 
-        titleSelector: 'h4.item__hed',
-        urlSelector: 'article:first a.item__anchor', 
-        page: 'home'
-    },
     {
         name: 'ABC News',
         url: 'https://www.abcnews.go.com',
@@ -1372,14 +1039,6 @@ module.exports = [
         urlSelector: 'h2.story__headline > a', 
         page: 'home'
     },
-    // error 403
-    // {
-    //     name: 'People',
-    //     url: 'https://www.people.com',
-    //     titleSelector: 'span.card__title-text',
-    //     urlSelector: 'a.primary-block__topStory',
-    //     page: 'home'
-    // },
     {
         name: 'NPR',
         url: 'https://www.npr.org',
@@ -1388,14 +1047,7 @@ module.exports = [
         page: 'home'
     },
     // Added 2026-09-19 to replace AP News and the New York Times, which both
-    // return 403 to automated requests. All four allow it in robots.txt.
-    {
-        name: 'USA Today',
-        url: 'https://www.usatoday.com/',
-        titleSelector: '.hero-stories-slot a[class*="-container"]',
-        urlSelector: '.hero-stories-slot a[class*="-container"]',
-        page: 'home'
-    },
+    // return 403 to automated requests. All three allow it in robots.txt.
     {
         name: 'Yahoo News',
         url: 'https://news.yahoo.com/',
@@ -1420,14 +1072,6 @@ module.exports = [
     //END Front PAge
     
     //START WORLD
-    // 403 - TRY ON RAILWAY
-    // {
-    //     name: 'Mainichi.jp',
-    //     url: 'https://mainichi.jp/english/',
-    //     titleSelector: 'p.midashi',
-    //     urlSelector: 'p.midashi > a',
-    //     page: 'world'
-    // },
     {
         name: 'Asahi',
         url: 'https://www.asahi.com/ajw/',
@@ -1484,14 +1128,6 @@ module.exports = [
         urlSelector: '.bigCart > h2 > a',
         page: 'world'
     },
-    // 402 - paywalled/blocked
-    // {
-    //     name: 'Le Monde',
-    //     url: 'https://www.lemonde.fr/en/france/',
-    //     titleSelector: '.teaser h3',
-    //     urlSelector: '.teaser > a ',
-    //     page: 'world'
-    // },
     {
         name: 'Rio Times',
         url: 'https://www.riotimesonline.com/',
@@ -1536,13 +1172,6 @@ module.exports = [
         urlSelector: '#homepage-carousel a.wdn-listv2-item-link',
         page: 'finance'
     },
-    //     {
-    //     name: 'Zero Hedge',
-    //     url: 'https://www.zerohedge.com.com/',
-    //     titleSelector: 'h2.Article_title___TC6d',
-    //     urlSelector: 'h2.Article_title___TC6d > a', 
-    //     page: 'finance'
-    // },
     {
         name: 'Insider Monkey',
         url: 'https://www.insidermonkey.com/',
@@ -1557,14 +1186,6 @@ module.exports = [
         urlSelector: 'a.zEzPL6aA', 
         page: 'finance'
     },
-    // error 403
-    // {
-    //     name: 'Investopedia',
-    //     url: 'https://www.investopedia.com',
-    //     titleSelector: 'div#card__title_1-0',
-    //     urlSelector: 'a#home-hero-primary__item_1-0',
-    //     page: 'finance'
-    // },
     {
         name: 'NASDAQ',
         url: 'https://www.nasdaq.com/newsroom/',
@@ -1572,22 +1193,6 @@ module.exports = [
         urlSelector: "a[slot='cta']",
         page: 'finance'
     },
-    // error 403
-    // {
-    //     name: 'The Balance Money',
-    //     url: 'https://www.thebalancemoney.com/',
-    //     titleSelector: 'a#mntl-document-card--featured_1-0 .card__title-text',
-    //     urlSelector: 'a#mntl-document-card--featured_1-0',
-    //     page: 'finance'
-    // },
-    // error 403
-    // {
-    //     name: 'Benzinga',
-    //     url: 'https://www.benzinga.com/',
-    //     titleSelector: '.gap-2 h3',
-    //     urlSelector: '.gap-2 > a',
-    //     page: 'finance'
-    // },
     {
         name: 'CNBC',
         url: 'https://www.cnbc.com/',
@@ -1602,14 +1207,6 @@ module.exports = [
         urlSelector: 'a[href^="/investing/20"]',
         page: 'finance'
     },
-    // disallowed by robots.txt (entire site)
-    // {
-    //     name: 'Investor\'s Bursiness Daily',
-    //     url: 'https://www.investors.com/',
-    //     titleSelector: '.article-title > a > div',
-    //     urlSelector: '.article-title > a',
-    //     page: 'finance'
-    // },
     {
         name: 'Investors Place',
         url: 'https://investorplace.com/',
