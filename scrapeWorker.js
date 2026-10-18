@@ -17,10 +17,11 @@ const cron = require('node-cron');
 const scrapeAllSites = require('./scraper/scrapeAllSites');
 const pruneOldArticles = require('./db/pruneOldArticles');
 const generateSummary = require('./summary/generateSummary');
-const { ensureSummariesTable, minutesSinceLastSummary } = require('./db/summaries');
+const { briefingDate, ensureSummariesTable, minutesSinceLastSummary } = require('./db/summaries');
 const { ensureArticlesSchema } = require('./db/articlesSchema');
 const { runDailyBlueskyPost } = require('./social/dailyPost');
 const { generateCategorySummaries } = require('./summary/categorySummary');
+const { submitToIndexNow } = require('./seo/indexNow');
 
 // A full pass over every site normally takes ~15 minutes, but if sites are
 // slow it could outlast the 60-minute schedule - never start a second pass
@@ -74,6 +75,8 @@ async function runSummaryCycle() {
             return;
         }
         await generateSummary();
+        // The dated page is new (or rewritten) and /briefing now shows it.
+        await submitToIndexNow([`/briefing/${briefingDate()}`, '/briefing', '/briefing/archive']);
     } catch (err) {
         // A failed run just leaves the previous briefing up until the next
         // attempt - never worth crashing the scraper over.
@@ -131,7 +134,8 @@ async function runCategorySummaryCycle() {
         return;
     }
     try {
-        await generateCategorySummaries();
+        const { written } = await generateCategorySummaries();
+        await submitToIndexNow(written.map((page) => `/${page}`));
     } catch (err) {
         console.error('Category summary cycle failed:', err.message);
     }
