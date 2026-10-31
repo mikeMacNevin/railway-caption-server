@@ -11,7 +11,7 @@ const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
 
 // Scrapes a single website. Returns an article, or null if the site couldn't
 // be scraped - in which case the reason has already been logged, and
-// scrapeAllSites reports which sites came back empty at the end of a cycle.
+// scrapeSites reports which sites came back empty at the end of a cycle.
 module.exports = async function scrapeWebsite(site) {
     try {
         const allowed = await isAllowedByRobots(site.url);

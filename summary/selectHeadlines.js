@@ -18,12 +18,14 @@ const MIN_OUTLETS_FOR_OTHER_PAGES = 3;
 const OUTLET_BOOST = 0.35;
 const MAX_OUTLET_BOOST = 3;
 
-// Age is computed in SQL (not from created_at as a JS Date) so it can't be
-// skewed by a timezone mismatch between this process and the database.
+// Age is computed in SQL (not from a JS Date) so it can't be skewed by a
+// timezone mismatch between this process and the database. It's measured
+// from last_seen_at - a story still leading a site is current news, however
+// long ago it first appeared.
 const query = `
-SELECT title, url, source, page, TIMESTAMPDIFF(MINUTE, created_at, NOW()) AS age_minutes
+SELECT title, url, source, page, TIMESTAMPDIFF(MINUTE, last_seen_at, NOW()) AS age_minutes
 FROM articles
-WHERE created_at > NOW() - INTERVAL ? HOUR
+WHERE last_seen_at > NOW() - INTERVAL ? HOUR
 `;
 
 const STOPWORDS = new Set([

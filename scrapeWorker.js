@@ -14,7 +14,8 @@
 
 require('dotenv').config();
 const cron = require('node-cron');
-const scrapeAllSites = require('./scraper/scrapeAllSites');
+const newsSites = require('./scraper/newsSites');
+const scrapeSites = require('./scraper/scrapeSites');
 const pruneOldArticles = require('./db/pruneOldArticles');
 const generateSummary = require('./summary/generateSummary');
 const { briefingDate, ensureSummariesTable, minutesSinceLastSummary } = require('./db/summaries');
@@ -23,28 +24,58 @@ const { runDailyBlueskyPost } = require('./social/dailyPost');
 const { generateCategorySummaries } = require('./summary/categorySummary');
 const { submitToIndexNow } = require('./seo/indexNow');
 
-// A full pass over every site normally takes ~15 minutes, but if sites are
-// slow it could outlast the 60-minute schedule - never start a second pass
-// on top of one that's still running.
-let scrapeRunning = false;
+// Every 10 minutes the worker scrapes two groups:
+//   - the Front Page's sites, every time - that's where breaking news shows
+//     up first, so it's never more than ~10 minutes stale. One homepage
+//     request per outlet every 10 minutes is lighter than a single reader
+//     refreshing the page.
+//   - one sixth of every other site, in rotation, so each of those is still
+//     fetched once an hour (as before) but the work is spread across the
+//     hour instead of one ~15-minute burst.
+const SCRAPE_INTERVAL_MINUTES = 10;
+const ROTATION_SLICES = 6; // x 10 minutes = each site once an hour
 
-async function runScrapeCycle() {
-    if (scrapeRunning) {
-        console.warn('Scrape cycle skipped - the previous one is still running');
+const frontPageSites = newsSites.filter((site) => site.page === 'home');
+const otherSites = newsSites.filter((site) => site.page !== 'home');
+
+// Which sixth is due is worked out from the clock, not a counter, so a
+// restart or redeploy picks up where the rotation left off instead of
+// starting over at slice 0. Taking every sixth site (rather than six
+// contiguous blocks) mixes categories in each slice, so every section gets
+// something fresh every 10 minutes.
+function currentRotationSlice() {
+    const slot = Math.floor(Date.now() / (SCRAPE_INTERVAL_MINUTES * 60 * 1000)) % ROTATION_SLICES;
+    return { slot, sites: otherSites.filter((_, i) => i % ROTATION_SLICES === slot) };
+}
+
+// Each group has its own "still running" flag, so a slow rotation slice can
+// never hold up the Front Page (or the reverse) - a group only skips a run
+// when its own previous run hasn't finished.
+const running = new Set();
+
+async function runScrape(group, label, sites) {
+    if (running.has(group)) {
+        console.warn(`${label} scrape skipped - the previous one is still running`);
         return;
     }
-    scrapeRunning = true;
+    running.add(group);
     try {
-        await scrapeAllSites();
+        await scrapeSites(sites, label);
     } catch (err) {
         // A single site's failure is already caught inside scrapeWebsite.js
         // and doesn't reach here. This is the backstop for anything
         // unexpected in the cycle itself - log it and let the next
         // scheduled run try again, rather than crashing the worker.
-        console.error('Scrape cycle failed:', err.message);
+        console.error(`${label} scrape failed:`, err.message);
     } finally {
-        scrapeRunning = false;
+        running.delete(group);
     }
+}
+
+function runScrapeCycle() {
+    const { slot, sites } = currentRotationSlice();
+    runScrape('front', 'Front Page', frontPageSites);
+    runScrape('rotation', `Rotation ${slot + 1}/${ROTATION_SLICES}`, sites);
 }
 
 async function runRetentionCycle() {
@@ -97,16 +128,15 @@ ensureArticlesSchema()
         runSummaryCycle();
     });
 
-// Same 60-minute cadence server.js used before this split.
-cron.schedule('*/60 * * * *', runScrapeCycle);
+cron.schedule(`*/${SCRAPE_INTERVAL_MINUTES} * * * *`, runScrapeCycle);
 
 // Once nightly is plenty for a 7-day retention window - this worker
 // process stays up continuously, so the startup run above is what
 // actually catches a fresh deploy or a missed night, not this schedule.
 cron.schedule('0 3 * * *', runRetentionCycle);
 
-// Every 3 hours, offset from the top of the hour so it lands after that
-// hour's scrape has had a chance to bring in fresh headlines.
+// Every 3 hours. The :20 offset dates from the hourly scrape; with scrapes
+// every 10 minutes the headlines are at most one cycle old whenever it runs.
 cron.schedule('20 */3 * * *', runSummaryCycle);
 
 // Shares today's briefing on Bluesky. Tried hourly from 7 to 11am Eastern -
@@ -124,8 +154,8 @@ async function runSocialCycle() {
 cron.schedule('5 7-11 * * *', runSocialCycle, { timezone: 'America/New_York' });
 
 // Writes the daily overview shown above each category page's headlines.
-// First attempt at 6:40am Eastern, after the 5am-6am scrapes have refreshed
-// the overnight headlines; the later hourly attempts only fill in categories
+// First attempt at 6:40am Eastern, once every site has been through a full
+// hourly rotation since 5:40 and refreshed the overnight headlines; the later hourly attempts only fill in categories
 // that failed (see generateCategorySummaries), so a normal day makes just one
 // model call per category.
 async function runCategorySummaryCycle() {

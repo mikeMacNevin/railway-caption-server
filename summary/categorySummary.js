@@ -102,8 +102,9 @@ function rankCategoryHeadlines(rows) {
 
 async function loadCategoryRows(page) {
   const [rows] = await pool.query(
-    `SELECT title, url, source, TIMESTAMPDIFF(MINUTE, created_at, NOW()) AS age_minutes
-     FROM articles WHERE page = ? AND created_at > NOW() - INTERVAL ? HOUR`,
+    // last_seen_at for the same reason as selectHeadlines.js.
+    `SELECT title, url, source, TIMESTAMPDIFF(MINUTE, last_seen_at, NOW()) AS age_minutes
+     FROM articles WHERE page = ? AND last_seen_at > NOW() - INTERVAL ? HOUR`,
     [page, WINDOW_HOURS]
   );
   return rows;

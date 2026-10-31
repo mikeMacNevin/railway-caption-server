@@ -55,9 +55,20 @@ function requireDebugKey(req, res, next) {
   next();
 }
 
-const CACHE_TTL_MS = 30 * 60 * 1000; // 30 minutes
+// The Front Page is re-scraped every 10 minutes (scrapeWorker.js), so its
+// cache has to be much shorter than that or it would hide fresh headlines.
+// Every other section's sites come round once an hour, a sixth at a time.
+const CACHE_TTL_MS = { home: 2 * 60 * 1000, default: 10 * 60 * 1000 };
 const cache = {}; // { [page]: { data: [], fetchedAt: timestamp } }
 
+function cacheTtl(page) {
+  return CACHE_TTL_MS[page] || CACHE_TTL_MS.default;
+}
+
+// "Current" means seen on the site within 48 hours (last_seen_at); the
+// order and the time shown are when we first saw it (created_at). Rows from
+// before saveToDatabase stopped re-inserting repeats can still hold several
+// copies of one story - the earliest is the one kept.
 const query = `
 SELECT
     title,
@@ -74,10 +85,10 @@ FROM (
     FROM (
         SELECT
             *,
-            ROW_NUMBER() OVER (PARTITION BY source, url ORDER BY created_at DESC) AS dedup_rn
+            ROW_NUMBER() OVER (PARTITION BY source, url ORDER BY created_at ASC) AS dedup_rn
         FROM articles
         WHERE page = ?
-          AND created_at > NOW() - INTERVAL 48 HOUR
+          AND last_seen_at > NOW() - INTERVAL 48 HOUR
     ) deduped
     WHERE dedup_rn = 1
 ) final
@@ -123,8 +134,9 @@ const SEARCH_RESULT_LIMIT = 50;
 // for a specific thing they already saw. Bound instead by whatever the
 // retention job (db/pruneOldArticles.js) still has on hand: up to 7 days.
 //
-// Every scrape run inserts a fresh row per article per page, so the same
-// story sits in the table many times over. Collapse to one row per URL
+// The same story can sit in the table more than once - under more than one
+// page, and as repeats written before saveToDatabase stopped re-inserting a
+// site's unchanged top story. Collapse to one row per URL
 // (the newest - sites retitle stories, so URL is the stable key, not
 // title) before the LIMIT, or repeats would crowd out distinct results.
 const searchQuery = `
@@ -169,7 +181,7 @@ router.get('/articles/:page', async (req, res) => {
   const page = req.params.page;
 
   const cached = cache[page];
-  if (cached && Date.now() - cached.fetchedAt < CACHE_TTL_MS) {
+  if (cached && Date.now() - cached.fetchedAt < cacheTtl(page)) {
     return res.status(200).json({ message: 'Latest articles retrieved successfully', articles: cached.data });
   }
 

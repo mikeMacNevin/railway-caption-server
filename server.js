@@ -17,6 +17,7 @@ app.use(cors())
 
 //MIKE imports//
 const { router: articlesRouter, warmCache } = require('./routes/articles');
+const { ensureArticlesSchema } = require('./db/articlesSchema');
 const summaryRouter = require('./routes/summary');
 
 //EXPRESS - need to update port once I move it to railway
@@ -38,5 +39,11 @@ app.use('/api', summaryRouter);
 // fresh on the same cadence the scraper used to run on. Individual pages
 // still self-heal on a cache miss via the TTL check in articles.js, so this
 // is purely a cold-start optimization, not a correctness requirement.
-warmCache();
+//
+// The schema check runs first because the feed query reads last_seen_at,
+// which the worker's own (simultaneous) boot may not have added yet. Both
+// processes run it; whichever gets there second finds nothing to do.
+ensureArticlesSchema()
+    .catch((err) => console.error('Articles schema check failed:', err.message))
+    .then(warmCache);
 cron.schedule('*/60 * * * *', warmCache);

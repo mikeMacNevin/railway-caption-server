@@ -20,7 +20,9 @@ module.exports = async function pruneOldArticles() {
     // (server-side prepared statements) - mysql2's prepared-statement
     // protocol rejects a parameter marker in LIMIT.
     const [result] = await pool.query(
-      'DELETE FROM articles WHERE created_at < NOW() - INTERVAL ? DAY LIMIT ?',
+      // last_seen_at, not created_at: a story that's still a site's top
+      // headline is current however long ago it first appeared.
+      'DELETE FROM articles WHERE last_seen_at < NOW() - INTERVAL ? DAY LIMIT ?',
       [RETENTION_DAYS, BATCH_SIZE]
     );
     totalDeleted += result.affectedRows;
