@@ -18,10 +18,11 @@ const newsSites = require('./scraper/newsSites');
 const scrapeSites = require('./scraper/scrapeSites');
 const pruneOldArticles = require('./db/pruneOldArticles');
 const generateSummary = require('./summary/generateSummary');
-const { briefingDate, ensureSummariesTable, minutesSinceLastSummary } = require('./db/summaries');
+const { briefingDate, ensureSummariesTable, minutesSinceLastSummary, getLatestSummary } = require('./db/summaries');
+const { detectBreakingStory } = require('./summary/breakingNews');
 const { ensureArticlesSchema } = require('./db/articlesSchema');
 const { runDailyBlueskyPost } = require('./social/dailyPost');
-const { generateCategorySummaries } = require('./summary/categorySummary');
+const { generateCategorySummaries, generateMarketUpdate } = require('./summary/categorySummary');
 const { submitToIndexNow } = require('./seo/indexNow');
 
 // Every 10 minutes the worker scrapes two groups:
@@ -74,7 +75,9 @@ async function runScrape(group, label, sites) {
 
 function runScrapeCycle() {
     const { slot, sites } = currentRotationSlice();
-    runScrape('front', 'Front Page', frontPageSites);
+    // The breaking-news check rides on the Front Page scrape, so it sees the
+    // freshest front pages - a big story shows up there first.
+    runScrape('front', 'Front Page', frontPageSites).then(runBreakingNewsCheck);
     runScrape('rotation', `Rotation ${slot + 1}/${ROTATION_SLICES}`, sites);
 }
 
@@ -112,6 +115,34 @@ async function runSummaryCycle() {
         // A failed run just leaves the previous briefing up until the next
         // attempt - never worth crashing the scraper over.
         console.error('Summary cycle failed:', err.message);
+    }
+}
+
+// Rewrites the briefing early when a very big story breaks between the
+// scheduled runs (see summary/breakingNews.js). The check itself is one
+// query; the model is only called when a story qualifies and the briefing
+// doesn't already cover it. The minimum gap caps a fast-moving story at one
+// rewrite per 45 minutes - each rewrite cites the story, so its follow-up
+// headlines count as covered and don't trigger another.
+const BREAKING_MIN_INTERVAL_MINUTES = 45;
+
+async function runBreakingNewsCheck() {
+    if (!process.env.ANTHROPIC_API_KEY) return;
+    try {
+        await ensureSummariesTable();
+        if (await minutesSinceLastSummary() < BREAKING_MIN_INTERVAL_MINUTES) return;
+
+        const story = await detectBreakingStory(await getLatestSummary());
+        if (!story) return;
+
+        console.log(
+            `Breaking news: ${story.outlets} outlets across ${[...story.pages].join(', ')} - ` +
+            `"${story.headlines[0].title}". Rewriting the briefing.`
+        );
+        await generateSummary({ breaking: story });
+        await submitToIndexNow([`/briefing/${briefingDate()}`, '/briefing', '/briefing/archive']);
+    } catch (err) {
+        console.error('Breaking news check failed:', err.message);
     }
 }
 
@@ -172,3 +203,20 @@ async function runCategorySummaryCycle() {
 }
 
 cron.schedule('40 6-12 * * *', runCategorySummaryCycle, { timezone: 'America/New_York' });
+
+// Rewrites the finance overview at 3pm Eastern on weekdays to cover the
+// day's market activity (see generateMarketUpdate). The 3:20 and 3:40
+// attempts only run if the 3:00 one failed.
+async function runMarketUpdateCycle() {
+    if (!process.env.ANTHROPIC_API_KEY) {
+        console.log('Market update: ANTHROPIC_API_KEY not set, skipping');
+        return;
+    }
+    try {
+        if (await generateMarketUpdate()) await submitToIndexNow(['/finance']);
+    } catch (err) {
+        console.error('Market update failed:', err.message);
+    }
+}
+
+cron.schedule('0,20,40 15 * * 1-5', runMarketUpdateCycle, { timezone: 'America/New_York' });

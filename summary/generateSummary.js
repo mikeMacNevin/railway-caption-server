@@ -37,14 +37,29 @@ Respond with ONLY a JSON object, no markdown fences, in exactly this shape:
   ]
 }`;
 
-function buildPrompt(headlines) {
+// `breaking` is a story from breakingNews.js. Its headlines that made the
+// selection are named by number so the model leads with it - left to the
+// usual weighting, a story that's an hour old can lose out to one every
+// outlet has been running all day.
+function buildPrompt(headlines, breaking = null) {
   const lines = headlines.map((h) => {
     const age = h.ageHours < 1 ? 'just now' : `${Math.round(h.ageHours)}h ago`;
     const section = h.page === 'home' ? 'front page' : h.page;
     const outlets = h.outlets > 1 ? `, ${h.outlets} outlets` : '';
     return `[${h.n}] (${section}, ${h.source}, ${age}${outlets}) ${h.title}`;
   });
-  return `Headlines:\n${lines.join('\n')}`;
+
+  let note = '';
+  if (breaking) {
+    const urls = new Set(breaking.headlines.map((h) => h.url));
+    const numbers = headlines.filter((h) => urls.has(h.url)).map((h) => h.n);
+    if (numbers.length) {
+      note = `Breaking: headlines ${numbers.join(', ')} are about a major story that broke in the last few hours ` +
+        `and is being covered by ${breaking.outlets} outlets across many sections. Lead the briefing with it, ` +
+        `and make it the focus of the briefing's headline.\n\n`;
+    }
+  }
+  return `${note}Headlines:\n${lines.join('\n')}`;
 }
 
 function extractJson(text) {
@@ -96,13 +111,14 @@ function validateBriefing(raw, headlines) {
 }
 
 // `dryRun` builds the prompt and stops - no API call, nothing written.
-async function generateSummary({ dryRun = false } = {}) {
+// `breaking` - see buildPrompt.
+async function generateSummary({ dryRun = false, breaking = null } = {}) {
   const headlines = await selectHeadlines();
   if (headlines.length < MIN_HEADLINES) {
     throw new Error(`Only ${headlines.length} recent headlines - too few to summarize`);
   }
 
-  const prompt = buildPrompt(headlines);
+  const prompt = buildPrompt(headlines, breaking);
   if (dryRun) return { headlines, prompt, systemPrompt: SYSTEM_PROMPT };
 
   const client = new Anthropic();

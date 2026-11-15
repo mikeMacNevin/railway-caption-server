@@ -38,6 +38,15 @@ async function pagesDoneToday() {
   return new Set(rows.map((row) => row.page));
 }
 
+// Age computed in SQL, as in summaries.js. Infinity when there's none yet.
+async function minutesSinceCategorySummary(page) {
+  const [[row]] = await pool.query(
+    'SELECT TIMESTAMPDIFF(MINUTE, MAX(generated_at), NOW()) AS age FROM category_summaries WHERE page = ?',
+    [page]
+  );
+  return row.age === null ? Infinity : row.age;
+}
+
 // The newest overview for a page, but only if it's recent - a stale one
 // sitting above today's headlines would be worse than none.
 const MAX_AGE_HOURS = 36;
@@ -66,5 +75,6 @@ module.exports = {
   ensureCategorySummariesTable,
   saveCategorySummary,
   pagesDoneToday,
+  minutesSinceCategorySummary,
   getLatestCategorySummary,
 };
