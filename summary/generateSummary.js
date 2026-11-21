@@ -27,13 +27,16 @@ How to write it:
 - Use ONLY what the headlines themselves say. Do not add background, names, figures, causes, or outcomes that no headline states. Where headlines are vague or disagree, stay general or say so, and attribute hedged claims ("reports say", "according to ...").
 - Neutral, plain prose. No opinion, no hype, no rhetorical questions. Do not mention headline numbers or outlet names in the text.
 - For each paragraph, list the numbers of the headlines it draws on.
+- Give each paragraph a "topic": a plain label of 1 to 3 words naming its subject, shown above it as a small section header. It is a description, not a headline - name the subject, not what happened ("Palisades Fire", not "Palisades Fire conviction"; "Russia and Ukraine", not "Peace talks stall"). No verb, no claim, no punctuation, sentence case - for example "Government shutdown", "Middle East", "Markets", "College football". A paragraph that rounds up several smaller, unrelated stories can use a broad label such as "Sports" or "Also today".
+- Leave "topic" as "" for the first paragraph (the briefing's headline already introduces it) and for any paragraph that continues the same story as the one before it.
 
 Respond with ONLY a JSON object, no markdown fences, in exactly this shape:
 {
   "headline": "a short title for today's briefing, under 90 characters",
   "dek": "one sentence capturing the day's news",
   "paragraphs": [
-    { "text": "the paragraph", "articles": [12, 47] }
+    { "topic": "", "text": "the paragraph", "articles": [12, 47] },
+    { "topic": "Markets", "text": "the next paragraph", "articles": [3, 18] }
   ]
 }`;
 
@@ -100,12 +103,21 @@ function validateBriefing(raw, headlines) {
       if (articles.length === MAX_SOURCES_PER_PARAGRAPH) break;
     }
 
-    if (text && articles.length > 0) paragraphs.push({ text, articles });
+    // A label, not a sentence - trailing punctuation is stripped and anything
+    // past a few words is dropped rather than shown as a long header.
+    let topic = clean(paragraph && paragraph.topic, 60).replace(/[.,:;!?\s]+$/, '');
+    if (topic.split(/\s+/).length > 6) topic = '';
+
+    if (text && articles.length > 0) paragraphs.push({ topic, text, articles });
   }
 
   if (paragraphs.length < MIN_PARAGRAPHS) {
     throw new Error(`Only ${paragraphs.length} valid paragraphs after validation (need ${MIN_PARAGRAPHS})`);
   }
+
+  // The headline already introduces the opening paragraph. Enforced here too,
+  // because the model's first paragraph may have been dropped above.
+  paragraphs[0].topic = '';
 
   return { headline, dek, paragraphs };
 }
@@ -147,3 +159,4 @@ module.exports = generateSummary;
 module.exports.validateBriefing = validateBriefing;
 module.exports.buildPrompt = buildPrompt;
 module.exports.extractJson = extractJson;
+module.exports.SYSTEM_PROMPT = SYSTEM_PROMPT;
