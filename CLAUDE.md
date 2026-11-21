@@ -12,10 +12,11 @@ Node and Express API, plus a scraper worker. Both share one MySQL database. The 
   - Category overviews from 6:40 to 12:40 ET. Later attempts only fill in failures.
   - Finance market update at 3pm ET on weekdays.
   - Bluesky daily post, attempted hourly 7–11am ET. Only the first success posts.
+  - Newsletter email via Buttondown, attempted hourly 6:30–10:30am ET. Only the first success sends. It does nothing unless `NEWSLETTER_MODE` is `draft` or `send`.
   - Retention: articles older than 7 days are pruned nightly at 3am.
   - IndexNow ping after each briefing or overview is written.
 
-Environment variables are set **per service** in Railway. The Anthropic key and the Bluesky credentials (`BLUESKY_HANDLE`, `BLUESKY_APP_PASSWORD`) are on the worker only.
+Environment variables are set **per service** in Railway. The Anthropic key, the Bluesky credentials (`BLUESKY_HANDLE`, `BLUESKY_APP_PASSWORD`) and the newsletter settings (`BUTTONDOWN_API_KEY`, `NEWSLETTER_MODE`) are on the worker only.
 
 ## Layout
 
@@ -23,6 +24,7 @@ Environment variables are set **per service** in Railway. The Anthropic key and 
 - `scraper/`: `newsSites.js` is the source list (`page: 'home'` marks a front-page site). `diagnose.js` (`npm run diagnose`) checks broken sources.
 - `summary/`: briefing (`generateSummary.js`), breaking news, category overviews and the market update. Models default to `claude-haiku-4-5`, overridable with `SUMMARY_MODEL` and `CATEGORY_SUMMARY_MODEL`.
 - `social/`: `dailyPost.js` holds the platform-neutral "post today's briefing once" logic, and `bluesky.js` is the client. **New platforms (Threads, Mastodon, X) should add a client file and reuse `dailyPost.js` and the `social_posts` table under their own platform name.**
+- `newsletter/`: `buttondown.js` builds the email HTML and calls the API. `dailyEmail.js` holds the once-a-day logic, tracked in `social_posts` as platform `newsletter` or `newsletter-draft`. `npm run newsletter -- --dry` writes `newsletter-preview.html`. **Buttondown's create-email endpoint sends to every subscriber by default.** Always pass `status` explicitly. Never retry after a timeout, because the email may already have gone out.
 - `seo/indexNow.js`: the key must match `client/public/<key>.txt`.
 - `db/`: one module per table. Schema changes run idempotently on boot (`ensure*` functions). There are no migration files.
 

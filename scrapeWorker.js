@@ -22,6 +22,7 @@ const { briefingDate, ensureSummariesTable, minutesSinceLastSummary, getLatestSu
 const { detectBreakingStory } = require('./summary/breakingNews');
 const { ensureArticlesSchema } = require('./db/articlesSchema');
 const { runDailyBlueskyPost } = require('./social/dailyPost');
+const { runDailyNewsletter } = require('./newsletter/dailyEmail');
 const { generateCategorySummaries, generateMarketUpdate } = require('./summary/categorySummary');
 const { submitToIndexNow } = require('./seo/indexNow');
 
@@ -183,6 +184,20 @@ async function runSocialCycle() {
 }
 
 cron.schedule('5 7-11 * * *', runSocialCycle, { timezone: 'America/New_York' });
+
+// Emails today's briefing to newsletter subscribers (see newsletter/). First
+// attempt at 6:30am Eastern, so it's waiting in inboxes before most people
+// wake up - the 5:20am briefing run has finished by then. The later hourly
+// attempts only matter if that one failed; Off unless NEWSLETTER_MODE is set.
+async function runNewsletterCycle() {
+    try {
+        await runDailyNewsletter();
+    } catch (err) {
+        console.error('Newsletter cycle failed:', err.message);
+    }
+}
+
+cron.schedule('30 6-10 * * *', runNewsletterCycle, { timezone: 'America/New_York' });
 
 // Writes the daily overview shown above each category page's headlines.
 // First attempt at 6:40am Eastern, once every site has been through a full

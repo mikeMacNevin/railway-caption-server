@@ -9,7 +9,8 @@
     "summary": "node summary/run.js",
     "diagnose": "node scraper/diagnose.js",
     "post:bluesky": "node social/run.js",
-    "summary:categories": "node summary/runCategories.js"
+    "summary:categories": "node summary/runCategories.js",
+    "newsletter": "node newsletter/run.js"
   },
   "keywords": [],
   "author": "",
